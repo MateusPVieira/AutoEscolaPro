@@ -5,7 +5,6 @@ import br.edu.ifsp.model.entities.schedule.Schedule;
 import br.edu.ifsp.model.entities.student.Student;
 import br.edu.ifsp.model.entities.user.User;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
