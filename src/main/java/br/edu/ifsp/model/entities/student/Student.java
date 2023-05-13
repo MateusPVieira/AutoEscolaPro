@@ -8,15 +8,17 @@ public class Student {
     private String cnh;
     private String address;
     private String phone;
+    private String email;
 
 
-    public Student(long id, String name, String cpf, String rg, String address, String phone) {
+    public Student(long id, String name, String cpf, String rg, String address, String phone, String email) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
         this.rg = rg;
         this.address = address;
         this.phone = phone;
+        this.email = email;
     }
 
     public long getId() {
@@ -75,6 +77,14 @@ public class Student {
         this.phone = phone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -85,6 +95,7 @@ public class Student {
                 ", cnh='" + cnh + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
