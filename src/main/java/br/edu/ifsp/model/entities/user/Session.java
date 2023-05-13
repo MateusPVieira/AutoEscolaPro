@@ -2,7 +2,7 @@ package br.edu.ifsp.model.entities.user;
 
 public class Session {
     private static Session instance = null;
-    private User user;
+    private UserLoginDTO user;
 
     private Session(){
 
@@ -15,11 +15,11 @@ public class Session {
         return instance;
     }
 
-    public void setUser(User user){
+    public void setUser(UserLoginDTO user){
         this.user = user;
     }
 
-    public User getUser(){
+    public UserLoginDTO getUser(){
         return user;
     }
 
