@@ -15,7 +15,7 @@ public class ActivateQualificationProcessUseCase {
     public boolean activateQualificationProcess(Long id){
        QualificationProcess qualification = qualificationProcessDAO.findOne(id).orElseThrow(()-> new EntityNotFoundException("Qualification Process not found!"));
 
-       qualification.setRegistrationStatus(RegistrationStatus.valueOf("ACTIVE"));
+       qualification.setRegistrationStatus(RegistrationStatus.ACTIVE);
 
        return updateQualificationProcessUseCase.update(qualification.getId(), qualification);
     }

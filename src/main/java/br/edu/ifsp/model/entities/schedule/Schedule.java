@@ -24,6 +24,11 @@ public class Schedule {
         this.valuesReference = valuesReference;
     }
 
+    public Schedule(LocalDateTime scheduledDateTime, ValuesReference valuesReference) {
+        this.scheduledDateTime = scheduledDateTime;
+        this.valuesReference = valuesReference;
+    }
+
     public long getId() {
         return id;
     }
