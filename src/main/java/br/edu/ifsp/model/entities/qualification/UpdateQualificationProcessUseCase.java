@@ -3,14 +3,11 @@ package br.edu.ifsp.model.entities.qualification;
 import br.edu.ifsp.model.entities.EntityNotFoundException;
 import br.edu.ifsp.model.entities.Notification;
 import br.edu.ifsp.model.entities.Validator;
-import br.edu.ifsp.model.entities.student.StudentDAO;
 
 public class UpdateQualificationProcessUseCase {
-    private StudentDAO studentDAO;
     private QualificationProcessDAO qualificationProcessDAO;
 
-    public UpdateQualificationProcessUseCase(StudentDAO studentDAO, QualificationProcessDAO qualificationProcessDAO){
-        this.studentDAO = studentDAO;
+    public UpdateQualificationProcessUseCase(QualificationProcessDAO qualificationProcessDAO){
         this.qualificationProcessDAO = qualificationProcessDAO;
     }
 
