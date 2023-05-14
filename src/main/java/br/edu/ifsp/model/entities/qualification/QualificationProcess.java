@@ -32,7 +32,18 @@ public class QualificationProcess {
 
     public QualificationProcess() {
     }
-
+    public QualificationProcess(long qualificationValueCents, int minimumNumberOfLessons, User user, RegistrationStatus registrationStatus, TestStatus eyeExam, TestStatus theoricExam, TestStatus psychoExam, DrivingCategory drivingCategory, Instructor instructor, Student student) {
+        this.qualificationValueCents = qualificationValueCents;
+        this.minimumNumberOfLessons = minimumNumberOfLessons;
+        this.user = user;
+        this.registrationStatus = registrationStatus;
+        this.eyeExam = eyeExam;
+        this.theoricExam = theoricExam;
+        this.psychoExam = psychoExam;
+        this.drivingCategory = drivingCategory;
+        this.instructor = instructor;
+        this.student = student;
+    }
     public QualificationProcess(long id, long qualificationValueCents, LocalDate openingDate, int minimumNumberOfLessons, User user, RegistrationStatus registrationStatus, TestStatus eyeExam, TestStatus theoricExam, TestStatus psychoExam, DrivingCategory drivingCategory, Instructor instructor, Student student, List<Schedule> drivingLessons, List<Schedule> drivingTests) {
         this.id = id;
         this.qualificationValueCents = qualificationValueCents;
