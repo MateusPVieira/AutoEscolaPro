@@ -12,12 +12,12 @@ import java.time.LocalDateTime;
 
 public class ScheduleTestUseCase {
 //    private QualificationProcessDAO qualificationProcessDAO;
-//    private TestScheduleDAO testScheduleDAO;
+//    private ScheduleDAO ScheduleDAO;
 //    private ValuesReference valuesReference;
 //
-//    public ScheduleTestUseCase(QualificationProcessDAO qualificationProcessDAO, TestScheduleDAO testScheduleDAO, ValuesReference valuesReference) {
+//    public ScheduleTestUseCase(QualificationProcessDAO qualificationProcessDAO, ScheduleDAO ScheduleDAO, ValuesReference valuesReference) {
 //        this.qualificationProcessDAO = qualificationProcessDAO;
-//        this.testScheduleDAO = testScheduleDAO;
+//        this.ScheduleDAO = ScheduleDAO;
 //        this.valuesReference = valuesReference;
 //    }
 //
@@ -29,7 +29,7 @@ public class ScheduleTestUseCase {
 //        long testValue = valuesReference.getTestValueInCents();
 //
 //        //Schedule testSchedule = new Schedule(date, testValue);
-//        testScheduleDAO.insert(testSchedule);
+//        ScheduleDAO.insert(testSchedule);
 //        // tendi foi nada, terminar
 //    }
 }

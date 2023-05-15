@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 public class Schedule {
     private long id;
     private LocalDateTime scheduledDateTime;
-
     private ScheduleStatus scheduleStatus;
     private RemunerationStatus remunerationStatus;
     private ValuesReference valuesReference;
@@ -18,6 +17,12 @@ public class Schedule {
 
     public Schedule(long id, LocalDateTime scheduledDateTime, ScheduleStatus scheduleStatus, RemunerationStatus remunerationStatus, ValuesReference valuesReference) {
         this.id = id;
+        this.scheduledDateTime = scheduledDateTime;
+        this.scheduleStatus = scheduleStatus;
+        this.remunerationStatus = remunerationStatus;
+        this.valuesReference = valuesReference;
+    }
+    public Schedule(LocalDateTime scheduledDateTime, ScheduleStatus scheduleStatus, RemunerationStatus remunerationStatus, ValuesReference valuesReference) {
         this.scheduledDateTime = scheduledDateTime;
         this.scheduleStatus = scheduleStatus;
         this.remunerationStatus = remunerationStatus;

@@ -5,6 +5,7 @@ import br.edu.ifsp.model.entities.Notification;
 import br.edu.ifsp.model.entities.TestStatus;
 import br.edu.ifsp.model.entities.Validator;
 import br.edu.ifsp.model.entities.instructor.Instructor;
+import br.edu.ifsp.model.entities.instructor.InstructorDAO;
 import br.edu.ifsp.model.entities.student.Student;
 import br.edu.ifsp.model.entities.student.StudentDAO;
 

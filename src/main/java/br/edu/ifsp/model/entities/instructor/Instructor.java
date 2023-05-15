@@ -1,6 +1,7 @@
 package br.edu.ifsp.model.entities.instructor;
 
 import br.edu.ifsp.model.entities.DrivingCategory;
+import br.edu.ifsp.model.entities.RegistrationStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +16,12 @@ public class Instructor {
     private String phone;
     private String bankAccount;
     private List<DrivingCategory> drivingCategory = new ArrayList<>();
+    private RegistrationStatus registrationStatus; // não estava no diagrama de classes
 
     public Instructor() {
     }
 
-    public Instructor(long id, String name, String cpf, String rg, String cnh, String address, String phone, String bankAccount) {
+    public Instructor(long id, String name, String cpf, String rg, String cnh, String address, String phone, String bankAccount, RegistrationStatus registrationStatus) {
         this.id = id;
         this.name = name;
         this.cpf = cpf;
@@ -28,6 +30,7 @@ public class Instructor {
         this.address = address;
         this.phone = phone;
         this.bankAccount = bankAccount;
+        this.registrationStatus = registrationStatus;
     }
 
     public long getId() {
@@ -104,6 +107,14 @@ public class Instructor {
 
     public void removeDrivingCategory(DrivingCategory drivingCategory){
         this.drivingCategory.remove(drivingCategory);
+    }
+
+    public RegistrationStatus getRegistrationStatus() {
+        return registrationStatus;
+    }
+
+    public void setRegistrationStatus(RegistrationStatus registrationStatus) {
+        this.registrationStatus = registrationStatus;
     }
 
     @Override

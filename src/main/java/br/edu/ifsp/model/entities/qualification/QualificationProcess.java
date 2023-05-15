@@ -5,6 +5,7 @@ import br.edu.ifsp.model.entities.RegistrationStatus;
 import br.edu.ifsp.model.entities.TestStatus;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import br.edu.ifsp.model.entities.schedule.Schedule;
+import br.edu.ifsp.model.entities.schedule.ScheduleLessonUseCase;
 import br.edu.ifsp.model.entities.student.Student;
 import br.edu.ifsp.model.entities.user.User;
 
@@ -171,5 +172,20 @@ public class QualificationProcess {
 
     public void setDrivingTests(List<Schedule> drivingTests) {
         this.drivingTests = drivingTests;
+    }
+    public void addDrivingLesson(Schedule drivingLesson){
+        this.drivingLessons.add(drivingLesson);
+    }
+
+    public void removeDrivingLesson(Schedule drivingLesson){
+        this.drivingLessons.remove(drivingLesson);
+    }
+
+    public void addDrivingTest(Schedule drivingTest){
+        this.drivingLessons.add(drivingTest);
+    }
+
+    public void removeDrivingTest(Schedule drivingTest){
+        this.drivingLessons.remove(drivingTest);
     }
 }

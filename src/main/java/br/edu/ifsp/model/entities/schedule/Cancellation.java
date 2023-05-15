@@ -1,4 +1,4 @@
-package br.edu.ifsp.model.entities.instructor;
+package br.edu.ifsp.model.entities.schedule;
 
 import br.edu.ifsp.model.entities.schedule.Schedule;
 
