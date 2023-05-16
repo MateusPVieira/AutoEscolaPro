@@ -7,12 +7,12 @@ public class ReferenceValuesValidator extends Validator<ValuesReference>{
         if (valuesReference == null){
             notification.addError("Student is null!");
         }
-        if(nullOrEmpty(String.valueOf(valuesReference.getDefaultMinimunNumberOfLessons())))
-            notification.addError("Name is null or empty!");
-        if(nullOrEmpty(String.valueOf(valuesReference.getLessonValueInCents())))
-            notification.addError("CPF is null or empty!");
-        if(nullOrEmpty(String.valueOf(valuesReference.getTestValueInCents())))
-            notification.addError("RG is null or empty!");
+        if(nullOrEmpty(String.valueOf(valuesReference.getDefaultMinimunNumberOfLessons())) || valuesReference.getDefaultMinimunNumberOfLessons() < 0)
+            notification.addError("Name is null, empty or invalid!");
+        if(nullOrEmpty(String.valueOf(valuesReference.getLessonValueInCents())) || valuesReference.getLessonValueInCents() < 0)
+            notification.addError("Name is null, empty or invalid!");
+        if(nullOrEmpty(String.valueOf(valuesReference.getTestValueInCents())) || valuesReference.getTestValueInCents() < 0)
+            notification.addError("Name is null, empty or invalid!");
 
         return notification;
     }
