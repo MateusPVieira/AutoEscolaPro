@@ -1,5 +1,7 @@
 package br.edu.ifsp.model.entities.user;
 
+import br.edu.ifsp.model.entities.RegistrationStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,10 +15,12 @@ public class User {
     private List<String> passwordTips = new ArrayList<String>();
     private AcessLevel acessLevel;
 
+    private RegistrationStatus registrationStatus;
+
     public User() {
     }
 
-    public User(int id, String name, String username, String password, String email, String phone, AcessLevel acessLevel) {
+    public User(int id, String name, String username, String password, String email, String phone, AcessLevel acessLevel, RegistrationStatus registrationStatus) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -24,6 +28,7 @@ public class User {
         this.email = email;
         this.phone = phone;
         this.acessLevel = acessLevel;
+        this.registrationStatus = registrationStatus;
     }
 
     public int getId() {
@@ -66,6 +71,14 @@ public class User {
         this.passwordTips.remove(passwordTip);
     }
 
+    //Não estavam no diagrama de classes e são necessário para ativar/inativar o usuário.
+    public RegistrationStatus getRegistrationStatus() {
+        return registrationStatus;
+    }
+
+    public void setRegistrationStatus(RegistrationStatus registrationStatus) {
+        this.registrationStatus = registrationStatus;
+    }
 
     @Override
     public String toString() {
