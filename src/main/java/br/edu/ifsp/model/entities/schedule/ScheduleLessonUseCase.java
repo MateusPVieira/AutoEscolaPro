@@ -35,29 +35,25 @@ public class ScheduleLessonUseCase {
             throw new InactiveItemException("Instructor status is INACTIVE!");
         }
 
-        //checar horários disponíveis do instrutor, problemas com Schedule(Lesson/Tests).
-        //
+        //checar horários disponíveis do instrutor, problemas com Schedule(Lesson/Tests)
 
         //retornar os horários disponíveis à interface, isso nao esta descrito corretamente no doc.
 
     }
 
-    public void concludeSchedule(LocalDateTime date, QualificationProcess qualificationProcess){ //segunda parte após selecionar o horário
+    public long  concludeSchedule(LocalDateTime date, QualificationProcess qualificationProcess){ //segunda parte após selecionar o horário
         long lessonValue = valuesReference.getLessonValueInCents();
 
-        Schedule lessonSchedule = new Schedule(date, ScheduleStatus.ACTIVE, RemunerationStatus.NOT_REMUNERATED,valuesReference);
-        /* Algo de errado, acredito que Schedule deveria ser mãe de duas classes LessonSchedule e TestSchedule, as quais possuem
-        o lessonValue ali que ficou solto. Isso também previniria que uma alteração nos valueReferences modificasse os valores de uma
-        aula já registrada.
-        A criação das duas classes herdeiras também resultaria em dois novos DAO para elas.
-        Isso está bem confuso pq aparecem ja DAOs diferentes nos diagramas e principalmente na questão da
-        agenda do instrutor.
-         */
+        Schedule lessonSchedule = new Schedule(date, ScheduleStatus.ACTIVE, RemunerationStatus.NOT_REMUNERATED,valuesReference, ScheduleType.LESSON);
+        /* lesson value?*/
 
         long lessonId = scheduleDAO.create(lessonSchedule);
         lessonSchedule.setId(lessonId);
-        qualificationProcess.addDrivingLesson(lessonSchedule);
 
+        qualificationProcess.addDrivingLesson(lessonSchedule);
+        qualificationProcessDAO.update(qualificationProcess);
+
+        return lessonId;
 
     }
 }

@@ -12,26 +12,31 @@ public class Schedule {
     private RemunerationStatus remunerationStatus;
     private ValuesReference valuesReference;
 
+    private ScheduleType scheduleType;
+
     public Schedule() {
     }
 
-    public Schedule(long id, LocalDateTime scheduledDateTime, ScheduleStatus scheduleStatus, RemunerationStatus remunerationStatus, ValuesReference valuesReference) {
+    public Schedule(long id, LocalDateTime scheduledDateTime, ScheduleStatus scheduleStatus, RemunerationStatus remunerationStatus, ValuesReference valuesReference, ScheduleType scheduleType) {
         this.id = id;
         this.scheduledDateTime = scheduledDateTime;
         this.scheduleStatus = scheduleStatus;
         this.remunerationStatus = remunerationStatus;
         this.valuesReference = valuesReference;
+        this.scheduleType = scheduleType;
     }
-    public Schedule(LocalDateTime scheduledDateTime, ScheduleStatus scheduleStatus, RemunerationStatus remunerationStatus, ValuesReference valuesReference) {
+    public Schedule(LocalDateTime scheduledDateTime, ScheduleStatus scheduleStatus, RemunerationStatus remunerationStatus, ValuesReference valuesReference,ScheduleType scheduleType) {
         this.scheduledDateTime = scheduledDateTime;
         this.scheduleStatus = scheduleStatus;
         this.remunerationStatus = remunerationStatus;
         this.valuesReference = valuesReference;
+        this.scheduleType = scheduleType;
     }
 
-    public Schedule(LocalDateTime scheduledDateTime, ValuesReference valuesReference) {
+    public Schedule(LocalDateTime scheduledDateTime, ValuesReference valuesReference, ScheduleType scheduleType) {
         this.scheduledDateTime = scheduledDateTime;
         this.valuesReference = valuesReference;
+        this.scheduleType = scheduleType;
     }
 
     public long getId() {
@@ -72,6 +77,14 @@ public class Schedule {
 
     public void setValuesReference(ValuesReference valuesReference) {
         this.valuesReference = valuesReference;
+    }
+
+    public ScheduleType getScheduleType() {
+        return scheduleType;
+    }
+
+    public void setScheduleType(ScheduleType scheduleType) {
+        this.scheduleType = scheduleType;
     }
 
     @Override
