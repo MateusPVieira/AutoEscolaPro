@@ -8,7 +8,7 @@ public class UserInputRequestValidator extends Validator<User> {
     public Notification validate(User user) {
         Notification notification = new Notification();
         if (user == null){
-            notification.addError("Book is null");
+            notification.addError("User is null");
             return notification;
         }
         if(nullOrEmpty(user.getName())){

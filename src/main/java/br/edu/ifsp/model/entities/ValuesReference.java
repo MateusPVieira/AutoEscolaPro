@@ -3,6 +3,7 @@ package br.edu.ifsp.model.entities;
 import java.time.LocalTime;
 
 public class ValuesReference {
+    //nome ta invertido
     private static LocalTime DRIVING_SCHOOL_OPENING_TIME;
     private static LocalTime DRIVING_SCHOOL_CLOSING_TIME;
     private long lessonValueInCents;
