@@ -1,7 +1,7 @@
 package br.edu.ifsp.model.entities.qualification;
 
-import br.edu.ifsp.model.entities.Notification;
-import br.edu.ifsp.model.entities.Validator;
+import br.edu.ifsp.model.entities.notification.Notification;
+import br.edu.ifsp.model.validators.Validator;
 
 public class QualificationProcessInputRequestValidator extends Validator<QualificationProcess> {
     @Override

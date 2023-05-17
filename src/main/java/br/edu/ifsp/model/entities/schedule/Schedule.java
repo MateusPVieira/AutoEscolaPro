@@ -1,7 +1,9 @@
 package br.edu.ifsp.model.entities.schedule;
 
-import br.edu.ifsp.model.entities.RemunerationStatus;
-import br.edu.ifsp.model.entities.ValuesReference;
+import br.edu.ifsp.model.enums.RemunerationStatus;
+import br.edu.ifsp.model.entities.reference.ValuesReference;
+import br.edu.ifsp.model.enums.ScheduleStatus;
+import br.edu.ifsp.model.enums.ScheduleType;
 
 import java.time.LocalDateTime;
 

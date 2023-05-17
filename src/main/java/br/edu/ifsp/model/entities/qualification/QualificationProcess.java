@@ -1,11 +1,10 @@
 package br.edu.ifsp.model.entities.qualification;
 
-import br.edu.ifsp.model.entities.DrivingCategory;
-import br.edu.ifsp.model.entities.RegistrationStatus;
-import br.edu.ifsp.model.entities.TestStatus;
+import br.edu.ifsp.model.entities.category.DrivingCategory;
+import br.edu.ifsp.model.enums.RegistrationStatus;
+import br.edu.ifsp.model.enums.TestStatus;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import br.edu.ifsp.model.entities.schedule.Schedule;
-import br.edu.ifsp.model.entities.schedule.ScheduleLessonUseCase;
 import br.edu.ifsp.model.entities.student.Student;
 import br.edu.ifsp.model.entities.user.User;
 

@@ -1,5 +1,7 @@
 package br.edu.ifsp.model.entities.user;
 
+import br.edu.ifsp.model.enums.AcessLevel;
+
 import java.util.List;
 
 public class UserLoginDTO {
