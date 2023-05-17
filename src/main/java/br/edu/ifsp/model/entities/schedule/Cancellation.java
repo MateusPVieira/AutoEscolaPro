@@ -15,6 +15,12 @@ public class Cancellation {
         this.schedule = schedule;
     }
 
+    public Cancellation(String reason, long fineValueInCents, Schedule schedule) {
+        this.reason = reason;
+        this.fineValueInCents = fineValueInCents;
+        this.schedule = schedule;
+    }
+
     public long getId() {
         return id;
     }
