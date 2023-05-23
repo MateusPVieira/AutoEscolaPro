@@ -1,6 +1,7 @@
 package br.edu.ifsp.model.entities.user;
 
 import br.edu.ifsp.model.enums.AcessLevel;
+import br.edu.ifsp.model.enums.RegistrationStatus;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class UserLoginDTO {
     private String phone;
     private List<String> passwordTips;
     private AcessLevel acessLevel;
+    private RegistrationStatus registrationStatus;
 
     public UserLoginDTO() {
     }
@@ -24,6 +26,7 @@ public class UserLoginDTO {
         this.phone = user.getPhone();
         this.passwordTips = user.getPasswordTips();
         this.acessLevel = user.getAcessLevel();
+        this.registrationStatus = user.getRegistrationStatus();
     }
 
     public int getId() {
@@ -62,6 +65,24 @@ public class UserLoginDTO {
         this.passwordTips.remove(passwordTip);
     }
 
+    public RegistrationStatus getRegistrationStatus() {
+        return registrationStatus;
+    }
+
+    public void setRegistrationStatus(RegistrationStatus registrationStatus) {
+        this.registrationStatus = registrationStatus;
+    }
+
+    public User toUser(){
+        return new User(
+                this.getId(),
+                this.getName(),
+                this.getUsername(),
+                this.getEmail(),
+                this.getPhone(),
+                this.getAcessLevel(),
+                this.getRegistrationStatus());
+    }
 
     @Override
     public String toString() {

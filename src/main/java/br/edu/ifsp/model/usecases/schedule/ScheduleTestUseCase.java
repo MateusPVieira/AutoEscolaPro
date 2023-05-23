@@ -14,31 +14,70 @@ import br.edu.ifsp.model.exceptions.InactiveItemException;
 
 import java.time.LocalDateTime;
 
+/**
+
+ The ScheduleTestUseCase class represents a use case for scheduling a driving test.
+
+ It interacts with QualificationProcessDAO, ScheduleDAO, and ValuesReference to perform the scheduling process.
+
+ @author Mateus Vieira
+ */
 public class ScheduleTestUseCase {
     private QualificationProcessDAO qualificationProcessDAO;
-    private br.edu.ifsp.model.dao.ScheduleDAO ScheduleDAO;
+    private ScheduleDAO scheduleDAO;
     private ValuesReference valuesReference;
 
-    public ScheduleTestUseCase(QualificationProcessDAO qualificationProcessDAO, ScheduleDAO ScheduleDAO, ValuesReference valuesReference) {
+    /**
+
+     Constructs a new ScheduleTestUseCase with the specified dependencies.
+     @param qualificationProcessDAO the data access object for qualification processes
+     @param scheduleDAO the data access object for schedules
+     @param valuesReference the reference for values and settings
+     */
+    public ScheduleTestUseCase(QualificationProcessDAO qualificationProcessDAO, ScheduleDAO scheduleDAO,
+                               ValuesReference valuesReference) {
         this.qualificationProcessDAO = qualificationProcessDAO;
-        this.ScheduleDAO = ScheduleDAO;
+        this.scheduleDAO = scheduleDAO;
         this.valuesReference = valuesReference;
     }
+    /**
 
+     Schedules a driving test for the specified qualification process and date.
+
+     @param qualificationId the ID of the qualification process
+
+     @param date the date and time of the test
+
+     @return the ID of the created test schedule
+
+     @throws EntityNotFoundException if the qualification process with the specified ID is not found
+
+     @throws InactiveItemException if the qualification process is inactive
+     */
     public long schedule(Long qualificationId, LocalDateTime date) throws Exception {
-        QualificationProcess qualificationProcess = qualificationProcessDAO.findOne(qualificationId).orElseThrow(() -> new EntityNotFoundException("Qualification Process not found!"));
-        if(qualificationProcess.getRegistrationStatus().equals(RegistrationStatus.INACTIVE)) {
-            throw new InactiveItemException("Qualification Process id:" + qualificationId + " is Inactive!");
+        QualificationProcess qualificationProcess = qualificationProcessDAO.findOne(qualificationId)
+                .orElseThrow(() -> new EntityNotFoundException("Qualification Process not found!"));
+
+        if (qualificationProcess.getRegistrationStatus().equals(RegistrationStatus.INACTIVE)) {
+            throw new InactiveItemException("Qualification Process id: " + qualificationId + " is Inactive!");
         }
-        long testValue = valuesReference.getTestValueInCents();//?
 
-        Schedule testSchedule = new Schedule(date, ScheduleStatus.ACTIVE, RemunerationStatus.REMUNERATED, valuesReference, ScheduleType.TEST);
-        long scheduleId = ScheduleDAO.create(testSchedule);
+        long testValue = valuesReference.getTestValueInCents(); //?
+
+        Schedule testSchedule = new Schedule(date, ScheduleStatus.ACTIVE, RemunerationStatus.REMUNERATED,
+                valuesReference, ScheduleType.TEST);
+        long scheduleId = scheduleDAO.create(testSchedule);
         testSchedule.setId(scheduleId);
-
 
         qualificationProcess.addDrivingTest(testSchedule);
         qualificationProcessDAO.update(qualificationProcess);
+
         return scheduleId;
     }
 }
+
+
+
+
+
+
