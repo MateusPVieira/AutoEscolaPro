@@ -13,11 +13,13 @@ public class ListInstructorUseCase {
         this.instructorDAO = instructorDAO;
     }
 
-    //AQUI PRECISA ARRUMAR PARA RETORNAR FINDALL...
     public Optional<Instructor> findOne(Long id){
         if (id == null)
             throw new IllegalArgumentException("ID can not be null!");
         return instructorDAO.findOne(id);
+    }
+    public List<Instructor> findAll(){
+        return instructorDAO.findAll();
     }
 
     /*public Optional<Instructor> findOneByCpf(String cpf){
@@ -44,7 +46,5 @@ public class ListInstructorUseCase {
         return instructorDAO.findOneByCPF(email);
     }*/
 
-    public List<Instructor> findAll(){
-        return instructorDAO.findAll();
-    }
+    // Igual a do Student, só que pro Instructor
 }

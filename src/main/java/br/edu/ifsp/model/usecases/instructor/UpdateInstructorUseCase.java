@@ -27,5 +27,5 @@ public class UpdateInstructorUseCase {
         return instructorDAO.update(instructor);
 
     }
-
+    // Igual a do Student, só que pro instructor
 }

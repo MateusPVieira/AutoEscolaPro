@@ -38,4 +38,5 @@ public class CreateInstructorUseCase {
         return instructorDAO.create(instructor);
 
     }
+    // Igual a do Student, só que pra o Instrutor
 }

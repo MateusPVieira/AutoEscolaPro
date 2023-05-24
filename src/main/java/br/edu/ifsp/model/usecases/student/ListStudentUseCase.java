@@ -11,15 +11,28 @@ public class ListStudentUseCase {
 
     public ListStudentUseCase(StudentDAO studentDAO){
         this.studentDAO = studentDAO;
-    }
+    } // Construtor
 
-    //AQUI PRECISA ARRUMAR PARA RETORNAR FINDALL...
     public Optional<Student> findOne(Long id){
         if (id == null)
             throw new IllegalArgumentException("ID can not be null!");
         return studentDAO.findOne(id);
     }
+    // FindOne //
+    // Recebe o id do estudante a ser procurado.
+    // Verifica se o id é nulo. Se for nulo, lança uma exceção com mensagem de erro.
+    // Caso contrário, chama o método, passando o id como argumento.
+    // Retorna um objeto Optional<Student>, que pode conter um estudante encontrado com o id informado.
 
+    public List<Student> findAll(){
+        return studentDAO.findAll();
+    }
+
+    // findAll //
+    // Retorna uma lista de todos os estudantes cadastrados no sistema.
+
+
+    //Reserva//
     /*public Optional<Student> findOneByCpf(String cpf){
         if(Validator.nullOrEmpty(cpf))
             throw new IllegalArgumentException("CPF can not be null or empty.");
@@ -43,8 +56,4 @@ public class ListStudentUseCase {
             throw new IllegalArgumentException("E-mail can not be null or empty.");
         return studentDAO.findOneByCPF(email);
     }*/
-
-    public List<Student> findAll(){
-        return studentDAO.findAll();
-    }
 }
