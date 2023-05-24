@@ -7,13 +7,31 @@ import br.edu.ifsp.model.exceptions.EntityAlreadyExistsException;
 import br.edu.ifsp.model.entities.notification.Notification;
 import br.edu.ifsp.model.validators.Validator;
 
+/**
+ * Class responsible for handling the use case of creating a new instructor.
+ * It interacts with the InstructorDAO to perform database operations.
+ * @author Stefhani Alkin
+ */
 public class CreateInstructorUseCase {
     private InstructorDAO instructorDAO;
 
+    /**
+     * Constructs a CreateInstructorUseCase object with the specified InstructorDAO.
+     *
+     * @param instructorDAO the data access object for instructors
+     */
     public CreateInstructorUseCase(InstructorDAO instructorDAO){
         this.instructorDAO = instructorDAO;
     }
 
+    /**
+     * Inserts a new instructor into the system.
+     *
+     * @param instructor the instructor object to be inserted
+     * @return the ID of the newly inserted instructor
+     * @throws IllegalArgumentException if the instructor object is invalid
+     * @throws EntityAlreadyExistsException if the instructor's CPF, RG, or CNH already exist in the system
+     */
     public Long insert(Instructor instructor){
         Validator<Instructor> validator = new InstructorInputRequestValidator();
         Notification notification = validator.validate(instructor);
@@ -36,7 +54,5 @@ public class CreateInstructorUseCase {
             throw new EntityAlreadyExistsException("This e-mail is already in use!");*/
 
         return instructorDAO.create(instructor);
-
     }
-    // Igual a do Student, só que pra o Instrutor
 }

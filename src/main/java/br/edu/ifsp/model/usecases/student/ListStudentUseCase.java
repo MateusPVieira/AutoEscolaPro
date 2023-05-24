@@ -6,28 +6,45 @@ import br.edu.ifsp.model.dao.StudentDAO;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Class responsible for handling the use case of retrieving student data.
+ * It interacts with the StudentDAO to perform database operations.
+ * @author Stefhani Alkin
+ */
 public class ListStudentUseCase {
     private StudentDAO studentDAO;
 
+    /**
+     * Constructs a ListStudentUseCase object with the specified StudentDAO.
+     *
+     * @param studentDAO the data access object for students
+     */
     public ListStudentUseCase(StudentDAO studentDAO){
         this.studentDAO = studentDAO;
-    } // Construtor
+    }
 
+    /**
+     * Retrieves a student by their ID.
+     *
+     * @param id the ID of the student to retrieve
+     * @return an Optional object containing the student, or an empty Optional if not found
+     * @throws IllegalArgumentException if the provided ID is null
+     */
     public Optional<Student> findOne(Long id){
         if (id == null)
-            throw new IllegalArgumentException("ID can not be null!");
+            throw new IllegalArgumentException("ID cannot be null!");
         return studentDAO.findOne(id);
     }
-    // FindOne //
-    // Recebe o id do estudante a ser procurado.
-    // Verifica se o id é nulo. Se for nulo, lança uma exceção com mensagem de erro.
-    // Caso contrário, chama o método, passando o id como argumento.
-    // Retorna um objeto Optional<Student>, que pode conter um estudante encontrado com o id informado.
 
+    /**
+     * Retrieves all students.
+     *
+     * @return a list of all students in the system
+     */
     public List<Student> findAll(){
         return studentDAO.findAll();
     }
-
+}
     // findAll //
     // Retorna uma lista de todos os estudantes cadastrados no sistema.
 
@@ -56,4 +73,3 @@ public class ListStudentUseCase {
             throw new IllegalArgumentException("E-mail can not be null or empty.");
         return studentDAO.findOneByCPF(email);
     }*/
-}

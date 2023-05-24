@@ -8,13 +8,31 @@ import br.edu.ifsp.model.entities.notification.Notification;
 import br.edu.ifsp.model.validators.Validator;
 
 
-public class UpdateStudentUseCase { // atualiza informações de um estudante
+/**
+ * Class responsible for handling the use case of updating an existing student's information.
+ * It interacts with the StudentDAO to perform database operations.
+ * @author Stefhani Alkin
+ */
+public class UpdateStudentUseCase {
     private StudentDAO studentDAO;
 
+    /**
+     * Constructs an UpdateStudentUseCase object with the specified StudentDAO.
+     *
+     * @param studentDAO the data access object for students
+     */
     public UpdateStudentUseCase(StudentDAO studentDAO){
         this.studentDAO = studentDAO;
-    } // construtor
+    }
 
+    /**
+     * Updates the information of an existing student in the system.
+     *
+     * @param student the student object with the updated information
+     * @return true if the update was successful, false otherwise
+     * @throws IllegalArgumentException if the student object is invalid
+     * @throws EntityNotFoundException if the student with the specified ID is not found in the system
+     */
     public boolean update(Student student){
         Validator<Student> validator = new StudentInputRequestValidator();
         Notification notification = validator.validate(student);
@@ -26,8 +44,8 @@ public class UpdateStudentUseCase { // atualiza informações de um estudante
             throw new EntityNotFoundException("Student not found!");
 
         return studentDAO.update(student);
-
     }
+}
     // update //
     // Recebe um objeto Student
     // É criado um objeto validator do tipo Validator<Student>, utilizando uma implementação chamada StudentInputRequestValidator.
@@ -37,5 +55,3 @@ public class UpdateStudentUseCase { // atualiza informações de um estudante
     // Verifica se o estudante com o ID informado existe. Se não existir, chama a exceção com mensagem de erro.
     // Chama o método update do objeto studentDAO, passando o objeto student como argumento.
     // update retorna um valor booleano que indica se a atualização foi bem-sucedida. Esse valor é retornado pelo método update.
-
-}

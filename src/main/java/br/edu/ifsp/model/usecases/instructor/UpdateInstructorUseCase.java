@@ -7,13 +7,31 @@ import br.edu.ifsp.model.exceptions.EntityNotFoundException;
 import br.edu.ifsp.model.entities.notification.Notification;
 import br.edu.ifsp.model.validators.Validator;
 
+/**
+ * Class responsible for handling the use case of updating an existing instructor.
+ * It interacts with the InstructorDAO to perform database operations.
+ * @author Stefhani Alkin
+ */
 public class UpdateInstructorUseCase {
     private InstructorDAO instructorDAO;
 
+    /**
+     * Constructs an UpdateInstructorUseCase object with the specified InstructorDAO.
+     *
+     * @param instructorDAO the data access object for instructors
+     */
     public UpdateInstructorUseCase(InstructorDAO instructorDAO){
         this.instructorDAO = instructorDAO;
     }
 
+    /**
+     * Updates an existing instructor in the system.
+     *
+     * @param instructor the instructor object to be updated
+     * @return true if the update was successful, false otherwise
+     * @throws IllegalArgumentException if the instructor object is invalid
+     * @throws EntityNotFoundException if the instructor with the specified ID is not found in the system
+     */
     public boolean update(Instructor instructor){
         Validator<Instructor> validator = new InstructorInputRequestValidator();
         Notification notification = validator.validate(instructor);
@@ -25,7 +43,5 @@ public class UpdateInstructorUseCase {
             throw new EntityNotFoundException("Instructor not found!");
 
         return instructorDAO.update(instructor);
-
     }
-    // Igual a do Student, só que pro instructor
 }
