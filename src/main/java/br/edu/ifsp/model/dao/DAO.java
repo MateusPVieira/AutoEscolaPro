@@ -1,4 +1,4 @@
-package br.edu.ifsp.model.dao;
+package br.edu.ifsp.application.view.model.dao;
 
 import java.util.List;
 import java.util.Optional;

@@ -1,7 +1,7 @@
-package br.edu.ifsp.model.validators;
+package br.edu.ifsp.application.view.model.validators;
 
-import br.edu.ifsp.model.entities.notification.Notification;
-import br.edu.ifsp.model.entities.instructor.Instructor;
+import br.edu.ifsp.application.view.model.entities.notification.Notification;
+import br.edu.ifsp.application.view.model.entities.instructor.Instructor;
 
 public class InstructorInputRequestValidator extends Validator<Instructor> {
 

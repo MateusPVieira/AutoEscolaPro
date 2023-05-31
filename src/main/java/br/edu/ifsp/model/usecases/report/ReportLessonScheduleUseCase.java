@@ -1,15 +1,15 @@
-package br.edu.ifsp.model.usecases.report;
+package br.edu.ifsp.application.view.model.usecases.report;
 
-import br.edu.ifsp.model.entities.report.ScheduleReport;
-import br.edu.ifsp.model.validators.DateValidator;
-import br.edu.ifsp.model.exceptions.EntityNotFoundException;
-import br.edu.ifsp.model.entities.notification.Notification;
-import br.edu.ifsp.model.entities.instructor.Instructor;
-import br.edu.ifsp.model.dao.InstructorDAO;
-import br.edu.ifsp.model.entities.qualification.QualificationProcess;
-import br.edu.ifsp.model.dao.QualificationProcessDAO;
-import br.edu.ifsp.model.entities.schedule.Schedule;
-import br.edu.ifsp.model.dao.ScheduleDAO;
+import br.edu.ifsp.application.view.model.dao.InstructorDAO;
+import br.edu.ifsp.application.view.model.dao.QualificationProcessDAO;
+import br.edu.ifsp.application.view.model.dao.ScheduleDAO;
+import br.edu.ifsp.application.view.model.entities.instructor.Instructor;
+import br.edu.ifsp.application.view.model.entities.notification.Notification;
+import br.edu.ifsp.application.view.model.entities.qualification.QualificationProcess;
+import br.edu.ifsp.application.view.model.entities.report.ScheduleReport;
+import br.edu.ifsp.application.view.model.entities.schedule.Schedule;
+import br.edu.ifsp.application.view.model.exceptions.EntityNotFoundException;
+import br.edu.ifsp.application.view.model.validators.DateValidator;
 
 import java.time.LocalDateTime;
 import java.util.List;

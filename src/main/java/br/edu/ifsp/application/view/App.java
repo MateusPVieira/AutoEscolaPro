@@ -1,4 +1,4 @@
-package br.edu.ifsp;
+package br.edu.ifsp.application;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

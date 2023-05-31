@@ -1,7 +1,7 @@
-package br.edu.ifsp.model.dao;
+package br.edu.ifsp.application.view.model.dao;
 
-import br.edu.ifsp.model.entities.category.DrivingCategory;
-import br.edu.ifsp.model.entities.reference.ValuesReference;
+import br.edu.ifsp.application.view.model.entities.category.DrivingCategory;
+import br.edu.ifsp.application.view.model.entities.reference.ValuesReference;
 
 import java.util.Optional;
 

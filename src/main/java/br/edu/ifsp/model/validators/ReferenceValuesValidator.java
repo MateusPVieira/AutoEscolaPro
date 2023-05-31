@@ -1,7 +1,7 @@
-package br.edu.ifsp.model.validators;
+package br.edu.ifsp.application.view.model.validators;
 
-import br.edu.ifsp.model.entities.notification.Notification;
-import br.edu.ifsp.model.entities.reference.ValuesReference;
+import br.edu.ifsp.application.view.model.entities.notification.Notification;
+import br.edu.ifsp.application.view.model.entities.reference.ValuesReference;
 
 public class ReferenceValuesValidator extends Validator<ValuesReference> {
     @Override

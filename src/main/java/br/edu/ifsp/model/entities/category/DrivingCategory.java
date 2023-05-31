@@ -1,4 +1,4 @@
-package br.edu.ifsp.model.entities.category;
+package br.edu.ifsp.application.view.model.entities.category;
 
 public class DrivingCategory {
     private char abbreviation;

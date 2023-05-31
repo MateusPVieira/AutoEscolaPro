@@ -1,20 +1,20 @@
-package br.edu.ifsp.model.usecases.qualification;
+package br.edu.ifsp.application.view.model.usecases.qualification;
 
-import br.edu.ifsp.model.entities.category.DrivingCategory;
-import br.edu.ifsp.model.entities.qualification.QualificationProcess;
-import br.edu.ifsp.model.dao.QualificationProcessDAO;
-import br.edu.ifsp.model.entities.qualification.QualificationProcessInputRequestValidator;
-import br.edu.ifsp.model.entities.user.Session;
-import br.edu.ifsp.model.entities.user.User;
-import br.edu.ifsp.model.enums.RegistrationStatus;
-import br.edu.ifsp.model.exceptions.EntityNotFoundException;
-import br.edu.ifsp.model.entities.notification.Notification;
-import br.edu.ifsp.model.enums.TestStatus;
-import br.edu.ifsp.model.validators.Validator;
-import br.edu.ifsp.model.entities.instructor.Instructor;
-import br.edu.ifsp.model.dao.InstructorDAO;
-import br.edu.ifsp.model.entities.student.Student;
-import br.edu.ifsp.model.dao.StudentDAO;
+import br.edu.ifsp.application.view.model.dao.InstructorDAO;
+import br.edu.ifsp.application.view.model.dao.QualificationProcessDAO;
+import br.edu.ifsp.application.view.model.dao.StudentDAO;
+import br.edu.ifsp.application.view.model.entities.category.DrivingCategory;
+import br.edu.ifsp.application.view.model.entities.instructor.Instructor;
+import br.edu.ifsp.application.view.model.entities.qualification.QualificationProcess;
+import br.edu.ifsp.application.view.model.entities.qualification.QualificationProcessInputRequestValidator;
+import br.edu.ifsp.application.view.model.entities.student.Student;
+import br.edu.ifsp.application.view.model.entities.user.Session;
+import br.edu.ifsp.application.view.model.entities.user.User;
+import br.edu.ifsp.application.view.model.exceptions.EntityNotFoundException;
+import br.edu.ifsp.application.view.model.validators.Validator;
+import br.edu.ifsp.application.view.model.enums.RegistrationStatus;
+import br.edu.ifsp.application.view.model.entities.notification.Notification;
+import br.edu.ifsp.application.view.model.enums.TestStatus;
 
 /**
  * Class responsible for inserting a qualification process.

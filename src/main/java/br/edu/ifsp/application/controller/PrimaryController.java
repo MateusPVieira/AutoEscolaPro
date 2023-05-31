@@ -1,4 +1,4 @@
-package br.edu.ifsp;
+package br.edu.ifsp.application.view;
 
 import java.io.IOException;
 import javafx.fxml.FXML;

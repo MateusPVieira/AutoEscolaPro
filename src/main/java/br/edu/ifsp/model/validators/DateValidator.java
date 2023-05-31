@@ -1,6 +1,6 @@
-package br.edu.ifsp.model.validators;
+package br.edu.ifsp.application.view.model.validators;
 
-import br.edu.ifsp.model.entities.notification.Notification;
+import br.edu.ifsp.application.view.model.entities.notification.Notification;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

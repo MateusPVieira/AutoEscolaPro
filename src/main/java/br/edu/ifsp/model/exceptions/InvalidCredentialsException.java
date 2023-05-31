@@ -1,4 +1,4 @@
-package br.edu.ifsp.model.exceptions;
+package br.edu.ifsp.application.view.model.exceptions;
 
 public class InvalidCredentialsException extends RuntimeException {
     public InvalidCredentialsException() {

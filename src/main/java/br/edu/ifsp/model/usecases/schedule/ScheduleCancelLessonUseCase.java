@@ -1,18 +1,16 @@
-package br.edu.ifsp.model.usecases.schedule;
+package br.edu.ifsp.application.view.model.usecases.schedule;
 
-import br.edu.ifsp.model.dao.CancellationDAO;
-import br.edu.ifsp.model.dao.ScheduleDAO;
-import br.edu.ifsp.model.entities.notification.Notification;
-import br.edu.ifsp.model.entities.schedule.Cancellation;
-import br.edu.ifsp.model.entities.schedule.Schedule;
-import br.edu.ifsp.model.enums.ScheduleStatus;
-import br.edu.ifsp.model.exceptions.EntityNotFoundException;
-import br.edu.ifsp.model.exceptions.InactiveItemException;
-import br.edu.ifsp.model.validators.CancellationInputValidator;
+import br.edu.ifsp.application.view.model.entities.schedule.Cancellation;
+import br.edu.ifsp.application.view.model.entities.schedule.Schedule;
+import br.edu.ifsp.application.view.model.exceptions.EntityNotFoundException;
+import br.edu.ifsp.application.view.model.exceptions.InactiveItemException;
+import br.edu.ifsp.application.view.model.validators.CancellationInputValidator;
+import br.edu.ifsp.application.view.model.dao.CancellationDAO;
+import br.edu.ifsp.application.view.model.dao.ScheduleDAO;
+import br.edu.ifsp.application.view.model.entities.notification.Notification;
+import br.edu.ifsp.application.view.model.enums.ScheduleStatus;
 
 import java.util.Optional;
-
-import static br.edu.ifsp.model.enums.ScheduleStatus.INACTIVE;
 
 
 /**

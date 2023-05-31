@@ -1,7 +1,6 @@
-package br.edu.ifsp.model.dao;
+package br.edu.ifsp.application.view.model.dao;
 
-import br.edu.ifsp.model.entities.instructor.Instructor;
-import br.edu.ifsp.model.entities.schedule.Cancellation;
+import br.edu.ifsp.application.view.model.entities.schedule.Cancellation;
 
 import java.util.Optional;
 
