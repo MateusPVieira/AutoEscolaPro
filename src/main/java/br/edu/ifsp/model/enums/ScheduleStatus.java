@@ -1,4 +1,4 @@
-package br.edu.ifsp.application.view.model.enums;
+package br.edu.ifsp.model.enums;
 
 public enum ScheduleStatus {
     ACTIVE, INACTIVE

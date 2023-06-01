@@ -1,4 +1,4 @@
-package br.edu.ifsp.application.view.model.exceptions;
+package br.edu.ifsp.model.exceptions;
 
 public class EntityNotFoundException extends RuntimeException{
     public EntityNotFoundException (String message) {

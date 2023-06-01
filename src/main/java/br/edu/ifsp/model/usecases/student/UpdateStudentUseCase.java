@@ -1,11 +1,11 @@
-package br.edu.ifsp.application.view.model.usecases.student;
+package br.edu.ifsp.model.usecases.student;
 
-import br.edu.ifsp.application.view.model.entities.student.Student;
-import br.edu.ifsp.application.view.model.dao.StudentDAO;
-import br.edu.ifsp.application.view.model.validators.StudentInputRequestValidator;
-import br.edu.ifsp.application.view.model.exceptions.EntityNotFoundException;
-import br.edu.ifsp.application.view.model.entities.notification.Notification;
-import br.edu.ifsp.application.view.model.validators.Validator;
+import br.edu.ifsp.model.entities.student.Student;
+import br.edu.ifsp.model.dao.StudentDAO;
+import br.edu.ifsp.model.validators.StudentInputRequestValidator;
+import br.edu.ifsp.model.exceptions.EntityNotFoundException;
+import br.edu.ifsp.model.entities.notification.Notification;
+import br.edu.ifsp.model.validators.Validator;
 
 
 /**

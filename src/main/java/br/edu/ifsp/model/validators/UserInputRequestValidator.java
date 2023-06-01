@@ -1,7 +1,7 @@
-package br.edu.ifsp.application.view.model.validators;
+package br.edu.ifsp.model.validators;
 
-import br.edu.ifsp.application.view.model.entities.notification.Notification;
-import br.edu.ifsp.application.view.model.entities.user.User;
+import br.edu.ifsp.model.entities.notification.Notification;
+import br.edu.ifsp.model.entities.user.User;
 
 public class UserInputRequestValidator extends Validator<User> {
     @Override

@@ -1,4 +1,4 @@
-package br.edu.ifsp.application.view.model.entities.report;
+package br.edu.ifsp.model.entities.report;
 
 import java.util.List;
 

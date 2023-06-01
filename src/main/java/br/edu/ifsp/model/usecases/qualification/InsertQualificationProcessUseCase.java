@@ -1,20 +1,20 @@
-package br.edu.ifsp.application.view.model.usecases.qualification;
+package br.edu.ifsp.model.usecases.qualification;
 
-import br.edu.ifsp.application.view.model.dao.InstructorDAO;
-import br.edu.ifsp.application.view.model.dao.QualificationProcessDAO;
-import br.edu.ifsp.application.view.model.dao.StudentDAO;
-import br.edu.ifsp.application.view.model.entities.category.DrivingCategory;
-import br.edu.ifsp.application.view.model.entities.instructor.Instructor;
-import br.edu.ifsp.application.view.model.entities.qualification.QualificationProcess;
-import br.edu.ifsp.application.view.model.entities.qualification.QualificationProcessInputRequestValidator;
-import br.edu.ifsp.application.view.model.entities.student.Student;
-import br.edu.ifsp.application.view.model.entities.user.Session;
-import br.edu.ifsp.application.view.model.entities.user.User;
-import br.edu.ifsp.application.view.model.exceptions.EntityNotFoundException;
-import br.edu.ifsp.application.view.model.validators.Validator;
-import br.edu.ifsp.application.view.model.enums.RegistrationStatus;
-import br.edu.ifsp.application.view.model.entities.notification.Notification;
-import br.edu.ifsp.application.view.model.enums.TestStatus;
+import br.edu.ifsp.model.dao.InstructorDAO;
+import br.edu.ifsp.model.dao.QualificationProcessDAO;
+import br.edu.ifsp.model.dao.StudentDAO;
+import br.edu.ifsp.model.entities.category.DrivingCategory;
+import br.edu.ifsp.model.entities.instructor.Instructor;
+import br.edu.ifsp.model.entities.qualification.QualificationProcess;
+import br.edu.ifsp.model.entities.qualification.QualificationProcessInputRequestValidator;
+import br.edu.ifsp.model.entities.student.Student;
+import br.edu.ifsp.model.entities.user.Session;
+import br.edu.ifsp.model.entities.user.User;
+import br.edu.ifsp.model.exceptions.EntityNotFoundException;
+import br.edu.ifsp.model.validators.Validator;
+import br.edu.ifsp.model.enums.RegistrationStatus;
+import br.edu.ifsp.model.entities.notification.Notification;
+import br.edu.ifsp.model.enums.TestStatus;
 
 /**
  * Class responsible for inserting a qualification process.
@@ -52,33 +52,47 @@ public class InsertQualificationProcessUseCase {
     /**
      * Inserts a qualification process with the provided information.
      *
-     * @param studentId                 The ID of the student associated with the qualification process.
-     * @param instructorId              The ID of the instructor associated with the qualification process.
-     * @param eyeExam                   The status of the eye exam for the qualification process.
-     * @param psychoExam                The status of the psychological exam for the qualification process.
-     * @param theoricExam               The status of the theoretical exam for the qualification process.
-     * @param numberOfLessons           The number of lessons taken for the qualification process.
-     * @param qualificationValueCents   The qualification value in cents for the qualification process.
-     * @param drivingCategory           The driving category for the qualification process.
+     * @param dto           The driving category for the qualification process.
      * @return                          The ID of the inserted qualification process.
      * @throws EntityNotFoundException If the student or instructor is not found in the system.
      * @throws IllegalArgumentException If the qualification process validation fails.
      */
-    public Long Insert(long studentId, long instructorId, TestStatus eyeExam, TestStatus psychoExam, TestStatus theoricExam, int numberOfLessons, Long qualificationValueCents, DrivingCategory drivingCategory){
-        Validator<QualificationProcess> validator = new QualificationProcessInputRequestValidator();
-        Student student = studentDAO.findOne(studentId).orElseThrow(() -> new EntityNotFoundException("Student not found!"));
-        Instructor instructor = instructorDAO.findOne(instructorId).orElseThrow(() -> new EntityNotFoundException("Instructor not found!"));
-        User user = Session.getInstance().getUser().toUser();
-        QualificationProcess qualificationProcess = new QualificationProcess(
-                qualificationValueCents, numberOfLessons, user, RegistrationStatus.ACTIVE,
-                eyeExam, theoricExam, psychoExam, drivingCategory, instructor, student);
+    public Long insert(InsertQualificationRequestModel dto){
+        var validator = new QualificationProcessInputRequestValidator();
 
-        Notification notification = validator.validate(qualificationProcess);
+        var student = studentDAO
+                .findOne(dto.studentId())
+                .orElseThrow(() -> new EntityNotFoundException("Student not found!"));
+        var instructor = instructorDAO
+                .findOne(dto.instructorId())
+                .orElseThrow(() -> new EntityNotFoundException("Instructor not found!"));
+        var user = Session
+                .getInstance()
+                .getUser().toUser();
+
+        var qualificationProcess = buildQualificationProcess(dto, student, instructor, user);
+        var notification = validator.validate(qualificationProcess);
 
         if(notification.hasErrors())
             throw new IllegalArgumentException(notification.errorMessage());
 
         return qualificationProcessDAO.create(qualificationProcess);
     }
+
+    private QualificationProcess buildQualificationProcess(InsertQualificationRequestModel dto, Student student, Instructor instructor, User user) {
+        return new QualificationProcess(
+                dto.qualificationValueCents(),
+                dto.numberOfLessons(),
+                user,
+                RegistrationStatus.ACTIVE,
+                dto.eyeExam(),
+                dto.theoricExam(),
+                dto.psychoExam(),
+                dto.drivingCategory(),
+                instructor,
+                student);
+    }
+
 }
+
 

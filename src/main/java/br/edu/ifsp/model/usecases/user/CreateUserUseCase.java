@@ -1,11 +1,11 @@
-package br.edu.ifsp.application.view.model.usecases.user;
+package br.edu.ifsp.model.usecases.user;
 
-import br.edu.ifsp.application.view.model.dao.UserDAO;
-import br.edu.ifsp.application.view.model.entities.user.User;
-import br.edu.ifsp.application.view.model.validators.UserInputRequestValidator;
-import br.edu.ifsp.application.view.model.validators.Validator;
-import br.edu.ifsp.application.view.model.exceptions.EntityAlreadyExistsException;
-import br.edu.ifsp.application.view.model.entities.notification.Notification;
+import br.edu.ifsp.model.dao.UserDAO;
+import br.edu.ifsp.model.entities.user.User;
+import br.edu.ifsp.model.validators.UserInputRequestValidator;
+import br.edu.ifsp.model.validators.Validator;
+import br.edu.ifsp.model.exceptions.EntityAlreadyExistsException;
+import br.edu.ifsp.model.entities.notification.Notification;
 
 public class CreateUserUseCase {
     private UserDAO userDAO;

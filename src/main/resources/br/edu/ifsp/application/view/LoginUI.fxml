@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="$CONTROLLER_NAME$"
-            prefHeight="400.0" prefWidth="600.0" >
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.application.controller.LoginUIController">
+   <children>
+      <Label layoutX="88.0" layoutY="111.0" text="Usuário" />
+      <TextField fx:id="txtUsername" layoutX="140.0" layoutY="107.0" prefWidth="150.0" promptText="Usuario" />
+      <Label layoutX="90.0" layoutY="151.0" text="Senha" />
+      <PasswordField fx:id="txtPassword" layoutX="140.0" layoutY="147.0" prefWidth="150.0" promptText="Senha" />
+      <Button fx:id="btnLogin" layoutX="239.0" layoutY="199.0" mnemonicParsing="false" onAction="#loginClicked" text="Login" />
+      <Button fx:id="btnDicaSenha" layoutX="137.0" layoutY="199.0" mnemonicParsing="false" onAction="#loginClicked" text="Dica de Senha" />
+   </children>
 </AnchorPane>

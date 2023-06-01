@@ -1,8 +1,8 @@
-package br.edu.ifsp.application.view.model.usecases.user;
+package br.edu.ifsp.model.usecases.user;
 
-import br.edu.ifsp.application.view.model.dao.UserDAO;
-import br.edu.ifsp.application.view.model.entities.user.User;
-import br.edu.ifsp.application.view.model.validators.Validator;
+import br.edu.ifsp.model.dao.UserDAO;
+import br.edu.ifsp.model.entities.user.User;
+import br.edu.ifsp.model.validators.Validator;
 
 import java.util.List;
 import java.util.Optional;

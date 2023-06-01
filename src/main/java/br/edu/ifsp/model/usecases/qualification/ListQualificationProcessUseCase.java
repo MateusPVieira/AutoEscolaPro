@@ -1,8 +1,8 @@
-package br.edu.ifsp.application.view.model.usecases.qualification;
+package br.edu.ifsp.model.usecases.qualification;
 
-import br.edu.ifsp.application.view.model.dao.QualificationProcessDAO;
-import br.edu.ifsp.application.view.model.entities.qualification.QualificationProcess;
-import br.edu.ifsp.application.view.model.exceptions.EntityNotFoundException;
+import br.edu.ifsp.model.dao.QualificationProcessDAO;
+import br.edu.ifsp.model.entities.qualification.QualificationProcess;
+import br.edu.ifsp.model.exceptions.EntityNotFoundException;
 
 import java.util.Collection;
 

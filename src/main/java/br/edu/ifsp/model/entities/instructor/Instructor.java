@@ -1,7 +1,7 @@
-package br.edu.ifsp.application.view.model.entities.instructor;
+package br.edu.ifsp.model.entities.instructor;
 
-import br.edu.ifsp.application.view.model.entities.category.DrivingCategory;
-import br.edu.ifsp.application.view.model.enums.RegistrationStatus;
+import br.edu.ifsp.model.entities.category.DrivingCategory;
+import br.edu.ifsp.model.enums.RegistrationStatus;
 
 import java.util.ArrayList;
 import java.util.List;

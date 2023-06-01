@@ -1,12 +1,11 @@
-package br.edu.ifsp.application.view.model.usecases.user;
+package br.edu.ifsp.model.usecases.user;
 
-import br.edu.ifsp.application.view.model.dao.UserDAO;
-import br.edu.ifsp.application.view.model.entities.user.Session;
-import br.edu.ifsp.application.view.model.entities.user.User;
-import br.edu.ifsp.application.view.model.entities.user.UserLoginDTO;
-import br.edu.ifsp.application.view.model.exceptions.EntityNotFoundException;
-import br.edu.ifsp.application.view.model.exceptions.InvalidCredentialsException;
-import br.edu.ifsp.model.entities.user.*;
+import br.edu.ifsp.model.dao.UserDAO;
+import br.edu.ifsp.model.entities.user.Session;
+import br.edu.ifsp.model.entities.user.User;
+import br.edu.ifsp.model.entities.user.UserLoginDTO;
+import br.edu.ifsp.model.exceptions.EntityNotFoundException;
+import br.edu.ifsp.model.exceptions.InvalidCredentialsException;
 
 import java.util.Optional;
 // talvez não retornar usuário e utilizar a sessão pra dados?

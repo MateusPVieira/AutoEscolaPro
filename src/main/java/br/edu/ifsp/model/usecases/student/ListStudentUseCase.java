@@ -1,7 +1,7 @@
-package br.edu.ifsp.application.view.model.usecases.student;
+package br.edu.ifsp.model.usecases.student;
 
-import br.edu.ifsp.application.view.model.dao.StudentDAO;
-import br.edu.ifsp.application.view.model.entities.student.Student;
+import br.edu.ifsp.model.dao.StudentDAO;
+import br.edu.ifsp.model.entities.student.Student;
 
 import java.util.List;
 import java.util.Optional;

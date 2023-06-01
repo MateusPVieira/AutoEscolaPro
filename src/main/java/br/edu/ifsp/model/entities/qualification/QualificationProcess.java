@@ -1,12 +1,12 @@
-package br.edu.ifsp.application.view.model.entities.qualification;
+package br.edu.ifsp.model.entities.qualification;
 
-import br.edu.ifsp.application.view.model.entities.schedule.Schedule;
-import br.edu.ifsp.application.view.model.entities.student.Student;
-import br.edu.ifsp.application.view.model.entities.user.User;
-import br.edu.ifsp.application.view.model.entities.category.DrivingCategory;
-import br.edu.ifsp.application.view.model.enums.RegistrationStatus;
-import br.edu.ifsp.application.view.model.enums.TestStatus;
-import br.edu.ifsp.application.view.model.entities.instructor.Instructor;
+import br.edu.ifsp.model.entities.schedule.Schedule;
+import br.edu.ifsp.model.entities.student.Student;
+import br.edu.ifsp.model.entities.user.User;
+import br.edu.ifsp.model.entities.category.DrivingCategory;
+import br.edu.ifsp.model.enums.RegistrationStatus;
+import br.edu.ifsp.model.enums.TestStatus;
+import br.edu.ifsp.model.entities.instructor.Instructor;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

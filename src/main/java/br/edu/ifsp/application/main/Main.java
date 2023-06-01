@@ -1,4 +1,4 @@
-package br.edu.ifsp.application.view.application.main;
+package br.edu.ifsp.application.main;
 
 public class Main {
     public static void main(String[] args) {

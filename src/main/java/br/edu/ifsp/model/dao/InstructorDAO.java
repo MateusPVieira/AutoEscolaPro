@@ -1,6 +1,6 @@
-package br.edu.ifsp.application.view.model.dao;
+package br.edu.ifsp.model.dao;
 
-import br.edu.ifsp.application.view.model.entities.instructor.Instructor;
+import br.edu.ifsp.model.entities.instructor.Instructor;
 
 import java.util.Optional;
 

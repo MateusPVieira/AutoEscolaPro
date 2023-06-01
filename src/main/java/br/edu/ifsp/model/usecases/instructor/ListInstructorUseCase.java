@@ -1,7 +1,7 @@
-package br.edu.ifsp.application.view.model.usecases.instructor;
+package br.edu.ifsp.model.usecases.instructor;
 
-import br.edu.ifsp.application.view.model.dao.InstructorDAO;
-import br.edu.ifsp.application.view.model.entities.instructor.Instructor;
+import br.edu.ifsp.model.dao.InstructorDAO;
+import br.edu.ifsp.model.entities.instructor.Instructor;
 
 import java.util.List;
 import java.util.Optional;

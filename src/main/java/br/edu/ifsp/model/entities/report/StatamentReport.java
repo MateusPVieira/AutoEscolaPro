@@ -1,6 +1,6 @@
-package br.edu.ifsp.application.view.model.entities.report;
+package br.edu.ifsp.model.entities.report;
 
-import br.edu.ifsp.application.view.model.entities.schedule.Schedule;
+import br.edu.ifsp.model.entities.schedule.Schedule;
 
 import java.util.List;
 //need to finish

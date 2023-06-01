@@ -1,11 +1,11 @@
-package br.edu.ifsp.application.view.model.usecases.reference;
+package br.edu.ifsp.model.usecases.reference;
 
-import br.edu.ifsp.application.view.model.entities.category.DrivingCategory;
-import br.edu.ifsp.application.view.model.entities.reference.ValuesReference;
-import br.edu.ifsp.application.view.model.exceptions.EntityNotFoundException;
-import br.edu.ifsp.application.view.model.validators.ReferenceValuesValidator;
-import br.edu.ifsp.application.view.model.entities.notification.Notification;
-import br.edu.ifsp.application.view.model.dao.ReferenceValuesDAO;
+import br.edu.ifsp.model.entities.category.DrivingCategory;
+import br.edu.ifsp.model.entities.reference.ValuesReference;
+import br.edu.ifsp.model.exceptions.EntityNotFoundException;
+import br.edu.ifsp.model.validators.ReferenceValuesValidator;
+import br.edu.ifsp.model.entities.notification.Notification;
+import br.edu.ifsp.model.dao.ReferenceValuesDAO;
 
 /**
  * Class responsible for configuring reference values.

@@ -1,11 +1,11 @@
-package br.edu.ifsp.application.view.model.usecases.instructor;
+package br.edu.ifsp.model.usecases.instructor;
 
-import br.edu.ifsp.application.view.model.dao.InstructorDAO;
-import br.edu.ifsp.application.view.model.entities.instructor.Instructor;
-import br.edu.ifsp.application.view.model.validators.InstructorInputRequestValidator;
-import br.edu.ifsp.application.view.model.validators.Validator;
-import br.edu.ifsp.application.view.model.exceptions.EntityAlreadyExistsException;
-import br.edu.ifsp.application.view.model.entities.notification.Notification;
+import br.edu.ifsp.model.dao.InstructorDAO;
+import br.edu.ifsp.model.entities.instructor.Instructor;
+import br.edu.ifsp.model.validators.InstructorInputRequestValidator;
+import br.edu.ifsp.model.validators.Validator;
+import br.edu.ifsp.model.exceptions.EntityAlreadyExistsException;
+import br.edu.ifsp.model.entities.notification.Notification;
 
 /**
  * Class responsible for handling the use case of creating a new instructor.

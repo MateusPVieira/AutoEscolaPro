@@ -1,11 +1,11 @@
-package br.edu.ifsp.application.view.model.usecases.student;
+package br.edu.ifsp.model.usecases.student;
 
-import br.edu.ifsp.application.view.model.entities.student.Student;
-import br.edu.ifsp.application.view.model.dao.StudentDAO;
-import br.edu.ifsp.application.view.model.validators.StudentInputRequestValidator;
-import br.edu.ifsp.application.view.model.exceptions.EntityAlreadyExistsException;
-import br.edu.ifsp.application.view.model.entities.notification.Notification;
-import br.edu.ifsp.application.view.model.validators.Validator;
+import br.edu.ifsp.model.entities.student.Student;
+import br.edu.ifsp.model.dao.StudentDAO;
+import br.edu.ifsp.model.validators.StudentInputRequestValidator;
+import br.edu.ifsp.model.exceptions.EntityAlreadyExistsException;
+import br.edu.ifsp.model.entities.notification.Notification;
+import br.edu.ifsp.model.validators.Validator;
 
 /**
  * Class responsible for handling the use case of creating a new student.
@@ -39,8 +39,13 @@ public class CreateStudentUseCase {
             throw new IllegalArgumentException(notification.errorMessage());
 
         String cpf = student.getCpf();
-        if(studentDAO.findOneByCPF(cpf).isPresent())
-            throw new EntityAlreadyExistsException("This CPF is already in use!");
+
+        studentDAO
+                .findOneByCPF(cpf)
+                .orElseThrow(() -> new EntityAlreadyExistsException("This CPF is already in use!"));
+
+        //if(studentDAO.findOneByCPF(cpf).isPresent())
+          //  throw new EntityAlreadyExistsException("This CPF is already in use!");
 
         String rg = student.getRg();
         if(studentDAO.findOneByRG(rg).isPresent())

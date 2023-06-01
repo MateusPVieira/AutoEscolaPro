@@ -1,4 +1,4 @@
-package br.edu.ifsp.application.view.model.entities.schedule;
+package br.edu.ifsp.model.entities.schedule;
 
 public class Cancellation {
     private long id;
