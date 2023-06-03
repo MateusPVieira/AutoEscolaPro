@@ -1,20 +1,41 @@
 package br.edu.ifsp.application.controller;
+import br.edu.ifsp.application.view.WindowLoader;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import java.io.IOException;
+
 public class LoginUIController {
     @FXML
-    private TextField usernameField;
+    private TextField txtUsername;
     @FXML
-    private PasswordField passwordField;
+    private PasswordField txtPassword;
     @FXML
-    private Button loginButton;
+    private Button btnLogin;
     @FXML
-    private void loginClicked() {
-        String username = usernameField.getText();
-        String password = passwordField.getText();
+    private Label lbWarn;
+    @FXML
+    private void loginClicked() throws IOException {
+            lbWarn.setText("");
+            String username = txtUsername.getText();
+            String password = txtPassword.getText();
+            System.out.println("Username:" + username);
 
-        // Lógica de autenticação do usuário
+            if(username.isEmpty() || password.isEmpty()){
+                lbWarn.setText("Campo Usuário ou Senha vazio(s)!");
+        } else {
+                WindowLoader.setRoot("InsertQualificationUI");
+
+            }
+
+
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

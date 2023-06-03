@@ -1,8 +1,11 @@
 package br.edu.ifsp.application.main;
 
+import br.edu.ifsp.application.view.WindowLoader;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        WindowLoader.main(args);
     }
 }
 /*Ixpludiuuuuu*/
