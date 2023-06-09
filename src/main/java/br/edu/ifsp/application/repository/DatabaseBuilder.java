@@ -1,10 +1,35 @@
 package br.edu.ifsp.application.repository;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 public class DatabaseBuilder {
     //observe as FKs antes de escolher a ordem de criação das tabelas
     //para evitar problemas com tabelas criadas antes das que ela possui FK
-    private void buildTables(){
+    public void buildDatabaseIfMissing(){
+        if (isDatabaseMissing()) {
+            System.out.println("Database is missing. Building database: \n");
+            buildTables();
+        }
+    }
 
+    private boolean isDatabaseMissing(){
+        return !Files.exists(Paths.get("database.db"));
+    }
+    private void buildTables(){
+        try(Statement statement = ConnectionFactory.createStatement()){
+            statement.addBatch(createUserTable());
+            statement.addBatch(createDrivingCategoryTable());
+            statement.addBatch(createValuesReferenceTable());
+            statement.addBatch(createScheduleTable());
+            statement.addBatch(createQualificationProcessTable());
+
+            System.out.println("Database creation success!");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
     private String createUserTable(){
@@ -19,6 +44,8 @@ public class DatabaseBuilder {
         builder.append("accessLevel TEXT,");
         builder.append("registrationStatus TEXT");
         builder.append(")");
+
+        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -30,6 +57,7 @@ public class DatabaseBuilder {
         builder.append("vehicle INTEGER");
 
         builder.append(")");
+        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -47,6 +75,7 @@ public class DatabaseBuilder {
         builder.append("FOREIGN KEY(drivingCategory) REFERENCES drivingCategory(id)");
 
         builder.append(")");
+        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -62,6 +91,7 @@ public class DatabaseBuilder {
         builder.append("valuesReference INTEGER");
         builder.append("FOREIGN KEY(valuesReference) REFERENCES valuesReference(id)");
         builder.append(")");
+        System.out.println(builder.toString());
         return builder.toString();
     }
 
@@ -91,6 +121,7 @@ public class DatabaseBuilder {
         builder.append("FOREIGN KEY(schedules) REFERENCES schedule(id)");
 
         builder.append(")");
+        System.out.println(builder.toString());
         return builder.toString();
     }
 }
