@@ -14,6 +14,8 @@ public class ActivateUserUseCase {
         this.updateUserUseCase = updateUserUseCase;
     }
 
+
+
     public boolean activateUser(int id){
         User user = userDAO.findOne(id).orElseThrow(()-> new EntityNotFoundException("Qualification Process not found!"));
 

@@ -2,6 +2,7 @@ package br.edu.ifsp.application.controller;
 
 import br.edu.ifsp.application.view.WindowLoader;
 import br.edu.ifsp.model.entities.user.User;
+import br.edu.ifsp.model.usecases.user.ActivateUserUseCase;
 import br.edu.ifsp.model.usecases.user.InactivateUserUseCase;
 import br.edu.ifsp.model.usecases.user.ListUserUseCase;
 import javafx.beans.Observable;
@@ -12,6 +13,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import static br.edu.ifsp.application.main.Main.activateUserUseCase;
+import static br.edu.ifsp.application.main.Main.inactivateUserUseCase;
+import static br.edu.ifsp.application.main.Main.listUserUseCase;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,18 +45,20 @@ public class UserManagementUIController {
 
     private ObservableList<User> tableData;
 
+
+
     @FXML
     private void initialize(){
-        //bindTableViewToItemsList();
-        //bindColumnsToValueSources();
-        //loadDataAndShow();
+        bindTableViewToItemsList();
+        bindColumnsToValueSources();
+        loadDataAndShow();
         
     }
 
     private void loadDataAndShow() {
-        //List<User> users =  ListUserUseCase.findAll;
-        //tableData.clear();
-        //tableData.addAll(users); necessario uma correção no findAll
+        /*List<User> users =  ListUserUseCase.findAll;
+        tableData.clear();
+        tableData.addAll(users);*/ //necessario uma correção no findAll
     }
 
     private void bindColumnsToValueSources() {
@@ -65,8 +71,8 @@ public class UserManagementUIController {
     }
 
     private void bindTableViewToItemsList() {
-        //tableData = FXCollections.observableArrayList();
-        //tableView.setItems(tableData);
+        tableData = FXCollections.observableArrayList();
+        tableView.setItems(tableData);
     }
 
 
@@ -75,19 +81,19 @@ public class UserManagementUIController {
     }
 
     public void deactivateClicked(ActionEvent actionEvent) {
-        /*User selectedItem = tableView.getSelectionModel().getSelectedItem();
+        User selectedItem = tableView.getSelectionModel().getSelectedItem();
         if(selectedItem != null){
-            InactivateUserUseCase.inactivateUserUseCase(selectedItem);
+            inactivateUserUseCase.inactivateUserUseCase(selectedItem.getId());
             loadDataAndShow();
-        }*/
+        }
     }
 
     public void activeClicked(ActionEvent actionEvent) {
-        /*User selectedItem = tableView.getSelectionModel().getSelectedItem();
+        User selectedItem = tableView.getSelectionModel().getSelectedItem();
         if(selectedItem != null){
-            ActivateUserUseCase.activateUserUseCase(selectedItem);
+            activateUserUseCase.activateUser(selectedItem.getId());
             loadDataAndShow();
-        }*/
+        }
     }
 
     public void editClicked(ActionEvent actionEvent) throws IOException {
