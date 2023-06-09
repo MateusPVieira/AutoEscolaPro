@@ -13,7 +13,6 @@ public class Schedule {
     private ScheduleStatus scheduleStatus;
     private RemunerationStatus remunerationStatus;
     private ValuesReference valuesReference;
-
     private ScheduleType scheduleType;
 
     public Schedule() {
