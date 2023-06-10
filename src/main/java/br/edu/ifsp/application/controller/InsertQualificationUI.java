@@ -1,16 +1,20 @@
 package br.edu.ifsp.application.controller;
 
+import br.edu.ifsp.application.view.WindowLoader;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import br.edu.ifsp.model.entities.qualification.QualificationProcess;
 import br.edu.ifsp.model.entities.student.Student;
 import br.edu.ifsp.model.usecases.instructor.ListInstructorUseCase;
 import br.edu.ifsp.model.usecases.student.ListStudentUseCase;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import br.edu.ifsp.model.entities.category.DrivingCategory;
 import br.edu.ifsp.model.enums.TestStatus;
 import br.edu.ifsp.model.enums.RegistrationStatus;
 import br.edu.ifsp.model.usecases.qualification.InsertQualificationProcessUseCase;
+
+import java.io.IOException;
 
 
 public class InsertQualificationUI {
@@ -78,5 +82,8 @@ public class InsertQualificationUI {
         alert.showAndWait();
     }
 
+    public void returnClicked() throws IOException {
+        WindowLoader.setRoot("QualificationProcessManagementUI");
+    }
 
 }

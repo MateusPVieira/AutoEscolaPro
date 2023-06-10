@@ -20,8 +20,8 @@ public class WindowLoader extends Application {
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("LoginUI"));
         stage.setScene(scene);
-        stage.setWidth(650);
-        stage.setHeight(500);
+        stage.setWidth(800);
+        stage.setHeight(550);
         stage.show();
     }
 

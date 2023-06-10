@@ -14,6 +14,8 @@ public class LoginUIController {
     private Button btnLogin;
     @FXML
     private Label lbWarn;
+
+
     @FXML
     private void loginClicked() throws IOException {
             lbWarn.setText("");
@@ -24,7 +26,7 @@ public class LoginUIController {
             if(username.isEmpty() || password.isEmpty()){
                 lbWarn.setText("Campo Usuário ou Senha vazio(s)!");
         } else {
-                WindowLoader.setRoot("InsertQualificationUI");
+                WindowLoader.setRoot("MainUI");
 
             }
 

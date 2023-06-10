@@ -4,21 +4,21 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.application.controller.LoginUIController">
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.application.controller.LoginUIController">
    <children>
-      <Label layoutX="88.0" layoutY="111.0" text="Usuário" />
-      <TextField fx:id="txtUsername" layoutX="140.0" layoutY="107.0" prefWidth="150.0" promptText="Usuario" />
-      <Label layoutX="90.0" layoutY="151.0" text="Senha" />
-      <PasswordField fx:id="txtPassword" layoutX="140.0" layoutY="147.0" prefWidth="150.0" promptText="Senha" />
-      <Button fx:id="btnLogin" layoutX="239.0" layoutY="199.0" mnemonicParsing="false" onAction="#loginClicked" text="Login" />
-      <Button fx:id="btnDicaSenha" layoutX="137.0" layoutY="199.0" mnemonicParsing="false" onAction="#loginClicked" text="Dica de Senha" />
-      <Label fx:id="lbWarn" layoutX="108.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="207.0" textAlignment="CENTER" textFill="RED" />
-      <Label layoutX="115.0" layoutY="19.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="36.0" prefWidth="171.0" text="AutoEscola Pro" textAlignment="CENTER" textFill="#008fbf">
+      <Label layoutX="278.0" layoutY="211.0" text="Usuário" />
+      <TextField fx:id="txtUsername" layoutX="330.0" layoutY="207.0" prefWidth="150.0" promptText="Usuario" />
+      <Label layoutX="290.0" layoutY="251.0" text="Senha" />
+      <PasswordField fx:id="txtPassword" layoutX="330.0" layoutY="247.0" prefWidth="150.0" promptText="Senha" />
+      <Button fx:id="btnLogin" layoutX="429.0" layoutY="309.0" mnemonicParsing="false" onAction="#loginClicked" text="Login" />
+      <Button fx:id="btnDicaSenha" layoutX="327.0" layoutY="309.0" mnemonicParsing="false" onAction="#loginClicked" text="Dica de Senha" />
+      <Label fx:id="lbWarn" layoutX="98.0" layoutY="249.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="17.0" prefWidth="207.0" textAlignment="CENTER" textFill="RED" />
+      <Label layoutX="305.0" layoutY="119.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="36.0" prefWidth="171.0" text="AutoEscola Pro" textAlignment="CENTER" textFill="#008fbf">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="lbWarn11" layoutX="178.0" layoutY="60.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="36.0" prefWidth="46.0" text="Login" textAlignment="CENTER">
+      <Label fx:id="lbWarn11" layoutX="368.0" layoutY="160.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="36.0" prefWidth="46.0" text="Login" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
