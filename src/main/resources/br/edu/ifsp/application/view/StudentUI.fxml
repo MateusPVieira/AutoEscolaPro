@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.application.controller.StudentUIController">
+   <children>
+      <Label layoutX="22.0" layoutY="36.0" text="Nome:" />
+      <TextField fx:id="txtName" layoutX="66.0" layoutY="32.0" prefHeight="25.0" prefWidth="508.0" />
+      <Label layoutX="22.0" layoutY="72.0" text="CPF:" />
+      <TextField fx:id="txtCPF" layoutX="66.0" layoutY="68.0" prefHeight="25.0" prefWidth="212.0" />
+      <Label layoutX="312.0" layoutY="72.0" text="RG:" />
+      <TextField fx:id="txtRG" layoutX="349.0" layoutY="68.0" prefHeight="25.0" prefWidth="225.0" />
+      <Label layoutX="20.0" layoutY="108.0" text="CNH:" />
+      <TextField fx:id="txtCNH" layoutX="66.0" layoutY="104.0" prefHeight="25.0" prefWidth="212.0" />
+      <Label layoutX="22.0" layoutY="145.0" text="End:" />
+      <TextField fx:id="txtAdress" layoutX="67.0" layoutY="141.0" prefHeight="25.0" prefWidth="508.0" />
+      <Label layoutX="25.0" layoutY="179.0" text="Tel:" />
+      <TextField fx:id="txtPhone" layoutX="66.0" layoutY="175.0" prefHeight="25.0" prefWidth="154.0" />
+      <Label layoutX="249.0" layoutY="179.0" text="E-mail:" />
+      <TextField fx:id="txtEmail" layoutX="296.0" layoutY="175.0" prefHeight="25.0" prefWidth="279.0" />
+      <Button fx:id="btnSave" layoutX="538.0" layoutY="365.0" mnemonicParsing="false" onAction="#saveOrUpdate" text="Salvar" />
+      <Button fx:id="backToPreviousScene" layoutX="13.0" layoutY="365.0" mnemonicParsing="false" text="Cancelar" />
+   </children>
+</AnchorPane>
