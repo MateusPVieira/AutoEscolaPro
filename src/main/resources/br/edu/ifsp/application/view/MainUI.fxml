@@ -23,6 +23,7 @@
       <Pane prefHeight="39.0" prefWidth="700.0">
          <children>
             <Label fx:id="lbUser" layoutX="10.0" layoutY="5.0" text="Logado como: " />
+            <Hyperlink layoutX="7.0" layoutY="21.0" onAction="#logoutClicked" text="Logout" />
          </children></Pane>
    </children>
 </AnchorPane>

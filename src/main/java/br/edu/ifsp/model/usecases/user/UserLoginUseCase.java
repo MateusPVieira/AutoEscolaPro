@@ -7,6 +7,7 @@ import br.edu.ifsp.model.entities.user.UserLoginDTO;
 import br.edu.ifsp.model.exceptions.EntityNotFoundException;
 import br.edu.ifsp.model.exceptions.InvalidCredentialsException;
 
+import java.sql.SQLException;
 import java.util.Optional;
 // talvez não retornar usuário e utilizar a sessão pra dados?
 /**
@@ -43,16 +44,19 @@ public class UserLoginUseCase {
      * @throws InvalidCredentialsException If the provided credentials are invalid.
      * @throws EntityNotFoundException If the username is not found in the system.
      */
-    public UserLoginDTO loginUser(String username, String password) throws InvalidCredentialsException {
-        Optional<User> userOptional = userDao.findOneByUsername(username);
-        User user = userOptional.orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+    public boolean loginUser(String username, String password) throws InvalidCredentialsException {
+        User user = userDao.findOneByUsername(username).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
 
         if (!password.equals(user.getPassword())) {
+            System.out.println(password);
+            System.out.println(user.getPassword());
             throw new InvalidCredentialsException();
         }
+
         UserLoginDTO userDto = new UserLoginDTO(user);
         Session session = Session.getInstance();
         session.setUser(userDto);
-        return userDto;
+        System.out.println("Usuário logado com sucesso!");
+        return true;
     }
 }

@@ -23,4 +23,8 @@ public class Session {
         return user;
     }
 
+    public boolean checkSession(){
+        return instance != null && user != null;
+    }
+
 }

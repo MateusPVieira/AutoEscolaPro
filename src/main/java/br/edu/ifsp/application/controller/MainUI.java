@@ -1,6 +1,7 @@
 package br.edu.ifsp.application.controller;
 
 import br.edu.ifsp.application.view.WindowLoader;
+import br.edu.ifsp.model.entities.user.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -12,8 +13,11 @@ public class MainUI {
     @FXML
     private Label lbUser;
 
-    public void initialize(){
-        this.user = "Admin";
+    public void initialize() throws IOException {
+        if (!Session.getInstance().checkSession())
+           this.logoutClicked();
+
+        this.user = Session.getInstance().getUser().getName();
         lbUser.setText(lbUser.getText() + user);
     }
 
@@ -22,6 +26,9 @@ public class MainUI {
         WindowLoader.setRoot("QualificationProcessManagementUI");
     }
 
-
+    public void logoutClicked() throws IOException {
+        Session.getInstance().setUser(null);
+        WindowLoader.setRoot("LoginUI");
+    }
 
 }

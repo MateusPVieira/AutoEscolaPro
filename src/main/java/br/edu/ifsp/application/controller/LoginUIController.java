@@ -1,9 +1,15 @@
 package br.edu.ifsp.application.controller;
+
 import br.edu.ifsp.application.view.WindowLoader;
+import br.edu.ifsp.model.dao.UserDAO;
+import br.edu.ifsp.model.daosqlite.UserDAOSQLite;
+import br.edu.ifsp.model.entities.user.UserLoginDTO;
+import br.edu.ifsp.model.usecases.user.UserLoginUseCase;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LoginUIController {
     @FXML
@@ -16,20 +22,44 @@ public class LoginUIController {
     private Label lbWarn;
 
 
+    private UserDAO userDAO;
+    private UserLoginUseCase userLoginUseCase;
+
+    public void initialize() {
+
+    }
+
+    public LoginUIController() {
+        this.userDAO = new UserDAOSQLite();
+        this.userLoginUseCase = new UserLoginUseCase(userDAO);
+    }
+
+
     @FXML
     private void loginClicked() throws IOException {
-            lbWarn.setText("");
-            String username = txtUsername.getText();
-            String password = txtPassword.getText();
-            System.out.println("Username:" + username);
+        var isValidLogin = false;
+        lbWarn.setText("");
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
 
-            if(username.isEmpty() || password.isEmpty()){
-                lbWarn.setText("Campo Usuário ou Senha vazio(s)!");
+
+        if (username.isEmpty() || password.isEmpty()) {
+            lbWarn.setText("Campo Usuário ou Senha vazio(s)!");
         } else {
-                WindowLoader.setRoot("MainUI");
 
+            try {
+
+                isValidLogin = userLoginUseCase.loginUser(username, password);
+
+                if (!isValidLogin) {
+                    lbWarn.setText("Campo Usuário ou Senha incorreto(s)!");
+                } else {
+                    WindowLoader.setRoot("MainUI");
+                }
+            } catch (Exception e) {
+                lbWarn.setText(e.getMessage());
             }
-
+        }
 
     }
 

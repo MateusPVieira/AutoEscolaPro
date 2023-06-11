@@ -2,6 +2,7 @@ package br.edu.ifsp.model.dao;
 
 import br.edu.ifsp.model.entities.user.User;
 
+import java.sql.SQLException;
 import java.util.Optional;
 
 public interface UserDAO extends DAO<User, Integer> {
