@@ -51,7 +51,7 @@ public class ListUserUseCase {
         return userDAO.findOneByUsername(email);
     }
 
-    public List<User> findAll(){
+    public Optional<List<User>> findAll(){
         return userDAO.findAll();
     }
     //É necessário implementar um metodo que busque pelo status, necessário ver como sera definido o status

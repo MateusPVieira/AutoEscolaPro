@@ -3,6 +3,7 @@ module br.edu.ifsp {
     requires javafx.fxml;
     requires java.sql;
     requires org.xerial.sqlitejdbc;
+    requires org.apache.logging.log4j;
 
     opens br.edu.ifsp.application.view to javafx.fxml;
     opens br.edu.ifsp.application.controller to javafx.fxml;

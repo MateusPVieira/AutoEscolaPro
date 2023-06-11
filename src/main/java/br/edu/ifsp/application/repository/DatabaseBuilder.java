@@ -5,16 +5,21 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+
 public class DatabaseBuilder {
+    private static final Logger logger = LogManager.getLogger(DatabaseBuilder.class);
     //observe as FKs antes de escolher a ordem de criação das tabelas
     //para evitar problemas com tabelas criadas antes das que ela possui FK
     public void buildDatabaseIfMissing(){
         if (isDatabaseMissing()) {
-            System.out.println("Database is missing. Building database: \n");
+            logger.info("Database is missing. Building database: \n");
             buildTables(false);
         }
         else {
-            System.out.println("Database exists. Checking database: \n");
+            logger.info("Database exists. Checking database: \n");
             buildTables(true);
         }
     }
@@ -36,9 +41,9 @@ public class DatabaseBuilder {
 //            statement.addBatch(createQualificationProcessTable());
             statement.executeBatch();
 
-            System.out.println("Database update success!");
+            logger.info("Database update success!");
         } catch (SQLException e){
-            e.printStackTrace();
+            logger.error(e);
         }
     }
 
@@ -58,7 +63,7 @@ public class DatabaseBuilder {
 
 
 
-        System.out.println(builder.toString());
+        logger.info(builder.toString());
         return builder.toString();
     }
 
@@ -79,7 +84,7 @@ public class DatabaseBuilder {
 //        builder.append("vehicle INTEGER");
 //
 //        builder.append(");");
-//        System.out.println(builder.toString());
+//        logger.info(builder.toString());
 //        return builder.toString();
 //    }
 
@@ -97,7 +102,7 @@ public class DatabaseBuilder {
 //        builder.append("FOREIGN KEY(drivingCategory) REFERENCES drivingCategory(id)");
 //
 //        builder.append(");");
-//        System.out.println(builder.toString());
+//        logger.info(builder.toString());
 //        return builder.toString();
 //    }
 
@@ -113,7 +118,7 @@ public class DatabaseBuilder {
 //        builder.append("valuesReference INTEGER");
 //        builder.append("FOREIGN KEY(valuesReference) REFERENCES valuesReference(id)");
 //        builder.append(");");
-//        System.out.println(builder.toString());
+//        logger.info(builder.toString());
 //        return builder.toString();
 //    }
 
@@ -143,7 +148,7 @@ public class DatabaseBuilder {
 //        builder.append("FOREIGN KEY(schedules) REFERENCES schedule(id)");
 //
 //        builder.append(");");
-//        System.out.println(builder.toString());
+//        logger.info(builder.toString());
 //        return builder.toString();
 //    }
 

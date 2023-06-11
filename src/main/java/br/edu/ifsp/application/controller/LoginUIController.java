@@ -1,5 +1,6 @@
 package br.edu.ifsp.application.controller;
 
+import br.edu.ifsp.application.repository.DatabaseBuilder;
 import br.edu.ifsp.application.view.WindowLoader;
 import br.edu.ifsp.model.dao.UserDAO;
 import br.edu.ifsp.model.daosqlite.UserDAOSQLite;
@@ -7,11 +8,14 @@ import br.edu.ifsp.model.entities.user.UserLoginDTO;
 import br.edu.ifsp.model.usecases.user.UserLoginUseCase;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class LoginUIController {
+    private static final Logger logger = LogManager.getLogger(LoginUIController.class);
     @FXML
     private TextField txtUsername;
     @FXML
@@ -58,6 +62,7 @@ public class LoginUIController {
                 }
             } catch (Exception e) {
                 lbWarn.setText(e.getMessage());
+                logger.error(e.getStackTrace());
             }
         }
 

@@ -1,11 +1,14 @@
 package br.edu.ifsp.model.usecases.user;
 
 import br.edu.ifsp.model.dao.UserDAO;
+import br.edu.ifsp.model.daosqlite.UserDAOSQLite;
 import br.edu.ifsp.model.entities.user.Session;
 import br.edu.ifsp.model.entities.user.User;
 import br.edu.ifsp.model.entities.user.UserLoginDTO;
 import br.edu.ifsp.model.exceptions.EntityNotFoundException;
 import br.edu.ifsp.model.exceptions.InvalidCredentialsException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 import java.util.Optional;
@@ -23,6 +26,7 @@ import java.util.Optional;
  * @author Mateus Vieira
  */
 public class UserLoginUseCase {
+    private static final Logger logger = LogManager.getLogger(UserLoginUseCase.class);
 
     private final UserDAO userDao;
 
@@ -45,18 +49,22 @@ public class UserLoginUseCase {
      * @throws EntityNotFoundException If the username is not found in the system.
      */
     public boolean loginUser(String username, String password) throws InvalidCredentialsException {
-        User user = userDao.findOneByUsername(username).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+        try {
+            User user = userDao.findOneByUsername(username).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
 
-        if (!password.equals(user.getPassword())) {
-            System.out.println(password);
-            System.out.println(user.getPassword());
-            throw new InvalidCredentialsException();
+            if (!password.equals(user.getPassword())) {
+                throw new InvalidCredentialsException();
+            }
+
+            UserLoginDTO userDto = new UserLoginDTO(user);
+            Session session = Session.getInstance();
+            session.setUser(userDto);
+            logger.info("Usuário logado com sucesso!");
+            return true;
+        } catch (Exception e){
+            logger.error(e);
+
         }
-
-        UserLoginDTO userDto = new UserLoginDTO(user);
-        Session session = Session.getInstance();
-        session.setUser(userDto);
-        System.out.println("Usuário logado com sucesso!");
-        return true;
+        return false;
     }
 }

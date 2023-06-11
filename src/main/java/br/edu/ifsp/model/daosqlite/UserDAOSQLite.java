@@ -1,10 +1,13 @@
 package br.edu.ifsp.model.daosqlite;
 
 import br.edu.ifsp.application.repository.ConnectionFactory;
+import br.edu.ifsp.application.repository.DatabaseBuilder;
 import br.edu.ifsp.model.dao.UserDAO;
 import br.edu.ifsp.model.entities.user.User;
 import br.edu.ifsp.model.enums.AcessLevel;
 import br.edu.ifsp.model.enums.RegistrationStatus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserDAOSQLite implements UserDAO {
-
+    private static final Logger logger = LogManager.getLogger(UserDAOSQLite.class);
 
     @Override
     public Integer create(User user) {
@@ -47,7 +50,7 @@ public class UserDAOSQLite implements UserDAO {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         return null;
     }
@@ -83,7 +86,7 @@ public class UserDAOSQLite implements UserDAO {
             }
             return Optional.of(users);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         return Optional.empty();
     }
@@ -113,7 +116,7 @@ public class UserDAOSQLite implements UserDAO {
                 return true;
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         return false;
     }
@@ -153,7 +156,7 @@ public class UserDAOSQLite implements UserDAO {
             User user = new User(dbid, dbname, dbusername, dbpassword, dbemail, dbphone, AcessLevel.valueOf(dbaccessLevel), RegistrationStatus.valueOf(dbregistrationStatus));
             return Optional.of(user);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         return Optional.empty();
     }

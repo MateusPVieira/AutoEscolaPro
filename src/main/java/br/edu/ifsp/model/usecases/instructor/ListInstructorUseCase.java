@@ -41,7 +41,7 @@ public class ListInstructorUseCase {
      *
      * @return a list of all instructors in the system
      */
-    public List<Instructor> findAll(){
+    public Optional<List<Instructor>> findAll(){
         return instructorDAO.findAll();
     }
 }

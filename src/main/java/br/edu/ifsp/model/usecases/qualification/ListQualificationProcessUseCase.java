@@ -4,7 +4,8 @@ import br.edu.ifsp.model.dao.QualificationProcessDAO;
 import br.edu.ifsp.model.entities.qualification.QualificationProcess;
 import br.edu.ifsp.model.exceptions.EntityNotFoundException;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * Class responsible for listing qualification processes.
@@ -44,7 +45,7 @@ public class ListQualificationProcessUseCase {
      *
      * @return A collection of QualificationProcess objects representing all the qualification processes in the system.
      */
-    public Collection<QualificationProcess> findSome(){
+    public Optional<List<QualificationProcess>> findSome(){
         return qualificationProcessDAO.findAll();
     }
 }

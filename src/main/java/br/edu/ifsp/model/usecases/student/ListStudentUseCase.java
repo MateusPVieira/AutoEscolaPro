@@ -41,7 +41,7 @@ public class ListStudentUseCase {
      *
      * @return a list of all students in the system
      */
-    public List<Student> findAll(){
+    public Optional<List<Student>> findAll(){
         return studentDAO.findAll();
     }
 }

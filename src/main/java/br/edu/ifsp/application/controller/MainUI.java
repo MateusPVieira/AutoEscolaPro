@@ -4,11 +4,13 @@ import br.edu.ifsp.application.view.WindowLoader;
 import br.edu.ifsp.model.entities.user.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
 public class MainUI {
-
+    private static final Logger logger = LogManager.getLogger(MainUI.class);
     private String user;
     @FXML
     private Label lbUser;
@@ -28,6 +30,7 @@ public class MainUI {
 
     public void logoutClicked() throws IOException {
         Session.getInstance().setUser(null);
+        logger.info("Usuario deslogado com suceso!");
         WindowLoader.setRoot("LoginUI");
     }
 
