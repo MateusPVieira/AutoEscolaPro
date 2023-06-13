@@ -5,7 +5,9 @@ import br.edu.ifsp.model.daosqlite.UserDAOSQLite;
 import br.edu.ifsp.model.entities.user.Session;
 import br.edu.ifsp.model.entities.user.User;
 import br.edu.ifsp.model.entities.user.UserLoginDTO;
+import br.edu.ifsp.model.enums.RegistrationStatus;
 import br.edu.ifsp.model.exceptions.EntityNotFoundException;
+import br.edu.ifsp.model.exceptions.InactiveItemException;
 import br.edu.ifsp.model.exceptions.InvalidCredentialsException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -51,6 +53,10 @@ public class UserLoginUseCase {
     public boolean loginUser(String username, String password) throws InvalidCredentialsException {
         try {
             User user = userDao.findOneByUsername(username).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
+
+            if (user.getRegistrationStatus().equals(RegistrationStatus.INACTIVE)) {
+                throw new InactiveItemException("Usuário está inativo!");
+            }
 
             if (!password.equals(user.getPassword())) {
                 throw new InvalidCredentialsException();

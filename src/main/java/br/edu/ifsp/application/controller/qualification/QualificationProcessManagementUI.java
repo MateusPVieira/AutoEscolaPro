@@ -1,4 +1,4 @@
-package br.edu.ifsp.application.controller;
+package br.edu.ifsp.application.controller.qualification;
 
 import br.edu.ifsp.application.view.WindowLoader;
 

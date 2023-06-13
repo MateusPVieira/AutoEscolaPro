@@ -9,4 +9,6 @@ module br.edu.ifsp {
     opens br.edu.ifsp.application.controller to javafx.fxml;
     exports br.edu.ifsp.application.view;
     exports br.edu.ifsp.application.controller;
+    exports br.edu.ifsp.application.controller.qualification;
+    opens br.edu.ifsp.application.controller.qualification to javafx.fxml;
 }

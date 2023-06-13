@@ -11,4 +11,6 @@ public record InsertQualificationRequestModel(
         TestStatus theoricExam, int numberOfLessons,
         Long qualificationValueCents,
         DrivingCategory drivingCategory) {
+
+
 }

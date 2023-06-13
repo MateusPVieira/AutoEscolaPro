@@ -20,6 +20,16 @@ public class Student {
         this.phone = phone;
         this.email = email;
     }
+    public Student(long id, String name, String cpf, String rg, String cnh, String address, String phone, String email) {
+        this.id = id;
+        this.name = name;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.cnh= cnh;
+        this.address = address;
+        this.phone = phone;
+        this.email = email;
+    }
 
     public long getId() {
         return id;
