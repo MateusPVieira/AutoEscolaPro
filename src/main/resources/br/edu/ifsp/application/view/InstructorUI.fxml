@@ -22,15 +22,18 @@
       <TextField fx:id="txtEmail" layoutX="375.0" layoutY="187.0" prefHeight="25.0" prefWidth="381.0" />
       <Label layoutX="32.0" layoutY="242.0" text="Dados Bancários:" />
       <TextField fx:id="txtBankAccount" layoutX="134.0" layoutY="238.0" prefHeight="155.0" prefWidth="211.0" />
-      <Label layoutX="375.0" layoutY="242.0" text="Categoria da Licensa:" />
-      <Label layoutX="367.0" layoutY="409.0" text="Status do Registro:" />
+      <Label layoutX="455.0" layoutY="242.0" text="Categoria da Licensa:" />
+      <Label layoutX="32.0" layoutY="409.0" text="Status do Registro:" />
       <Button fx:id="btnSave" layoutX="708.0" layoutY="451.0" mnemonicParsing="false" onAction="#saveOrUpdate" text="Salvar" />
-      <Button fx:id="backToPreviousScene" layoutX="631.0" layoutY="451.0" mnemonicParsing="false" text="Cancelar" />
-      <ListView fx:id="lstDrivingCategory" layoutX="499.0" layoutY="238.0" prefHeight="155.0" prefWidth="257.0" />
-      <ComboBox fx:id="cbRegistrationStatus" layoutX="342.0" layoutY="426.0" prefWidth="150.0" />
+      <Button fx:id="backToPreviousScene" layoutX="631.0" layoutY="451.0" mnemonicParsing="false" onAction="#returnClicked" text="Cancelar" />
+      <ComboBox fx:id="cbRegistrationStatus" layoutX="32.0" layoutY="426.0" prefWidth="150.0" />
       <Label layoutX="29.0" layoutY="23.0" prefHeight="33.0" prefWidth="389.0" text="Cadastrar Instrutor" textFill="#483c85">
          <font>
             <Font name="System Bold" size="18.0" />
          </font></Label>
+      <CheckBox fx:id="chCategoriA" layoutX="576.0" layoutY="275.0" mnemonicParsing="false" text="Categoria A" />
+      <CheckBox fx:id="chCategoriB" layoutX="576.0" layoutY="307.0" mnemonicParsing="false" text="Categoria B" />
+      <CheckBox fx:id="chCategoriaC" layoutX="576.0" layoutY="341.0" mnemonicParsing="false" text="Categoria C" />
+      <CheckBox fx:id="chCategoriD" layoutX="576.0" layoutY="376.0" mnemonicParsing="false" text="Categoria D" />
    </children>
 </AnchorPane>

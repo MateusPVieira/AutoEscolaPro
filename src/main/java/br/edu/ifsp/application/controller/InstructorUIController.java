@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class InstructorUIController {
-    private static final Logger logger = LogManager.getLogger(StudentUIController.class);
+    private static final Logger logger = LogManager.getLogger(InstructorUIController.class);
     @FXML
     TextField txtName;
     @FXML
@@ -43,6 +43,9 @@ public class InstructorUIController {
     TextField txtBankAccount;
     @FXML
     ComboBox<RegistrationStatus> cbRegistrationStatus;
+
+    @FXML
+
 
 
     InstructorDAO instructorDAO;
@@ -72,7 +75,7 @@ public class InstructorUIController {
             long id = instructor.get().getId();
             var insertedInstructor = getInstructor();
             if (id == 0) {
-                id = createInstructorUseCase.insert(insertedInstructor;
+                id = createInstructorUseCase.insert(insertedInstructor);
                 showAlert(Alert.AlertType.INFORMATION, "Success", "Instructor id: " + id +" created successfully.");
                 logger.info("Instructor id: " + id +" created successfully.");
             } else {
