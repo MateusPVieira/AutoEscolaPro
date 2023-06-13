@@ -81,17 +81,17 @@ public class DatabaseBuilder {
 
 
 
-    private String createDrivingCategoryTable(){
-        StringBuilder builder = new StringBuilder();
-        builder.append("CREATE TABLE IF NOT EXISTS DrivingCategory (");
-
-        builder.append("id INTEGER PRIMARY KEY,");
-        builder.append("vehicle INTEGER");
-
-        builder.append(");");
-        logger.info(builder.toString());
-        return builder.toString();
-    }
+//    private String createDrivingCategoryTable(){
+//        StringBuilder builder = new StringBuilder();
+//        builder.append("CREATE TABLE IF NOT EXISTS DrivingCategory (");
+//        builder.append("id INTEGER PRIMARY KEY,");
+//        builder.append("category TEXT,");
+//        builder.append("vehicle TEXT");
+//
+//        builder.append(");");
+//        logger.info(builder.toString());
+//        return builder.toString();
+//    }
 
     private String createStudentTable(){
 
@@ -135,9 +135,8 @@ public class DatabaseBuilder {
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS InstructorDrivingCategoryTable (");
         builder.append("instructor_id INTEGER,");
-        builder.append("driving_category_id INTEGER,");
+        builder.append("driving_category TEXT,");
         builder.append("FOREIGN KEY (instructor_id) REFERENCES instructor(id),;");
-        builder.append("FOREIGN KEY (driving_category_id) REFERENCES DrivingCategory(id)");
         builder.append(");");
 
         logger.info(builder.toString());

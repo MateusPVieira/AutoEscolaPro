@@ -5,6 +5,7 @@ import br.edu.ifsp.model.dao.InstructorDAO;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import br.edu.ifsp.model.entities.category.DrivingCategory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,11 +40,14 @@ public class InstructorDAOSQLite implements InstructorDAO {
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     long generatedId = generatedKeys.getLong(1);
+                    insertDrivingCategory(instructor, generatedId);
                     return generatedId;
                 } else {
                     throw new SQLException("Creating instructor failed, no ID obtained.");
                 }
             }
+
+
         } catch (Exception e) {
             logger.error(e);
         }
@@ -78,5 +82,21 @@ public class InstructorDAOSQLite implements InstructorDAO {
     @Override
     public Optional<Instructor> findOneByCNH(String cnh) {
         return Optional.empty();
+    }
+
+    private boolean insertDrivingCategory(Instructor instructor, long id) throws SQLException {
+        String sql = "Insert INTO InstructorDrivingCategoryTable (instructor_id, driving_category) values (?,?);";
+
+        for (DrivingCategory drivingCategory : instructor.getDrivingCategory()) {
+            try (PreparedStatement statement = ConnectionFactory.createPreparedStatement(sql)) {
+                statement.setLong(1, id);
+                statement.setString(2, drivingCategory.toString());
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+
+        }
+       return true;
     }
 }
