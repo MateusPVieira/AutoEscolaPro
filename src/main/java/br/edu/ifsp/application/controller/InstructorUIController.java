@@ -7,6 +7,7 @@ import br.edu.ifsp.model.daosqlite.InstructorDAOSQLite;
 import br.edu.ifsp.model.daosqlite.StudentDAOSQLite;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import br.edu.ifsp.model.entities.student.Student;
+import br.edu.ifsp.model.enums.RegistrationStatus;
 import br.edu.ifsp.model.usecases.instructor.CreateInstructorUseCase;
 import br.edu.ifsp.model.usecases.instructor.ListInstructorUseCase;
 import br.edu.ifsp.model.usecases.instructor.UpdateInstructorUseCase;
@@ -16,6 +17,7 @@ import br.edu.ifsp.model.usecases.student.UpdateStudentUseCase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +42,7 @@ public class InstructorUIController {
     @FXML
     TextField txtBankAccount;
     @FXML
-    TextField txtRegistrationStatus;
+    ComboBox<RegistrationStatus> cbRegistrationStatus;
 
 
     InstructorDAO instructorDAO;
@@ -96,7 +98,7 @@ public class InstructorUIController {
                 txtAdress.getText(),
                 txtPhone.getText(),
                 txtBankAccount.getText(),
-                registrationStatus.RegistrationStatus()
+                cbRegistrationStatus.getValue()
         );
     }
 

@@ -23,9 +23,9 @@
       <TextField fx:id="txtBankAccount" layoutX="113.0" layoutY="206.0" prefHeight="25.0" prefWidth="468.0" />
       <Label layoutX="13.0" layoutY="248.0" text="Categoria da Licensa:" />
       <Label layoutX="450.0" layoutY="248.0" text="Status do Registro:" />
-      <ChoiceBox fx:id="registrationStatus" layoutX="425.0" layoutY="265.0" prefWidth="150.0" />
       <Button fx:id="btnSave" layoutX="534.0" layoutY="361.0" mnemonicParsing="false" onAction="#saveOrUpdate" text="Salvar" />
       <Button fx:id="backToPreviousScene" layoutX="11.0" layoutY="361.0" mnemonicParsing="false" text="Cancelar" />
       <ListView fx:id="lstDrivingCategory" layoutX="139.0" layoutY="248.0" prefHeight="87.0" prefWidth="265.0" />
+      <ComboBox fx:id="cbRegistrationStatus" layoutX="425.0" layoutY="265.0" prefWidth="150.0" />
    </children>
 </AnchorPane>
