@@ -20,6 +20,6 @@
       <Button layoutX="335.0" layoutY="361.0" mnemonicParsing="false" onAction="#deleteStudent" text="Deletar" />
       <Button fx:id="btnEditStudent" layoutX="482.0" layoutY="361.0" mnemonicParsing="false" onAction="#editStudent" text="Editar" />
       <Button fx:id="btnDetail" layoutX="406.0" layoutY="361.0" mnemonicParsing="false" onAction="#detailStudent" text="Detalhar" />
-      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Voltar" />
+      <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Voltar" onAction="#returnClicked"/>
    </children>
 </AnchorPane>

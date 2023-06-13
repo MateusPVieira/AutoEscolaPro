@@ -2,6 +2,7 @@ package br.edu.ifsp.application.controller;
 
 import br.edu.ifsp.application.view.WindowLoader;
 import br.edu.ifsp.model.entities.user.Session;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.apache.logging.log4j.LogManager;
@@ -34,4 +35,15 @@ public class MainUI {
         WindowLoader.setRoot("LoginUI");
     }
 
+    public void userClicked(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("UserManagementUI");
+    }
+
+    public void instructorClicked(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("InstructorManagementUI");
+    }
+
+    public void studentClicked(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("StudentManagementUI");
+    }
 }

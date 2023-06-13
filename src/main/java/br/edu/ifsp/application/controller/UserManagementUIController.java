@@ -49,9 +49,9 @@ public class UserManagementUIController {
 
     @FXML
     private void initialize(){
-        bindTableViewToItemsList();
+        /*bindTableViewToItemsList();
         bindColumnsToValueSources();
-        loadDataAndShow();
+        loadDataAndShow();*/
         
     }
 
@@ -71,8 +71,8 @@ public class UserManagementUIController {
     }
 
     private void bindTableViewToItemsList() {
-        tableData = FXCollections.observableArrayList();
-        tableView.setItems(tableData);
+        /*tableData = FXCollections.observableArrayList();
+        tableView.setItems(tableData);*/
     }
 
 
@@ -101,6 +101,6 @@ public class UserManagementUIController {
     }
 
     public void returnClicked(ActionEvent actionEvent) throws IOException {
-        WindowLoader.setRoot("LoginUI");
+        WindowLoader.setRoot("MainUI");
     }
 }

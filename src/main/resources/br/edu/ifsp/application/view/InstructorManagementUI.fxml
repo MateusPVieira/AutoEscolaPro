@@ -18,7 +18,7 @@
             <TableColumn minWidth="2.0" prefWidth="96.0" text="Status Registro" />
         </columns>
       </TableView>
-      <Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false" text="Voltar" />
+      <Button layoutX="14.0" layoutY="367.0" mnemonicParsing="false" text="Voltar" onAction="#returnClicked"/>
       <Button fx:id="btnCreateInstructor" layoutX="809.0" layoutY="367.0" mnemonicParsing="false" onAction="#createInstructor" text="Novo" />
       <Button fx:id="btnEditInstructor" layoutX="750.0" layoutY="367.0" mnemonicParsing="false" onAction="#editInstructor" text="Editar" />
       <Button fx:id="btnDetail" layoutX="676.0" layoutY="367.0" mnemonicParsing="false" onAction="#detailInstructor" text="Detalhar" />

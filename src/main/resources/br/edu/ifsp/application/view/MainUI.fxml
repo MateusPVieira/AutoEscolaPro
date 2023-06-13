@@ -9,13 +9,29 @@
       <Button fx:id="btnQualification" layoutX="49.0" layoutY="256.0" mnemonicParsing="false" onAction="#qualificationClicked" text="Habilitações">
          <font>
             <Font size="18.0" />
-         </font></Button>
+         </font>
+      </Button>
+      <Button fx:id="btnUser" layoutX="49.0" layoutY="327.0" mnemonicParsing="false" onAction="#userClicked" prefHeight="39.0" prefWidth="121.0" text="Usuários">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnStudent" layoutX="194.0" layoutY="327.0" mnemonicParsing="false" onAction="#studentClicked" prefHeight="39.0" prefWidth="121.0" text="Estudantes">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnInstructor" layoutX="194.0" layoutY="256.0" mnemonicParsing="false" onAction="#instructorClicked" prefHeight="39.0" prefWidth="121.0" text="Instrutores">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
       <Label layoutX="296.0" layoutY="39.0" text="Menu">
          <font>
             <Font name="System Bold" size="55.0" />
          </font>
       </Label>
-      <Button layoutX="194.0" layoutY="257.0" mnemonicParsing="false" text="Button">
+      <Button layoutX="332.0" layoutY="256.0" mnemonicParsing="false" text="Button">
          <font>
             <Font size="18.0" />
          </font>
