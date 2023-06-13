@@ -20,6 +20,6 @@
       <Label layoutX="249.0" layoutY="179.0" text="E-mail:" />
       <TextField fx:id="txtEmail" layoutX="296.0" layoutY="175.0" prefHeight="25.0" prefWidth="279.0" />
       <Button fx:id="btnSave" layoutX="538.0" layoutY="365.0" mnemonicParsing="false" onAction="#saveOrUpdate" text="Salvar" />
-      <Button fx:id="backToPreviousScene" layoutX="13.0" layoutY="365.0" mnemonicParsing="false" text="Cancelar" />
+      <Button fx:id="backToPreviousScene" layoutX="13.0" layoutY="365.0" mnemonicParsing="false" onAction="#returnClicked" text="Cancelar" />
    </children>
 </AnchorPane>

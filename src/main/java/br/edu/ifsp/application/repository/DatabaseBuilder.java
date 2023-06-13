@@ -97,13 +97,14 @@ public class DatabaseBuilder {
 
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS Student (");
+        builder.append("id INTEGER PRIMARY KEY,");
         builder.append("name TEXT,");
         builder.append("cpf TEXT,");
         builder.append("rg TEXT,");
         builder.append("cnh TEXT,");
         builder.append("address TEXT,");
         builder.append("phone TEXT,");
-        builder.append("email TEXT,");
+        builder.append("email TEXT");
         builder.append(");");
 
         logger.info(builder.toString());
@@ -114,6 +115,7 @@ public class DatabaseBuilder {
 
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS Instructor (");
+        builder.append("id INTEGER PRIMARY KEY,");
         builder.append("name TEXT,");
         builder.append("cpf TEXT,");
         builder.append("rg TEXT,");

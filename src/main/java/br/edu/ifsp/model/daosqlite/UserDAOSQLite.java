@@ -23,8 +23,8 @@ public class UserDAOSQLite implements UserDAO {
     @Override
     public Integer create(User user) {
         String sql = "INSERT INTO" +
-                "USER (name, username, password, email, phone, accessLevel, registrationStatus)" +
-                "VALUES (?, ? , ?, ?, ?, ?, ?);";
+                " USER (name, username, password, email, phone, accessLevel, registrationStatus)" +
+                " VALUES (?, ? , ?, ?, ?, ?, ?);";
 
         try (PreparedStatement statement = ConnectionFactory.createPreparedStatement(sql)) {
             statement.setString(1, user.getName());
@@ -94,9 +94,9 @@ public class UserDAOSQLite implements UserDAO {
 
     @Override
     public boolean update(User user) {
-        String sql = "UPDATE" +
-                "USER SET (name = ?, username = ?, password = ?, email = ?, phone = ?, accessLevel = ?, registrationStatus = ?)" +
-                "WHERE id = ?;";
+        String sql = "UPDATE " +
+                "USER SET name = ?, username = ?, password = ?, email = ?, phone = ?, accessLevel = ?, registrationStatus = ?" +
+                " WHERE id = ?;";
 
         try (PreparedStatement statement = ConnectionFactory.createPreparedStatement(sql)) {
             statement.setString(1, user.getName());

@@ -2,6 +2,7 @@ package br.edu.ifsp.model.usecases.student;
 
 import br.edu.ifsp.model.dao.StudentDAO;
 import br.edu.ifsp.model.entities.student.Student;
+import br.edu.ifsp.model.validators.Validator;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,18 +45,17 @@ public class ListStudentUseCase {
     public Optional<List<Student>> findAll(){
         return studentDAO.findAll();
     }
-}
-    // findAll //
-    // Retorna uma lista de todos os estudantes cadastrados no sistema.
 
-
-    //Reserva//
-    /*public Optional<Student> findOneByCpf(String cpf){
+    public Optional<Student> findOneByCpf(String cpf){
         if(Validator.nullOrEmpty(cpf))
             throw new IllegalArgumentException("CPF can not be null or empty.");
         return studentDAO.findOneByCPF(cpf);
     }
+}
+    // findAll //
+    // Retorna uma lista de todos os estudantes cadastrados no sistema.
 
+/*
     public Optional<Student> findOneByRg(String rg){
         if(Validator.nullOrEmpty(rg))
             throw new IllegalArgumentException("RG can not be null or empty.");

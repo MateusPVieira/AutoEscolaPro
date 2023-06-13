@@ -23,8 +23,8 @@ public class StudentDAOSQLite implements StudentDAO {
     @Override
     public Long create(Student student) {
         String sql = "INSERT INTO" +
-                "STUDENT (name, cpf, rg, cnh, address, phone, email)" +
-                "VALUES (?, ? , ?, ?, ?, ?, ?);";
+                " STUDENT (name, cpf, rg, cnh, address, phone, email)" +
+                " VALUES (?, ? , ?, ?, ?, ?, ?);";
 
         try (PreparedStatement statement = ConnectionFactory.createPreparedStatement(sql)) {
             statement.setString(1, student.getName());
@@ -88,9 +88,9 @@ public class StudentDAOSQLite implements StudentDAO {
 
     @Override
     public boolean update(Student student) {
-        String sql = "UPDATE" +
-                "STUDENT SET (name = ?, cpf = ?, rg = ?, cnh = ?, address = ?, phonr = ?, email = ?)" +
-                "WHERE id = ?;";
+        String sql = "UPDATE " +
+                "STUDENT SET name = ?, cpf = ?, rg = ?, cnh = ?, address = ?, phone = ?, email = ?" +
+                " WHERE id = ?;";
 
         try (PreparedStatement statement = ConnectionFactory.createPreparedStatement(sql)) {
             statement.setString(1, student.getName());

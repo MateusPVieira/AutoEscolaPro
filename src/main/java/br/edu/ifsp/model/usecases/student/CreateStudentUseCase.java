@@ -1,11 +1,14 @@
 package br.edu.ifsp.model.usecases.student;
 
+import br.edu.ifsp.application.controller.StudentUIController;
 import br.edu.ifsp.model.entities.student.Student;
 import br.edu.ifsp.model.dao.StudentDAO;
 import br.edu.ifsp.model.validators.StudentInputRequestValidator;
 import br.edu.ifsp.model.exceptions.EntityAlreadyExistsException;
 import br.edu.ifsp.model.entities.notification.Notification;
 import br.edu.ifsp.model.validators.Validator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Class responsible for handling the use case of creating a new student.
@@ -13,6 +16,7 @@ import br.edu.ifsp.model.validators.Validator;
  * @author Stefhani Alkin
  */
 public class CreateStudentUseCase {
+    private static final Logger logger = LogManager.getLogger(CreateStudentUseCase.class);
     private StudentDAO studentDAO; // Dependency
 
     /**
@@ -33,33 +37,34 @@ public class CreateStudentUseCase {
      * @throws EntityAlreadyExistsException if the student's CPF, RG, CNH, or email already exist in the system
      */
     public Long insert(Student student){
-        Validator<Student> validator = new StudentInputRequestValidator();
-        Notification notification = validator.validate(student);
-        if(notification.hasErrors())
-            throw new IllegalArgumentException(notification.errorMessage());
+        try {
+            Validator<Student> validator = new StudentInputRequestValidator();
+            Notification notification = validator.validate(student);
+            if (notification.hasErrors())
+                throw new IllegalArgumentException(notification.errorMessage());
 
-        String cpf = student.getCpf();
+            String cpf = student.getCpf();
 
-        studentDAO
-                .findOneByCPF(cpf)
-                .orElseThrow(() -> new EntityAlreadyExistsException("This CPF is already in use!"));
 
-        //if(studentDAO.findOneByCPF(cpf).isPresent())
-          //  throw new EntityAlreadyExistsException("This CPF is already in use!");
+            if(studentDAO.findOneByCPF(cpf).isPresent())
+              throw new EntityAlreadyExistsException("This CPF is already in use!");
 
-        String rg = student.getRg();
-        if(studentDAO.findOneByRG(rg).isPresent())
-            throw new EntityAlreadyExistsException("This RG is already in use!");
+            String rg = student.getRg();
+            if (studentDAO.findOneByRG(rg).isPresent())
+                throw new EntityAlreadyExistsException("This RG is already in use!");
 
-        String cnh = student.getCnh();
-        if(studentDAO.findOneByCNH(cnh).isPresent())
-            throw new EntityAlreadyExistsException("This CNH is already in use!");
+            String cnh = student.getCnh();
+            if (studentDAO.findOneByCNH(cnh).isPresent())
+                throw new EntityAlreadyExistsException("This CNH is already in use!");
 
-        if(studentDAO.findOneByEmail(student.getEmail()).isPresent())
-            throw new EntityAlreadyExistsException("This e-mail is already in use!");
+            if (studentDAO.findOneByEmail(student.getEmail()).isPresent())
+                throw new EntityAlreadyExistsException("This e-mail is already in use!");
 
-        // Verifica se já existe algum estudante cadastrado no sistema com o mesmo CPF, RG, CNH ou e-mail.
-        // Se algum desses dados já estiver em uso, uma exceção é lançada com a mensagem de erro.
+            // Verifica se já existe algum estudante cadastrado no sistema com o mesmo CPF, RG, CNH ou e-mail.
+            // Se algum desses dados já estiver em uso, uma exceção é lançada com a mensagem de erro.
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+        }
 
         return studentDAO.create(student);
     }
