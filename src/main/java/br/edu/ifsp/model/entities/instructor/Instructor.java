@@ -33,6 +33,17 @@ public class Instructor {
         this.registrationStatus = registrationStatus;
     }
 
+    public Instructor(String name, String cpf, String rg, String cnh, String address, String phone, String bankAccount, RegistrationStatus registrationStatus) {
+        this.name = name;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.cnh = cnh;
+        this.address = address;
+        this.phone = phone;
+        this.bankAccount = bankAccount;
+        this.registrationStatus = registrationStatus;
+    }
+
     public long getId() {
         return id;
     }
