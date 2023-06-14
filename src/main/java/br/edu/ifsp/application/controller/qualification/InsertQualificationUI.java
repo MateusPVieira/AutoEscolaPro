@@ -9,6 +9,7 @@ import br.edu.ifsp.model.daosqlite.QualificationProcessDAOSQLite;
 import br.edu.ifsp.model.daosqlite.StudentDAOSQLite;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import br.edu.ifsp.model.entities.student.Student;
+import br.edu.ifsp.model.exceptions.EntityNotFoundException;
 import br.edu.ifsp.model.usecases.instructor.ListInstructorUseCase;
 import br.edu.ifsp.model.usecases.qualification.InsertQualificationRequestModel;
 import br.edu.ifsp.model.usecases.student.ListStudentUseCase;
@@ -21,7 +22,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class InsertQualificationUI {
@@ -31,9 +33,9 @@ public class InsertQualificationUI {
     @FXML
     private TextField tfNumberOfLessons;
     @FXML
-    private ComboBox<Student> cbStudent;
+    private ComboBox<String> cbStudent;
     @FXML
-    private ComboBox<Instructor> cbInstructor;
+    private ComboBox<String> cbInstructor;
     @FXML
     private ComboBox<TestStatus> cbEyeExam;
     @FXML
@@ -69,16 +71,53 @@ public class InsertQualificationUI {
 
     public void initialize() {
         try {
-//        List<Instructor> instructors = listInstructorUseCase.findAll().orElseThrow(() -> new EntityNotFoundException("Não foi possível recuperar os instrutores!"));
-//        List<Student> students = listStudentUseCase.findAll().orElseThrow(() -> new EntityNotFoundException("Não foi possível recuperar os alunos!"));
-//        cbInstructor.getItems().addAll(instructors);
-//        cbStudent.getItems().addAll(students);
+       List<Instructor> instructors = listInstructorUseCase.findAll().orElseThrow(() -> new EntityNotFoundException("Não foi possível recuperar os instrutores!"));
+       List<Student> students = listStudentUseCase.findAll().orElseThrow(() -> new EntityNotFoundException("Não foi possível recuperar os alunos!"));
+       cbInstructor.getItems().addAll(instructorToName(instructors));
+        cbStudent.getItems().addAll(studentsToName(students));
             cbEyeExam.getItems().addAll(TestStatus.values());
             cbTheoricExam.getItems().addAll(TestStatus.values());
             cbPsychoExam.getItems().addAll(TestStatus.values());
+            cbDrivingCategory.getItems().addAll(DrivingCategory.values());
         } catch (Exception e){
             logger.error(e.getMessage());
         }
+    }
+
+    public List<String> studentsToName(List<Student> studentList){
+        List<String> listNames = new ArrayList<>();
+        for (Student student: studentList) {
+            listNames.add(student.getName());
+        }
+        return listNames;
+    }
+
+    public List<String> instructorToName(List<Instructor> instructorList){
+        List<String> listNames = new ArrayList<>();
+        for (Instructor instructor:  instructorList) {
+            listNames.add(instructor.getName());
+        }
+        return listNames;
+    }
+
+    public Student nameToStudent(String name){
+        List<Student> listStudent = listStudentUseCase.findAll().get();
+        for (Student student: listStudent) {
+            if(student.getName().equals(name)){
+                return student;
+            }
+        }
+        return null;
+    }
+
+    public Instructor nameToInstructor(String name){
+        List<Instructor> listInstructor = listInstructorUseCase.findAll().get();
+        for (Instructor instructor: listInstructor) {
+            if(instructor.getName().equals(name)){
+                return instructor;
+            }
+        }
+        return null;
     }
 
 
@@ -113,15 +152,14 @@ public class InsertQualificationUI {
     private void getEntityToView(){
         if (qualificationProcess == null) {
             qualificationProcess = new InsertQualificationRequestModel(
-                    cbStudent.getValue().getId(),
-                    cbInstructor.getValue().getId(),
+                    nameToStudent(cbStudent.getValue()).getId(),
+                    nameToInstructor(cbInstructor.getValue()).getId(),
                     cbEyeExam.getValue(),
                     cbPsychoExam.getValue(),
                     cbTheoricExam.getValue(),
                     Integer.parseInt(tfNumberOfLessons.getText()),
                     Long.parseLong(tfQualificationValue.getText()),
                     cbDrivingCategory.getValue()
-
             );
         }
     }

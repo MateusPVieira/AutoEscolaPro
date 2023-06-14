@@ -16,4 +16,5 @@ public enum DrivingCategory {
     public String toString(){
         return label;
     }
+
 }

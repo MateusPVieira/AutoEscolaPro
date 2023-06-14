@@ -5,6 +5,7 @@ import br.edu.ifsp.model.dao.InstructorDAO;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import br.edu.ifsp.model.enums.RegistrationStatus;
+import javafx.collections.ObservableList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import br.edu.ifsp.model.entities.category.DrivingCategory;
@@ -14,8 +15,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Observable;
 import java.util.Optional;
+
 
 public class InstructorDAOSQLite implements InstructorDAO {
     private static final Logger logger = LogManager.getLogger(InstructorDAOSQLite.class);
@@ -82,6 +86,7 @@ public class InstructorDAOSQLite implements InstructorDAO {
                 String dbstatus = rs.getString("registrationStatus");
 
                 Instructor instructor = new Instructor(dbid, dbname, dbcpf, dbrg, dbcnh, dbadress, dbphone,dbbankacc, RegistrationStatus.valueOf(dbstatus));
+                instructor.setDrivingCategory(getListCategory(instructor.getId()));
                 instructors.add(instructor);
             }
 
@@ -114,7 +119,6 @@ public class InstructorDAOSQLite implements InstructorDAO {
 
     @Override
     public boolean insertDrivingCategory(Instructor instructor) {
-        System.out.println("ENTREEEI");
         String sql = "Insert INTO InstructorDrivingCategoryTable (instructor_id, driving_category) values (?, ?);";
 
         for (DrivingCategory drivingCategory : instructor.getDrivingCategory()) {
@@ -130,5 +134,23 @@ public class InstructorDAOSQLite implements InstructorDAO {
         }
         return true;
     }
+
+    public List<DrivingCategory> getListCategory(Long id){
+        var listCategory = new ArrayList<DrivingCategory>();
+        String sql = "SELECT * FROM InstructorDrivingCategoryTable WHERE instructor_id = " + id;
+        try (Statement statement = ConnectionFactory.createStatement()) {
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                String dbCategory = rs.getString("driving_category");
+                String category = String.valueOf(dbCategory.charAt(0));
+                listCategory.add(DrivingCategory.valueOf(category));
+            }
+            return listCategory;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
+    }
+
 
 }

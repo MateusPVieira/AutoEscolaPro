@@ -108,6 +108,10 @@ public class Instructor {
         this.bankAccount = bankAccount;
     }
 
+    public void setDrivingCategory(List<DrivingCategory> drivingCategory) {
+        this.drivingCategory = drivingCategory;
+    }
+
     public List<DrivingCategory> getDrivingCategory() {
         return drivingCategory;
     }

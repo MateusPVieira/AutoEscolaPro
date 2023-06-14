@@ -3,6 +3,7 @@ package br.edu.ifsp.application.controller;
 import br.edu.ifsp.application.view.WindowLoader;
 import br.edu.ifsp.model.dao.InstructorDAO;
 import br.edu.ifsp.model.daosqlite.InstructorDAOSQLite;
+import br.edu.ifsp.model.entities.category.DrivingCategory;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import br.edu.ifsp.model.enums.RegistrationStatus;
@@ -34,18 +35,11 @@ public class InstructorManagementUIController {
     @FXML
     TableColumn<Instructor, String> cPhone;
 
-//    @FXML
-//    TableColumn<Instructor, List<String>> cCategory;
+   @FXML
+   TableColumn<Instructor, List<DrivingCategory>> cCategory;
 
     @FXML
     TableColumn<Instructor, String> cStatus;
-
-
-
-
-
-
-
 
     private ObservableList<Instructor> tableData;
 
@@ -70,7 +64,7 @@ public class InstructorManagementUIController {
         cCPF.setCellValueFactory(new PropertyValueFactory<>("cpf"));
         cCNH.setCellValueFactory(new PropertyValueFactory<>("cnh"));
         cPhone.setCellValueFactory(new PropertyValueFactory<>("phone"));
- //       cCategoria.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        cCategory.setCellValueFactory(new PropertyValueFactory<>("drivingCategory"));
         cStatus.setCellValueFactory(new PropertyValueFactory<>("registrationStatus"));
     }
 

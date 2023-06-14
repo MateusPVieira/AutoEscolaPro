@@ -18,7 +18,6 @@ public class QualificationProcess {
     private long qualificationValueCents;
     private LocalDate openingDate;
     private int minimumNumberOfLessons;
-
     private User user;
     private RegistrationStatus registrationStatus;
     private TestStatus eyeExam;
