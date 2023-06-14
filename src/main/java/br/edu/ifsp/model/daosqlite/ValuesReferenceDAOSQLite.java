@@ -54,7 +54,6 @@ public class ValuesReferenceDAOSQLite implements ReferenceValuesDAO {
 
         try (Statement statement = ConnectionFactory.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
-            var dbId = rs.getLong("id");
             var dbDOP = rs.getString("drivingSchoolOpeningTime");
             var dbDCT = rs.getString("drivingSchoolClosingTime");
             var dbLessonValueInCents = rs.getLong("lessonValueInCents");
@@ -63,7 +62,7 @@ public class ValuesReferenceDAOSQLite implements ReferenceValuesDAO {
             var dbDrivingCategory = rs.getString("drivingCategory");
             String category = String.valueOf(dbDrivingCategory.charAt(0));
 
-            ValuesReference valuesReference = new ValuesReference(dbId, dbLessonValueInCents, dbDMNL, dbTestValueInCents, DrivingCategory.valueOf(category));
+            ValuesReference valuesReference = new ValuesReference(dbLessonValueInCents, dbDMNL, dbTestValueInCents, DrivingCategory.valueOf(category));
             return Optional.of(valuesReference);
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,16 +77,15 @@ public class ValuesReferenceDAOSQLite implements ReferenceValuesDAO {
         try (Statement statement = ConnectionFactory.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-                var dbId = rs.getLong("id");
                 var dbDOP = rs.getString("drivingSchoolOpeningTime");
                 var dbDCT = rs.getString("drivingSchoolClosingTime");
                 var dbLessonValueInCents = rs.getLong("lessonValueInCents");
-                var dbDMNL = rs.getInt("defaultMinimunNumberOfLessons");
+                var dbDMNL = rs.getInt("defaultMinimumNumberOfLessons");
                 var dbTestValueInCents = rs.getLong("TestValueInCents");
                 var dbDrivingCategory = rs.getString("drivingCategory");
                 String category = String.valueOf(dbDrivingCategory.charAt(0));
 
-                ValuesReference valuesReference = new ValuesReference(dbId, dbLessonValueInCents, dbDMNL, dbTestValueInCents, DrivingCategory.valueOf(category));
+                ValuesReference valuesReference = new ValuesReference(dbLessonValueInCents, dbDMNL, dbTestValueInCents, DrivingCategory.valueOf(category));
                 listValuesReference.add(valuesReference);
             }
             return Optional.of(listValuesReference);
@@ -105,7 +103,6 @@ public class ValuesReferenceDAOSQLite implements ReferenceValuesDAO {
     @Override
     public Optional<ValuesReference> findOneByKeycategory(String category) {
         String sql = "SELECT * FROM ValuesReference WHERE drivingCategory = '" + category + "';";
-        System.out.println(sql);
         try (Statement statement = ConnectionFactory.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
             String dbDOP = rs.getString("drivingSchoolOpeningTime");

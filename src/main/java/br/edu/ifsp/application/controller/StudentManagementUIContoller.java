@@ -75,7 +75,7 @@ public class StudentManagementUIContoller {
         List<Student> studentList = listStudentUseCase.findAll().orElseThrow(() -> new EntityNotFoundException("Nenhum estudante encontrado!"));
         tableData.clear();
         tableData.addAll(studentList);
-        System.out.println(WindowLoader.getController().getClass());
+
     }
 
     public void createStudent(ActionEvent actionEvent) throws IOException {

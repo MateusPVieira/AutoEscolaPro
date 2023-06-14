@@ -30,7 +30,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
-import java.sql.Struct;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -149,14 +148,18 @@ public class StudentEditUIController {
     }
 
     public void setStudent(Student selectedStudentParam){
-
+        QualificationProcess qualificationProcess = new QualificationProcess();
         selectedStudent = selectedStudentParam;
-        QualificationProcess qualificationProcess = listQualificationProcessUseCase.findByStudentId(selectedStudent.getId());
+        try {
+            qualificationProcess = listQualificationProcessUseCase.findByStudentId(selectedStudent.getId());
+        } catch (Exception e){
+            e.printStackTrace();
+        }
         schedules = new ArrayList<>();
         schedules.addAll(qualificationProcess.getDrivingTests());
         schedules.addAll(qualificationProcess.getDrivingLessons());
         setStudentFields();
-        System.out.println(schedules);
+
         loadDataAndShow();
 
     }

@@ -91,10 +91,6 @@ public class StudentDAOSQLite implements StudentDAO {
         String sql = "UPDATE " +
                 "STUDENT SET name = ?, cpf = ?, rg = ?, cnh = ?, address = ?, phone = ?, email = ?" +
                 " WHERE id = ?;";
-        System.out.println("_________________________________________________________");
-        System.out.println("STRING DO UPDATE");
-        System.out.println(sql);
-        System.out.println("_________________________________________________________");
         try (PreparedStatement statement = ConnectionFactory.createPreparedStatement(sql)) {
             statement.setString(1, student.getName());
             statement.setString(2, student.getCpf());

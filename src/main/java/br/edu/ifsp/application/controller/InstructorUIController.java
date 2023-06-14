@@ -137,7 +137,6 @@ public class InstructorUIController {
         if(chCategoriD.isSelected()){
             instructorInput.addDrivingCategory(DrivingCategory.D);
         }
-        System.out.println(instructorInput.toString());
         return instructorInput;
     }
 

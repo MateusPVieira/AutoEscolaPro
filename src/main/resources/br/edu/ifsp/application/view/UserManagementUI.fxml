@@ -11,19 +11,20 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <TableView fx:id="tbUsersView" layoutX="18.0" layoutY="66.0" prefHeight="284.0" prefWidth="729.0">
+        <TableView fx:id="tbUsersView" layoutX="60.0" layoutY="67.0" prefHeight="284.0" prefWidth="803.0">
             <columns>
-                <TableColumn fx:id="cName" prefWidth="93.0" text="Nome" />
-                <TableColumn fx:id="cUsername" prefWidth="135.0" text="Nome de usuário" />
+                <TableColumn fx:id="cName" prefWidth="126.0" text="Nome" />
+                <TableColumn fx:id="cUsername" prefWidth="102.0" text="Nome de usuário" />
                 <TableColumn fx:id="cEmail" prefWidth="144.0" text="Email" />
                 <TableColumn fx:id="cPhone" prefWidth="135.0" text="Telefone" />
                 <TableColumn fx:id="cAcessLevel" prefWidth="116.0" text="Nível de acesso" />
                 <TableColumn fx:id="cStatus" prefWidth="104.0" text="Ativo" />
+                <TableColumn fx:id="cId" prefWidth="75.0" text="ID" />
             </columns>
         </TableView>
         <Button layoutX="678.0" layoutY="430.0" mnemonicParsing="false" onAction="#addClicked" text="Adicionar" />
-        <Button layoutX="483.0" layoutY="430.0" mnemonicParsing="false" onAction="#deactivateClicked" text="Desativar" />
-        <Button layoutX="562.0" layoutY="430.0" mnemonicParsing="false" onAction="#activeClicked" text="Ativar" />
+        <Button fx:id="btnDesactive" layoutX="483.0" layoutY="430.0" mnemonicParsing="false" onAction="#deactivateClicked" text="Desativar" />
+        <Button fx:id="btnActive" layoutX="562.0" layoutY="430.0" mnemonicParsing="false" onAction="#activeClicked" text="Ativar" />
         <Button layoutX="621.0" layoutY="430.0" mnemonicParsing="false" onAction="#editClicked" text="Editar" />
         <Button layoutX="18.0" layoutY="430.0" mnemonicParsing="false" onAction="#returnClicked" text="Voltar" />
     </children>

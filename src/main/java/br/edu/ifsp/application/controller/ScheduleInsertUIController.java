@@ -2,11 +2,13 @@ package br.edu.ifsp.application.controller;
 
 import br.edu.ifsp.application.view.WindowLoader;
 import br.edu.ifsp.model.dao.QualificationProcessDAO;
+import br.edu.ifsp.model.dao.ReferenceValuesDAO;
 import br.edu.ifsp.model.dao.ScheduleDAO;
 import br.edu.ifsp.model.dao.StudentDAO;
 import br.edu.ifsp.model.daosqlite.QualificationProcessDAOSQLite;
 import br.edu.ifsp.model.daosqlite.ScheduleDAOSQLite;
 import br.edu.ifsp.model.daosqlite.StudentDAOSQLite;
+import br.edu.ifsp.model.daosqlite.ValuesReferenceDAOSQLite;
 import br.edu.ifsp.model.entities.qualification.QualificationProcess;
 import br.edu.ifsp.model.entities.reference.ValuesReference;
 import br.edu.ifsp.model.entities.schedule.Schedule;
@@ -50,9 +52,18 @@ public class ScheduleInsertUIController {
     ScheduleDAO scheduleDAO = new ScheduleDAOSQLite();
     QualificationProcessDAO qualificationProcessDAO = new QualificationProcessDAOSQLite();
     UpdateQualificationProcessUseCase updateQualificationProcessUseCase = new UpdateQualificationProcessUseCase(qualificationProcessDAO);
-
+    ReferenceValuesDAO valuesReferenceDAO = new ValuesReferenceDAOSQLite();
 
     private QualificationProcess qualificationProcessUI;
+
+    public void initialize() {
+
+        cbSchPayment.getItems().addAll(RemunerationStatus.values());
+        cbSchStatus.getItems().addAll(ScheduleStatus.values());
+        cbSchType.getItems().addAll(ScheduleType.values());
+        cbValue.getItems().addAll(valuesReferenceDAO.findAll().get());
+
+    }
 
 
     public void saveOrUpdate(ActionEvent actionEvent) throws IOException {

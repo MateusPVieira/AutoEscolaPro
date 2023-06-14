@@ -84,7 +84,7 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
     @Override
     public Optional<QualificationProcess> findByStudentId(Long id){
         String sql = "SELECT * FROM QualificationProcess WHERE studentId = " + id + ";";
-        System.out.println(sql);
+
         return getQualification(sql);
     }
 
@@ -140,7 +140,7 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
     public boolean update(QualificationProcess qualification) {
         String sql = "UPDATE" +
                 " QualificationProcess SET qualificationValueCents = ?, openingDate = ?, minimumNumberOfLessons = ?, userId = ?, registrationStatus = ?, " +
-                "eyeExam = ?, theoricExam = ?, psychoExam = ?, drivingCategory = ?, instructorId = ?, studentId = ? )" +
+                "eyeExam = ?, theoricExam = ?, psychoExam = ?, drivingCategory = ?, instructorId = ?, studentId = ?" +
                 " WHERE id  = ?;";
 
         try (PreparedStatement statement = ConnectionFactory.createPreparedStatement(sql)) {
@@ -161,7 +161,11 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
             if (affectedRows == 0) {
                 throw new SQLException("Update qualification failed, no rows affected.");
             }
+
+
             excluirIDsNaoPermitidos(qualification.getDrivingLessons(), qualification.getDrivingTests());
+            isPresent(qualification.getDrivingLessons());
+            isPresent(qualification.getDrivingTests());
             insertSchedules(qualification.getDrivingLessons(), qualification.getId());
             insertSchedules(qualification.getDrivingTests(), qualification.getId());
 
@@ -195,9 +199,7 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
 
             QualificationProcess qualificationProcess = new QualificationProcess(dbId, dbQlValueCents, dbOpeningDate, dbMinNumberLessons, user
                     , dbStatus, dbEyeExam, dbTheoricExam, dbPsychoExam, DrivingCategory.valueOf(category), instructor, student);
-            System.out.println("Lista retornando de getListSchecule:");
-            System.out.println(getListSchedule(dbId));
-            System.out.println("----------------------------------");
+
             for (Schedule schedule: getListSchedule(dbId)) {
 
                 if(schedule.getScheduleType().equals(ScheduleType.LESSON)){
@@ -208,7 +210,6 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
             }
             return Optional.of(qualificationProcess);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             e.printStackTrace();
         }
         return Optional.empty();
@@ -220,7 +221,7 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
         String sql = "Insert INTO QualificationSchedule (qualification_id, schedule_id) values (?, ?);";
 
         for (Schedule schedule : schedules) {
-            if(scheduleDAO.findOne(schedule.getId()).isEmpty()) {
+            if(scheduleDAO.findOne(schedule.getId()).isEmpty() && schedule.getId() != 0) {
                 try (PreparedStatement statement = ConnectionFactory.createPreparedStatement(sql)) {
                     statement.setLong(1, qualificationId);
                     statement.setLong(2, schedule.getId());
@@ -242,35 +243,35 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
                 " JOIN QualificationSchedule ON Schedule.id = QualificationSchedule.schedule_id" +
                 " WHERE QualificationSchedule.qualification_id = " + id +";";
 
-        System.out.println("SQL:");
-        System.out.println(sql);
-        System.out.println("---------------------------------------------------------");
         try (Statement statement = ConnectionFactory.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-                System.out.println("tem resultados");
                 var dbId = rs.getLong("id");
                 var dbSchDateTime = rs.getString("scheduledDateTime");
                 var dbSchStatus = rs.getString("scheduleStatus");
                 var dbRemunerationStatus= rs.getString("remunerationStatus");
                 var dbSchType = rs.getString("scheduleType");
                 var dbValuesReference = rs.getString("valuesReference");
-                System.out.println(dbValuesReference);
                 var valueRef = referenceValuesDAO.findOneByKeycategory(dbValuesReference).get();
 
                 Schedule schedule = new Schedule(dbId, Util.stringToDateTime(dbSchDateTime), ScheduleStatus.valueOf(dbSchStatus),
                         RemunerationStatus.valueOf(dbRemunerationStatus), valueRef, ScheduleType.valueOf(dbSchType));
                 listSchedule.add(schedule);
             }
-            System.out.println("---------------------------------------------------------");
-            System.out.println("Lista dentro do metodo");
-            System.out.println(listSchedule);
-            System.out.println("---------------------------------------------------------");
             return listSchedule;
         } catch (Exception e) {
             e.printStackTrace();
             return Collections.emptyList();
         }
+    }
+
+    public void isPresent(List<Schedule> scheduleArray){
+        for (Schedule schedule: scheduleArray
+             ) {
+            if(scheduleDAO.findOne(schedule.getId()).isPresent())
+                deletarID(schedule.getId());
+        }
+
     }
 
     public void excluirIDsNaoPermitidos(List<Schedule> lessons, List<Schedule> tests ) {
@@ -301,7 +302,6 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
                 }
             }
 
-            System.out.println("IDs excluídos: " + idsParaExcluir);
         }
 
 

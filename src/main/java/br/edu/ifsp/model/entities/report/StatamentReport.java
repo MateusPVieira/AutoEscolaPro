@@ -14,7 +14,6 @@ public class StatamentReport implements Report{
         //implementação temporária
         for (Schedule sc:
                 rows) {
-            System.out.println(sc.toString());
         }
     }
 }

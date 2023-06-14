@@ -26,9 +26,7 @@ public class UpdateUserUseCase {
         if(userDAO.findOne(id).isEmpty()){
             throw new EntityNotFoundException("User not found.");
         }
-        if(userDAO.findOneByEmail(user.getEmail()).isPresent()){
-            throw new EntityAlreadyExistsException("This email is already in use.");
-        }
+
 
         return userDAO.update(user);
     }

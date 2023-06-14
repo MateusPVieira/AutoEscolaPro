@@ -80,7 +80,6 @@ public class DatabaseBuilder {
         builder.append("INSERT INTO USER(name, username, password, accessLevel, registrationStatus) VALUES (");
         builder.append("'Administrador', 'admin', 'admin', 'ADMIN', 'ACTIVE');");
 
-        System.out.println(builder.toString());
         return builder.toString();
     }
 

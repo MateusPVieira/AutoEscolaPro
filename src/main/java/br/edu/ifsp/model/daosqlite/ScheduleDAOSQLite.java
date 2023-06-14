@@ -92,9 +92,9 @@ public class ScheduleDAOSQLite implements ScheduleDAO {
                     var dbSchStatus = rs.getString("scheduleStatus");
                     var dbRemunerationStatus = rs.getString("remunerationStatus");
                     var dbSchType = rs.getString("scheduleType");
-                    var dbValuesReference = rs.getLong("valuesReference");
+                    var dbValuesReference = rs.getString("valuesReference");
 
-                    var valueRef = referenceValuesDAO.findOne(dbValuesReference).get();
+                    var valueRef = referenceValuesDAO.findOneByKeycategory(dbValuesReference).get();
 
                     Schedule schedule = new Schedule(dbId, Util.stringToDateTime(dbSchDateTime), ScheduleStatus.valueOf(dbSchStatus),
                             RemunerationStatus.valueOf(dbRemunerationStatus), valueRef, ScheduleType.valueOf(dbSchType));

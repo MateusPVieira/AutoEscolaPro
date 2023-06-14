@@ -9,6 +9,7 @@ import br.edu.ifsp.model.daosqlite.UserDAOSQLite;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import br.edu.ifsp.model.entities.student.Student;
 import br.edu.ifsp.model.entities.user.User;
+import br.edu.ifsp.model.enums.RegistrationStatus;
 import br.edu.ifsp.model.exceptions.EntityNotFoundException;
 import br.edu.ifsp.model.usecases.instructor.ListInstructorUseCase;
 import br.edu.ifsp.model.usecases.student.ListStudentUseCase;
@@ -20,9 +21,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -49,6 +53,12 @@ public class UserManagementUIController {
     @FXML
     private TableColumn<User, String> cStatus;
 
+    @FXML
+    private Button btnDesactive;
+
+    @FXML
+    private Button btnActive;
+
     private ObservableList<User> tableData;
 
     UserDAO userDAO;
@@ -57,7 +67,6 @@ public class UserManagementUIController {
     ActivateUserUseCase activateUserUseCase;
 
     InactivateUserUseCase inactivateUserUseCase;
-
 
     public UserManagementUIController() {
         userDAO = new UserDAOSQLite();
@@ -79,6 +88,7 @@ public class UserManagementUIController {
     }
 
     private void bindColumnsToValueSources() {
+
         cName.setCellValueFactory(new PropertyValueFactory<>("name"));
         cUsername.setCellValueFactory(new PropertyValueFactory<>("username"));
         cEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -100,26 +110,34 @@ public class UserManagementUIController {
     }
 
     public void deactivateClicked(ActionEvent actionEvent) {
-        User selectedItem = tbUsersView.getSelectionModel().getSelectedItem();
-        if(selectedItem != null){
-            inactivateUserUseCase.inactivateUserUseCase(selectedItem.getId());
+        User user1 = tbUsersView.getSelectionModel().getSelectedItem();
+        if(user1.getId() != 0){
+            inactivateUserUseCase.inactivateUserUseCase(user1.getId());
             loadDataAndShow();
         }
     }
 
     public void activeClicked(ActionEvent actionEvent) {
-        User selectedItem = tbUsersView.getSelectionModel().getSelectedItem();
-        if(selectedItem != null){
-            activateUserUseCase.activateUser(selectedItem.getId());
+        User user1 = tbUsersView.getSelectionModel().getSelectedItem();
+        if(user1.getId() != 0){
+            activateUserUseCase.activateUser(user1.getId());
             loadDataAndShow();
         }
     }
 
     public void editClicked(ActionEvent actionEvent) throws IOException {
-        WindowLoader.setRoot("UpdateUserUI");
+        User user = tbUsersView.getSelectionModel().getSelectedItem();
+        if (user != null){
+            WindowLoader.setRoot("UpdateUserUI");
+            UserUpdateUIController controller = (UserUpdateUIController) WindowLoader.getController();
+            controller.setUser(user);
+
+        }
+
     }
 
     public void returnClicked(ActionEvent actionEvent) throws IOException {
         WindowLoader.setRoot("MainUI");
     }
+
 }
