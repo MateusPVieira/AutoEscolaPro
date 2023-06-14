@@ -87,11 +87,6 @@ public class ValuesReference {
 
     @Override
     public String toString() {
-        return "ValuesReference{" +
-                "lessonValueInCents=" + lessonValueInCents +
-                ", defaultMinimunNumberOfLessons=" + defaultMinimunNumberOfLessons +
-                ", TestValueInCents=" + TestValueInCents +
-                ", drivingCategory=" + drivingCategory +
-                '}';
+        return "Valores de " + this.getDrivingCategory();
     }
 }

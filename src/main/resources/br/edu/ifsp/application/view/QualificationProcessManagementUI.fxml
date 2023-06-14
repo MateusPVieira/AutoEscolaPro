@@ -11,7 +11,7 @@
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-        <TableView id="tableView" layoutX="54.0" layoutY="66.0" prefHeight="284.0" prefWidth="665.0">
+        <TableView id="tableView" fx:id="tbQualificationView" layoutX="54.0" layoutY="66.0" prefHeight="284.0" prefWidth="665.0">
             <columns>
                 <TableColumn id="cName" fx:id="cCategory" prefWidth="93.0" text="Categoria" />
                 <TableColumn id="cUsername" fx:id="cStudent" prefWidth="135.0" text="Aluno" />

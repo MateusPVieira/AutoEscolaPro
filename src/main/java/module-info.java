@@ -14,6 +14,8 @@ module br.edu.ifsp {
     opens br.edu.ifsp.model.entities.student to javafx.base;
     opens br.edu.ifsp.application.view to javafx.fxml;
     opens br.edu.ifsp.application.controller to javafx.fxml;
+    exports br.edu.ifsp.model.entities.qualification;
+    exports br.edu.ifsp.model.entities.student;
     exports br.edu.ifsp.application.view;
     exports br.edu.ifsp.application.controller;
     exports br.edu.ifsp.application.controller.qualification;

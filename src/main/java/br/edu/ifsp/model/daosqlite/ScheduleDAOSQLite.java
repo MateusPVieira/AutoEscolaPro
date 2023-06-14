@@ -112,7 +112,34 @@ public class ScheduleDAOSQLite implements ScheduleDAO {
             return false;
         }
 
-        @Override
+    @Override
+    public boolean insertScheduleQualification(Long qualificationID, Long scheduleId) {
+        String sql = "Insert INTO QualificationSchedule (qualification_id, schedule_id) values (?, ?);";
+        try (PreparedStatement statement = ConnectionFactory.createPreparedStatement(sql)) {
+            statement.setLong(1, qualificationID);
+            statement.setLong(2, scheduleId);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean deleteScheduleQualification(Long scheduleId) {
+        String sql = "DELETE FROM QualificationSchedule WHERE schedule_id = ? ;";
+        try (PreparedStatement statement = ConnectionFactory.createPreparedStatement(sql)) {
+            statement.setLong(1, scheduleId);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
         public Optional<List<Schedule>> findSomeByInstructor (Instructor instructor){
             return Optional.empty();
         }

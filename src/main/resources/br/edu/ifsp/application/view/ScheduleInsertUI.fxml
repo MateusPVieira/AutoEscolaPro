@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.application.controller.ScheduleInsertUIController">
+    <children>
+        <Label layoutX="29.0" layoutY="85.0" text="Data:" />
+        <Label layoutX="289.0" layoutY="85.0" text="Hora:" />
+        <TextField fx:id="txtHour" layoutX="330.0" layoutY="81.0" prefHeight="25.0" prefWidth="62.0" />
+        <Label layoutX="409.0" layoutY="85.0" text="Minutos:" />
+        <TextField fx:id="txtMin" layoutX="464.0" layoutY="81.0" prefHeight="25.0" prefWidth="62.0" />
+        <Label layoutX="29.0" layoutY="142.0" text="Status:" />
+        <Label layoutX="281.0" layoutY="140.0" text="Pagamento:" />
+        <Button fx:id="btnSave" layoutX="708.0" layoutY="451.0" mnemonicParsing="false" onAction="#saveOrUpdate" text="Salvar" />
+        <Button fx:id="backToPreviousScene" layoutX="631.0" layoutY="451.0" mnemonicParsing="false" onAction="#returnClicked" text="Cancelar" />
+        <Label layoutX="29.0" layoutY="23.0" prefHeight="33.0" prefWidth="389.0" text="Cadastrar Agendamento" textFill="#483c85">
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font></Label>
+      <DatePicker fx:id="dtData" layoutX="78.0" layoutY="81.0" />
+      <ComboBox fx:id="cbSchStatus" layoutX="78.0" layoutY="138.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbSchPayment" layoutX="359.0" layoutY="138.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbSchType" layoutX="75.0" layoutY="198.0" prefWidth="150.0" />
+      <ComboBox fx:id="cbValue" layoutX="407.0" layoutY="200.0" prefWidth="150.0" />
+      <Label layoutX="29.0" layoutY="202.0" text="Tipo:" />
+      <Label layoutX="285.0" layoutY="206.0" text="Valor de Referencia:" />
+    </children>
+</AnchorPane>

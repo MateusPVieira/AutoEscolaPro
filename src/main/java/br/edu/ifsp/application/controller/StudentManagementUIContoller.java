@@ -40,6 +40,7 @@ public class StudentManagementUIContoller {
     @FXML
     TableView<Student> tbStudentsView;
 
+
     private ObservableList<Student> tableData;
 
     public StudentManagementUIContoller() {
@@ -80,12 +81,26 @@ public class StudentManagementUIContoller {
     }
 
     public void deleteStudent(ActionEvent actionEvent) {
+       Student student = tbStudentsView.getSelectionModel().getSelectedItem();
+       if (student != null){
+           //
+       }
     }
 
-    public void editStudent(ActionEvent actionEvent) {
+    public void editStudent(ActionEvent actionEvent) throws IOException {
+        Student student = tbStudentsView.getSelectionModel().getSelectedItem();
+        if (student != null){
+            WindowLoader.setRoot("StudentEditUI");
+            StudentEditUIController controller = (StudentEditUIController) WindowLoader.getController();
+            controller.setStudent(student);
+        }
     }
 
     public void detailStudent(ActionEvent actionEvent) {
+        Student student = tbStudentsView.getSelectionModel().getSelectedItem();
+        if (student != null){
+            //
+        }
     }
 
     public void returnClicked(ActionEvent actionEvent) throws IOException {

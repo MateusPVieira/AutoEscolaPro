@@ -40,6 +40,10 @@ public class ListQualificationProcessUseCase {
         return qualificationProcessDAO.findOne(id).orElseThrow(()-> new EntityNotFoundException("Qualification Process not found!"));
     }
 
+    public QualificationProcess findByStudentId(Long id){
+        return qualificationProcessDAO.findByStudentId(id).orElseThrow(()-> new EntityNotFoundException("Qualification Process not found!"));
+    }
+
     /**
      * Retrieves a collection of qualification processes.
      *

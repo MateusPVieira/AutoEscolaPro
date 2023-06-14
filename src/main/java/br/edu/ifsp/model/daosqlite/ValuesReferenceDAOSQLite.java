@@ -74,7 +74,7 @@ public class ValuesReferenceDAOSQLite implements ReferenceValuesDAO {
     @Override
     public Optional<List<ValuesReference>> findAll() {
         List<ValuesReference> listValuesReference = new ArrayList<>();
-        String sql = "SELECT * FROM SCHEDULE;";
+        String sql = "SELECT * FROM ValuesReference;";
         try (Statement statement = ConnectionFactory.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
@@ -114,6 +114,8 @@ public class ValuesReferenceDAOSQLite implements ReferenceValuesDAO {
             var dbLessonValueInCents = rs.getLong("lessonValueInCents");
             var dbDMNL = rs.getInt("defaultMinimunNumberOfLessons");
             var dbTestValueInCents = rs.getLong("TestValueInCents");
+            var dbDrivingCategory = rs.getString("drivingCategory");
+            String dbcategory = String.valueOf(dbDrivingCategory.charAt(0));
 
 
             ValuesReference valuesReference = new ValuesReference(dbId, dbLessonValueInCents, dbDMNL, dbTestValueInCents, category);

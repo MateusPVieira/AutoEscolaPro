@@ -11,6 +11,8 @@ import org.apache.logging.log4j.Logger;
 
 public class DatabaseBuilder {
     private static final Logger logger = LogManager.getLogger(DatabaseBuilder.class);
+    private String insertValues = "INSERT INTO ValuesReference(lessonValueInCents, defaultMinimumNumberOfLessons, testValueInCents," +
+            "drivingSchoolOpeningTime, drivingSchoolClosingTime, drivingCategory) VALUES(";
 
     //observe as FKs antes de escolher a ordem de criação das tabelas
     //para evitar problemas com tabelas criadas antes das que ela possui FK
@@ -34,6 +36,10 @@ public class DatabaseBuilder {
 
             if (!isUpdate) {
                 statement.addBatch(createAdminUser());
+                statement.addBatch(setValueA());
+                statement.addBatch(setValueB());
+                statement.addBatch(setValueC());
+                statement.addBatch(setValueD());
             }
             statement.addBatch(createStudentTable());
             statement.addBatch(createInstructorTable());
@@ -141,6 +147,60 @@ public class DatabaseBuilder {
         builder.append("drivingSchoolClosingTime TEXT,");
         builder.append("drivingCategory TEXT");
 
+        builder.append(");");
+        logger.info(builder.toString());
+        return builder.toString();
+    }
+
+    private String setValueA(){
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(insertValues);
+        builder.append("4000,");
+        builder.append("10,");
+        builder.append("10000,");
+        builder.append("'06:30:00',");
+        builder.append("'20:30:00',");
+        builder.append("'A - Carro'");
+        builder.append(");");
+        logger.info(builder.toString());
+        return builder.toString();
+    }
+    private String setValueB(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(insertValues);
+        builder.append("3000,");
+        builder.append("10,");
+        builder.append("9000,");
+        builder.append("'06:30:00',");
+        builder.append("'20:30:00',");
+        builder.append("'B - Moto'");
+        builder.append(");");
+        logger.info(builder.toString());
+        return builder.toString();
+    }
+    private String setValueC(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(insertValues);
+        builder.append("6000,");
+        builder.append("20,");
+        builder.append("12000,");
+        builder.append("'06:30:00',");
+        builder.append("'20:30:00',");
+        builder.append("'C - Caminhao'");
+        builder.append(");");
+        logger.info(builder.toString());
+        return builder.toString();
+    }
+    private String setValueD(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(insertValues);
+        builder.append("8000,");
+        builder.append("25,");
+        builder.append("1500,");
+        builder.append("'06:30:00',");
+        builder.append("'20:30:00',");
+        builder.append("'D - Onibus'");
         builder.append(");");
         logger.info(builder.toString());
         return builder.toString();
