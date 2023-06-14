@@ -4,30 +4,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="500" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.application.controller.InstructorManagementUIController">
+<AnchorPane prefHeight="500" prefWidth="774.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.application.controller.InstructorManagementUIController">
    <children>
        <Label layoutX="22.0" layoutY="14.0" text="Instrutores" textFill="#483c85">
            <font>
                <Font name="System Bold" size="18.0" />
            </font>
        </Label>
-      <TableView layoutX="18.0" layoutY="59.0" prefHeight="341.0" prefWidth="765.0">
+      <TableView fx:id="tbInstructorsView" layoutX="18.0" layoutY="59.0" prefHeight="341.0" prefWidth="725.0">
         <columns>
-          <TableColumn fx:id="cNome" prefWidth="127.0" text="Nome" />
-          <TableColumn fx:id="cCpf" prefWidth="70.0" text="CPF" />
-            <TableColumn prefWidth="72.0" text="RG" />
-            <TableColumn prefWidth="82.0" text="CNH" />
-            <TableColumn prefWidth="86.0" text="Endereço" />
-            <TableColumn prefWidth="98.0" text="Telefone" />
-            <TableColumn fx:id="txtAccountBank" minWidth="7.0" prefWidth="99.0" text="Dados Bancários" />
-            <TableColumn minWidth="0.0" prefWidth="72.0" text="Categoria" />
-            <TableColumn minWidth="2.0" prefWidth="55.0" text="Status Registro" />
+          <TableColumn fx:id="cName" prefWidth="214.0" text="Nome" />
+          <TableColumn fx:id="cCPF" prefWidth="71.0" text="CPF" />
+            <TableColumn fx:id="cCNH" prefWidth="111.0" text="CNH" />
+            <TableColumn fx:id="cPhone" prefWidth="116.0" text="Telefone" />
+            <TableColumn fx:id="cCategory" minWidth="0.0" prefWidth="111.0" text="Categoria" />
+            <TableColumn fx:id="cStatus" minWidth="2.0" prefWidth="99.0" text="Status Registro" />
         </columns>
       </TableView>
       <Button layoutX="22.0" layoutY="461.0" mnemonicParsing="false" onAction="#returnClicked" text="Voltar" />
-      <Button fx:id="btnCreateInstructor" layoutX="738.0" layoutY="461.0" mnemonicParsing="false" onAction="#createInstructor" text="Novo" />
-      <Button fx:id="btnEditInstructor" layoutX="679.0" layoutY="461.0" mnemonicParsing="false" onAction="#editInstructor" text="Editar" />
-      <Button fx:id="btnDetail" layoutX="607.0" layoutY="461.0" mnemonicParsing="false" onAction="#detailInstructor" text="Detalhar" />
-      <Button layoutX="540.0" layoutY="461.0" mnemonicParsing="false" text="Deletar" />
+      <Button fx:id="btnCreateInstructor" layoutX="716.0" layoutY="461.0" mnemonicParsing="false" onAction="#createInstructor" text="Novo" />
+      <Button fx:id="btnEditInstructor" layoutX="657.0" layoutY="461.0" mnemonicParsing="false" onAction="#editInstructor" text="Editar" />
+      <Button fx:id="btnDetail" layoutX="585.0" layoutY="461.0" mnemonicParsing="false" onAction="#detailInstructor" text="Detalhar" />
+      <Button layoutX="518.0" layoutY="461.0" mnemonicParsing="false" text="Deletar" />
    </children>
 </AnchorPane>

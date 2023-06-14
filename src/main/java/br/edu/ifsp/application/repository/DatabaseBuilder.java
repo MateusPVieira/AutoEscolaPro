@@ -32,10 +32,12 @@ public class DatabaseBuilder {
         try(Statement statement = ConnectionFactory.createStatement()){
             statement.addBatch(createUserTable());
 
-            if (!isUpdate)
+            if (!isUpdate) {
                 statement.addBatch(createAdminUser());
-//              statement.addBatch(createDrivingCategoryTable());
+            }
                 statement.addBatch(createStudentTable());
+                statement.addBatch(createInstructorTable());
+                statement.addBatch(createInstructorDrivingCategoryTable());
 
 
 //            statement.addBatch(createValuesReferenceTable());
@@ -79,20 +81,6 @@ public class DatabaseBuilder {
     }
 
 
-
-
-//    private String createDrivingCategoryTable(){
-//        StringBuilder builder = new StringBuilder();
-//        builder.append("CREATE TABLE IF NOT EXISTS DrivingCategory (");
-//        builder.append("id INTEGER PRIMARY KEY,");
-//        builder.append("category TEXT,");
-//        builder.append("vehicle TEXT");
-//
-//        builder.append(");");
-//        logger.info(builder.toString());
-//        return builder.toString();
-//    }
-
     private String createStudentTable(){
 
         StringBuilder builder = new StringBuilder();
@@ -123,7 +111,7 @@ public class DatabaseBuilder {
         builder.append("address TEXT,");
         builder.append("phone TEXT,");
         builder.append("bankAccount TEXT,");
-        builder.append("registrationStatus TEXT,");
+        builder.append("registrationStatus TEXT");
         builder.append(");");
 
         logger.info(builder.toString());
@@ -135,8 +123,7 @@ public class DatabaseBuilder {
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS InstructorDrivingCategoryTable (");
         builder.append("instructor_id INTEGER,");
-        builder.append("driving_category TEXT,");
-        builder.append("FOREIGN KEY (instructor_id) REFERENCES instructor(id),;");
+        builder.append("driving_category TEXT");
         builder.append(");");
 
         logger.info(builder.toString());

@@ -140,6 +140,7 @@ public class Instructor {
                 ", phone='" + phone + '\'' +
                 ", bankAccount='" + bankAccount + '\'' +
                 ", drivingCategory=" + drivingCategory +
+                ", RegistrationStatus=" + registrationStatus +
                 '}';
     }
 }

@@ -33,10 +33,10 @@ public class CreateInstructorUseCase {
      * @throws EntityAlreadyExistsException if the instructor's CPF, RG, or CNH already exist in the system
      */
     public Long insert(Instructor instructor){
-        Validator<Instructor> validator = new InstructorInputRequestValidator();
-        Notification notification = validator.validate(instructor);
-        if(notification.hasErrors())
-            throw new IllegalArgumentException(notification.errorMessage());
+     //   Validator<Instructor> validator = new InstructorInputRequestValidator();
+      //  Notification notification = validator.validate(instructor);
+      //  if(notification.hasErrors())
+        //    throw new IllegalArgumentException(notification.errorMessage());
 
         String cpf = instructor.getCpf();
         if(instructorDAO.findOneByCPF(cpf).isPresent())
@@ -54,5 +54,9 @@ public class CreateInstructorUseCase {
             throw new EntityAlreadyExistsException("This e-mail is already in use!");*/
 
         return instructorDAO.create(instructor);
+    }
+
+    public boolean insertDrivingCategory(Instructor instructor){
+        return instructorDAO.insertDrivingCategory(instructor);
     }
 }
