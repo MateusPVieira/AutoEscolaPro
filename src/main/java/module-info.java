@@ -5,6 +5,9 @@ module br.edu.ifsp {
     requires org.xerial.sqlitejdbc;
     requires org.apache.logging.log4j;
 
+
+    opens br.edu.ifsp.model.entities.schedule to javafx.base;
+    opens br.edu.ifsp.model.entities.qualification to javafx.base;
     opens br.edu.ifsp.model.enums to javafx.base;
     opens br.edu.ifsp.model.entities.user to javafx.base;
     opens br.edu.ifsp.model.entities.instructor to javafx.base;

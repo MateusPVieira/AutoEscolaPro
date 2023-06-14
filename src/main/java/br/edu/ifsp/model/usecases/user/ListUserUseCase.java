@@ -1,6 +1,7 @@
 package br.edu.ifsp.model.usecases.user;
 
 import br.edu.ifsp.model.dao.UserDAO;
+import br.edu.ifsp.model.entities.student.Student;
 import br.edu.ifsp.model.entities.user.User;
 import br.edu.ifsp.model.validators.Validator;
 

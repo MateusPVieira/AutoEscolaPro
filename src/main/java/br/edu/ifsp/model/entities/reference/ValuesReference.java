@@ -6,6 +6,7 @@ import java.time.LocalTime;
 
 public class ValuesReference {
     //nome ta invertido
+    private long id;
     private static LocalTime DRIVING_SCHOOL_OPENING_TIME;
     private static LocalTime DRIVING_SCHOOL_CLOSING_TIME;
     private long lessonValueInCents;
@@ -18,6 +19,22 @@ public class ValuesReference {
         this.defaultMinimunNumberOfLessons = defaultMinimunNumberOfLessons;
         TestValueInCents = testValueInCents;
         this.drivingCategory = drivingCategory;
+    }
+
+    public ValuesReference(long id, long lessonValueInCents, int defaultMinimunNumberOfLessons, long testValueInCents, DrivingCategory drivingCategory) {
+        this.id = id;
+        this.lessonValueInCents = lessonValueInCents;
+        this.defaultMinimunNumberOfLessons = defaultMinimunNumberOfLessons;
+        TestValueInCents = testValueInCents;
+        this.drivingCategory = drivingCategory;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public static LocalTime getDrivingSchoolOpeningTime() {

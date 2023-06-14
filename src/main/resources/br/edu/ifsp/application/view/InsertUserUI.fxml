@@ -7,26 +7,26 @@
 <AnchorPane minHeight="1200" minWidth="1800" prefHeight="1200.0" prefWidth="1800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ifsp.application.controller.InsertUserUIController">
     <children>
         <Label layoutX="14.0" layoutY="82.0" text="Nome:" />
-        <TextField id="txtName" layoutX="14.0" layoutY="101.0" prefHeight="23.0" prefWidth="212.0" />
+        <TextField fx:id="txtName" layoutX="14.0" layoutY="101.0" prefHeight="23.0" prefWidth="212.0" />
         <Label layoutX="14.0" layoutY="167.0" text="Nome de usuário:" />
-        <TextField id="txtUsername" layoutX="14.0" layoutY="184.0" prefHeight="38.0" prefWidth="212.0" />
+        <TextField fx:id="txtUsername" layoutX="14.0" layoutY="184.0" prefHeight="38.0" prefWidth="212.0" />
         <Label layoutX="14.0" layoutY="243.0" text="Senha:" />
-        <PasswordField id="txtPassword" layoutX="14.0" layoutY="260.0" prefHeight="25.0" prefWidth="212.0" />
+        <PasswordField fx:id="txtPassword" layoutX="14.0" layoutY="260.0" prefHeight="25.0" prefWidth="212.0" />
         <Label layoutX="15.0" layoutY="301.0" text="Email:" />
-        <TextField id="txtEmail" layoutX="15.0" layoutY="318.0" prefHeight="38.0" prefWidth="212.0" />
+        <TextField fx:id="txtEmail" layoutX="15.0" layoutY="318.0" prefHeight="38.0" prefWidth="212.0" />
         <Label layoutX="14.0" layoutY="374.0" text="Telefone:" />
-        <TextField id="txtPhone" layoutX="15.0" layoutY="392.0" prefHeight="38.0" prefWidth="212.0" />
+        <TextField fx:id="txtPhone" layoutX="15.0" layoutY="392.0" prefHeight="38.0" prefWidth="212.0" />
         <Label layoutX="14.0" layoutY="453.0" text="Dicas de senha:" />
-        <TextField id="txtPasswordTips" layoutX="15.0" layoutY="473.0" prefHeight="38.0" prefWidth="212.0" />
-        <TextField id="txtPasswordTipsSecond" layoutX="15.0" layoutY="523.0" prefHeight="38.0" prefWidth="212.0" />
+        <TextField fx:id="txtPasswordTips" layoutX="15.0" layoutY="473.0" prefHeight="38.0" prefWidth="212.0" />
+        <TextField fx:id="txtPasswordTipsSecond" layoutX="15.0" layoutY="523.0" prefHeight="38.0" prefWidth="212.0" />
         <Label layoutX="14.0" layoutY="586.0" text="Nível de acesso:" />
-        <ComboBox id="cbAcessLevel" layoutX="14.0" layoutY="606.0" prefWidth="150.0" />
+        <ComboBox fx:id="cbAcessLevel" layoutX="14.0" layoutY="606.0" prefWidth="150.0" />
         <Label layoutX="16.0" layoutY="23.0" prefHeight="33.0" prefWidth="389.0" text="Inserir usuário" textFill="#483c85" >
             <font>
                 <Font name="System Bold" size="18.0" />
             </font>
         </Label>
-      <Button id="btnCancel" layoutX="13.0" layoutY="668.0" mnemonicParsing="false" text="Cancelar" onAction="#cancelButtonAction"/>
-      <Button id="btnSubmit" layoutX="95.0" layoutY="668.0" mnemonicParsing="false" text="Enviar" onAction="#submitButtonAction"/>
+      <Button fx:id="btnCancel" layoutX="13.0" layoutY="668.0" mnemonicParsing="false" text="Cancelar" onAction="#cancelButtonAction"/>
+      <Button fx:id="btnSubmit" layoutX="95.0" layoutY="668.0" mnemonicParsing="false" text="Enviar" onAction="#submitButtonAction"/>
     </children>
 </AnchorPane>

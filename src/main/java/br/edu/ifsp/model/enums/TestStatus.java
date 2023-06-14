@@ -1,9 +1,9 @@
 package br.edu.ifsp.model.enums;
 
 public enum TestStatus {
-    DONE ("Concluído"),
-    IN_PROGRESS("Em andamento"),
-    TO_DO ("A fazer");
+    DONE ("DONE"),
+    IN_PROGRESS("IN_PROGRESS"),
+    TO_DO ("TO_DO");
 
     private String label;
 

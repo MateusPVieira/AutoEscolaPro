@@ -1,5 +1,6 @@
 package br.edu.ifsp.application.controller.qualification;
 
+import br.edu.ifsp.application.utils.Util;
 import br.edu.ifsp.application.view.WindowLoader;
 import br.edu.ifsp.model.dao.InstructorDAO;
 import br.edu.ifsp.model.dao.QualificationProcessDAO;
@@ -22,7 +23,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -67,18 +67,19 @@ public class InsertQualificationUI {
         this.listStudentUseCase = new ListStudentUseCase(studentDAO);
 
     }
+
     @FXML
     public void initialize() {
         try {
-       List<Instructor> instructors = listInstructorUseCase.findAll().orElseThrow(() -> new EntityNotFoundException("Não foi possível recuperar os instrutores!"));
-       List<Student> students = listStudentUseCase.findAll().orElseThrow(() -> new EntityNotFoundException("Não foi possível recuperar os alunos!"));
-       cbInstructor.getItems().addAll(instructorToName(instructors));
-        cbStudent.getItems().addAll(studentsToName(students));
+            List<Instructor> instructors = listInstructorUseCase.findAll().orElseThrow(() -> new EntityNotFoundException("Não foi possível recuperar os instrutores!"));
+            List<Student> students = listStudentUseCase.findAll().orElseThrow(() -> new EntityNotFoundException("Não foi possível recuperar os alunos!"));
+            cbInstructor.getItems().addAll(Util.instructorToName(instructors));
+            cbStudent.getItems().addAll(Util.studentsToName(students));
             cbEyeExam.getItems().addAll(TestStatus.values());
             cbTheoricExam.getItems().addAll(TestStatus.values());
             cbPsychoExam.getItems().addAll(TestStatus.values());
             cbDrivingCategory.getItems().addAll(DrivingCategory.values());
-        } catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
     }
@@ -86,12 +87,13 @@ public class InsertQualificationUI {
     @FXML
     private void handleSubmitButtonAction() {
         try {
+            getEntityToView();
             insertQualificationProcessUseCase.insert(qualificationProcess);
             showAlert(Alert.AlertType.INFORMATION, "Success", "Qualification process created successfully.");
             logger.info("Qualification process created successfully!");
 
         } catch (Exception e) {
-            logger.error(e);
+            e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
         }
     }
@@ -108,47 +110,12 @@ public class InsertQualificationUI {
         WindowLoader.setRoot("QualificationProcessManagementUI");
     }
 
-    public List<String> studentsToName(List<Student> studentList){
-        List<String> listNames = new ArrayList<>();
-        for (Student student: studentList) {
-            listNames.add(student.getName());
-        }
-        return listNames;
-    }
 
-    public List<String> instructorToName(List<Instructor> instructorList){
-        List<String> listNames = new ArrayList<>();
-        for (Instructor instructor:  instructorList) {
-            listNames.add(instructor.getName());
-        }
-        return listNames;
-    }
-
-    public Student nameToStudent(String name){
-        List<Student> listStudent = listStudentUseCase.findAll().get();
-        for (Student student: listStudent) {
-            if(student.getName().equals(name)){
-                return student;
-            }
-        }
-        return null;
-    }
-
-    public Instructor nameToInstructor(String name){
-        List<Instructor> listInstructor = listInstructorUseCase.findAll().get();
-        for (Instructor instructor: listInstructor) {
-            if(instructor.getName().equals(name)){
-                return instructor;
-            }
-        }
-        return null;
-    }
-
-    private void getEntityToView(){
+    private void getEntityToView() {
         if (qualificationProcess == null) {
             qualificationProcess = new InsertQualificationRequestModel(
-                    nameToStudent(cbStudent.getValue()).getId(),
-                    nameToInstructor(cbInstructor.getValue()).getId(),
+                    Util.nameToStudent(cbStudent.getValue()).getId(),
+                    Util.nameToInstructor(cbInstructor.getValue()).getId(),
                     cbEyeExam.getValue(),
                     cbPsychoExam.getValue(),
                     cbTheoricExam.getValue(),

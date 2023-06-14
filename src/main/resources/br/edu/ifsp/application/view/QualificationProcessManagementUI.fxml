@@ -13,11 +13,11 @@
         </Label>
         <TableView id="tableView" layoutX="54.0" layoutY="66.0" prefHeight="284.0" prefWidth="665.0">
             <columns>
-                <TableColumn id="cName" prefWidth="93.0" text="Categoria" />
-                <TableColumn id="cUsername" prefWidth="135.0" text="Aluno" />
-                <TableColumn id="cEmail" prefWidth="144.0" text="Professor" />
-                <TableColumn id="cStatus" prefWidth="104.0" text="Status" />
-            <TableColumn prefWidth="236.0" text="Data de abertura" />
+                <TableColumn id="cName" fx:id="cCategory" prefWidth="93.0" text="Categoria" />
+                <TableColumn id="cUsername" fx:id="cStudent" prefWidth="135.0" text="Aluno" />
+                <TableColumn id="cEmail" fx:id="cInstructor" prefWidth="144.0" text="Professor" />
+                <TableColumn id="cStatus" fx:id="cStatus" prefWidth="104.0" text="Status" />
+            <TableColumn fx:id="cOpDate" prefWidth="236.0" text="Data de abertura" />
             </columns>
         </TableView>
         <Button layoutX="536.0" layoutY="430.0" mnemonicParsing="false" onAction="#addClicked" text="Adicionar" />

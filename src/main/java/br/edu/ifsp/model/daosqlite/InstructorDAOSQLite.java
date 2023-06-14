@@ -4,6 +4,7 @@ import br.edu.ifsp.application.repository.ConnectionFactory;
 import br.edu.ifsp.model.dao.InstructorDAO;
 import br.edu.ifsp.model.entities.instructor.Instructor;
 import br.edu.ifsp.model.entities.instructor.Instructor;
+import br.edu.ifsp.model.entities.student.Student;
 import br.edu.ifsp.model.enums.RegistrationStatus;
 import javafx.collections.ObservableList;
 import org.apache.logging.log4j.LogManager;
@@ -63,8 +64,9 @@ public class InstructorDAOSQLite implements InstructorDAO {
     }
 
     @Override
-    public Optional<Instructor> findOne(Long key) {
-        return Optional.empty();
+    public Optional<Instructor> findOne(Long id) {
+        String sql = "SELECT * FROM INSTRUCTOR WHERE id = '" + id + "';";
+        return getInstructor(sql);
     }
 
     @Override
@@ -104,17 +106,20 @@ public class InstructorDAOSQLite implements InstructorDAO {
 
     @Override
     public Optional<Instructor> findOneByCPF(String cpf) {
-        return Optional.empty();
+        String sql = "SELECT * FROM INSTRUCTOR WHERE cpf = '" + cpf + "';";
+        return getInstructor(sql);
     }
 
     @Override
     public Optional<Instructor> findOneByRG(String rg) {
-        return Optional.empty();
+        String sql = "SELECT * FROM INSTRUCTOR WHERE rg = '" + rg + "';";
+        return getInstructor(sql);
     }
 
     @Override
     public Optional<Instructor> findOneByCNH(String cnh) {
-        return Optional.empty();
+        String sql = "SELECT * FROM INSTRUCTOR WHERE cnh = '" + cnh + "';";
+        return getInstructor(sql);
     }
 
     @Override
@@ -150,6 +155,29 @@ public class InstructorDAOSQLite implements InstructorDAO {
             e.printStackTrace();
             return Collections.emptyList();
         }
+    }
+
+    private Optional<Instructor> getInstructor(String sql) {
+        try (Statement statement = ConnectionFactory.createStatement()) {
+            ResultSet rs = statement.executeQuery(sql);
+
+            long dbid = rs.getLong("id");
+            String dbname = rs.getString("name");
+            String dbcpf = rs.getString("cpf");
+            String dbrg = rs.getString("rg");
+            String dbcnh = rs.getString("cnh");
+            String dbadress = rs.getString("address");
+            String dbphone = rs.getString("phone");
+            String dbbankacc = rs.getString("bankAccount");
+            String dbstatus = rs.getString("registrationStatus");
+            Instructor instructor = new Instructor(dbid, dbname, dbcpf, dbrg, dbcnh, dbadress, dbphone,dbbankacc, RegistrationStatus.valueOf(dbstatus));
+            instructor.setDrivingCategory(getListCategory(instructor.getId()));
+
+            return Optional.of(instructor);
+        } catch (Exception e) {
+            logger.error(e);
+        }
+        return Optional.empty();
     }
 
 

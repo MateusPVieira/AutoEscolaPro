@@ -2,6 +2,7 @@ package br.edu.ifsp.model.entities.qualification;
 
 import br.edu.ifsp.model.entities.schedule.Schedule;
 import br.edu.ifsp.model.entities.student.Student;
+import br.edu.ifsp.model.entities.user.Session;
 import br.edu.ifsp.model.entities.user.User;
 import br.edu.ifsp.model.entities.category.DrivingCategory;
 import br.edu.ifsp.model.enums.RegistrationStatus;
@@ -42,6 +43,8 @@ public class QualificationProcess {
         this.drivingCategory = drivingCategory;
         this.instructor = instructor;
         this.student = student;
+        this.user = Session.getInstance().getUser().toUser();
+        this.openingDate = LocalDate.now();
     }
     public QualificationProcess(long id, long qualificationValueCents, LocalDate openingDate, int minimumNumberOfLessons, User user, RegistrationStatus registrationStatus, TestStatus eyeExam, TestStatus theoricExam, TestStatus psychoExam, DrivingCategory drivingCategory, Instructor instructor, Student student, List<Schedule> drivingLessons, List<Schedule> drivingTests) {
         this.id = id;
@@ -59,6 +62,22 @@ public class QualificationProcess {
         this.drivingLessons = drivingLessons;
         this.drivingTests = drivingTests;
     }
+
+    public QualificationProcess(long id, long qualificationValueCents, LocalDate openingDate, int minimumNumberOfLessons, User user, RegistrationStatus registrationStatus, TestStatus eyeExam, TestStatus theoricExam, TestStatus psychoExam, DrivingCategory drivingCategory, Instructor instructor, Student student) {
+        this.id = id;
+        this.qualificationValueCents = qualificationValueCents;
+        this.openingDate = openingDate;
+        this.minimumNumberOfLessons = minimumNumberOfLessons;
+        this.user = user;
+        this.registrationStatus = registrationStatus;
+        this.eyeExam = eyeExam;
+        this.theoricExam = theoricExam;
+        this.psychoExam = psychoExam;
+        this.drivingCategory = drivingCategory;
+        this.instructor = instructor;
+        this.student = student;
+    }
+
 
     public long getId() {
         return id;

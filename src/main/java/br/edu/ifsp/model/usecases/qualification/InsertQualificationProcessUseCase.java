@@ -71,6 +71,7 @@ public class InsertQualificationProcessUseCase {
                 .getUser().toUser();
 
         var qualificationProcess = buildQualificationProcess(dto, student, instructor, user);
+
         var notification = validator.validate(qualificationProcess);
 
         if(notification.hasErrors())

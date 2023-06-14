@@ -45,7 +45,8 @@ public class ListQualificationProcessUseCase {
      *
      * @return A collection of QualificationProcess objects representing all the qualification processes in the system.
      */
-    public Optional<List<QualificationProcess>> findSome(){
+    public Optional<List<QualificationProcess>> findAll(){
+
         return qualificationProcessDAO.findAll();
     }
 }

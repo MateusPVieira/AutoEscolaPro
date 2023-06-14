@@ -14,18 +14,18 @@
         <Label layoutX="17.0" layoutY="150.0" text="Nome de usuário:" />
         <Label layoutX="15.0" layoutY="220.0" text="Email:" />
         <Label layoutX="16.0" layoutY="293.0" text="Telefone" />
-        <TextField id="txtName" layoutX="15.0" layoutY="96.0" prefHeight="38.0" prefWidth="215.0" />
-        <TextField id="txtUsername" layoutX="15.0" layoutY="167.0" prefHeight="38.0" prefWidth="215.0" />
-        <TextField id="txtEmail" layoutX="15.0" layoutY="237.0" prefHeight="38.0" prefWidth="215.0" />
-        <TextField id="txtPhone" layoutX="15.0" layoutY="311.0" prefHeight="38.0" prefWidth="215.0" />
-        <Button id="btnConfirm" layoutX="557.0" layoutY="384.0" mnemonicParsing="false" text="Editar" onAction="#confirmClicked"/>
-        <Button id="btnReturn" layoutX="474.0" layoutY="384.0" mnemonicParsing="false" text="Voltar" onAction="#returnClicked"/>
+        <TextField fx:id="txtName" layoutX="15.0" layoutY="96.0" prefHeight="38.0" prefWidth="215.0" />
+        <TextField fx:id="txtUsername" layoutX="15.0" layoutY="167.0" prefHeight="38.0" prefWidth="215.0" />
+        <TextField fx:id="txtEmail" layoutX="15.0" layoutY="237.0" prefHeight="38.0" prefWidth="215.0" />
+        <TextField fx:id="txtPhone" layoutX="15.0" layoutY="311.0" prefHeight="38.0" prefWidth="215.0" />
+        <Button fx:id="btnConfirm" layoutX="557.0" layoutY="384.0" mnemonicParsing="false" text="Editar" onAction="#confirmClicked"/>
+        <Button fx:id="btnReturn" layoutX="474.0" layoutY="384.0" mnemonicParsing="false" text="Voltar" onAction="#returnClicked"/>
         <Label layoutX="16.0" layoutY="21.0" text="Editar usuário" textFill="#483c85">
             <font>
                 <Font size="18.0" />
             </font>
         </Label>
         <Label layoutX="16.0" layoutY="367.0" text="Nível de acesso" />
-        <ComboBox id="cbAcessLevel" layoutX="14.0" layoutY="384.0" prefWidth="150.0" />
+        <ComboBox fx:id="cbAcessLevel" layoutX="14.0" layoutY="384.0" prefWidth="150.0" />
     </children>
 </AnchorPane>

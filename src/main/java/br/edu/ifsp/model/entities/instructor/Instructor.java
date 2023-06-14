@@ -134,17 +134,6 @@ public class Instructor {
 
     @Override
     public String toString() {
-        return "Instructor{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", cpf='" + cpf + '\'' +
-                ", rg='" + rg + '\'' +
-                ", cnh='" + cnh + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + phone + '\'' +
-                ", bankAccount='" + bankAccount + '\'' +
-                ", drivingCategory=" + drivingCategory +
-                ", RegistrationStatus=" + registrationStatus +
-                '}';
+        return getName();
     }
 }

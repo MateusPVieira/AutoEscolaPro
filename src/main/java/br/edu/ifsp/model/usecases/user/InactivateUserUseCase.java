@@ -15,7 +15,7 @@ public class InactivateUserUseCase {
     }
 
     public boolean inactivateUserUseCase(int id){
-        User user = userDAO.findOne(id).orElseThrow(()-> new EntityNotFoundException("Qualification Process not found!"));
+        User user = userDAO.findOne(id).orElseThrow(()-> new EntityNotFoundException("User not found!"));
 
         user.setRegistrationStatus(RegistrationStatus.INACTIVE);
 

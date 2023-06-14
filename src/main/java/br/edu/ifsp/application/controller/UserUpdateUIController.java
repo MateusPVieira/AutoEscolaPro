@@ -10,9 +10,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
-import java.util.Collections;
 
-import static br.edu.ifsp.application.main.Main.updateUserUseCase;
+//import static br.edu.ifsp.application.main.Main.updateUserUseCase;
 
 public class UserUpdateUIController {
 
@@ -47,7 +46,7 @@ public class UserUpdateUIController {
 
     private void getEntityToView(){
         if (user == null) {
-            user = new User();
+            //user = new User(txtName.getText(), txtUsername.getText(), txtPassword.getText(), txtEmail.getText(), txtPhone.getText(), txtPasswordTips.getText(), txtPasswordTipsSecond.getText(), cbAcessLevel.getValue());
         }
         user.setName(txtName.getText());
         user.setUsername(txtUsername.getText());
@@ -69,7 +68,7 @@ public class UserUpdateUIController {
     public void confirmClicked(ActionEvent actionEvent) throws IOException {
         getEntityToView();
         if(user.getName() == null){
-            updateUserUseCase.update(user);
+            //updateUserUseCase.update(user);
         }
         WindowLoader.setRoot("UserManagementUI");
     }

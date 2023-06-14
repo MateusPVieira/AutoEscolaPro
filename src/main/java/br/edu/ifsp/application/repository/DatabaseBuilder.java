@@ -11,47 +11,46 @@ import org.apache.logging.log4j.Logger;
 
 public class DatabaseBuilder {
     private static final Logger logger = LogManager.getLogger(DatabaseBuilder.class);
+
     //observe as FKs antes de escolher a ordem de criação das tabelas
     //para evitar problemas com tabelas criadas antes das que ela possui FK
-    public void buildDatabaseIfMissing(){
+    public void buildDatabaseIfMissing() {
         if (isDatabaseMissing()) {
             logger.info("Database is missing. Building database:");
             buildTables(false);
-        }
-        else {
+        } else {
             logger.info("Database exists. Checking database:");
             buildTables(true);
         }
     }
 
-    private boolean isDatabaseMissing(){
+    private boolean isDatabaseMissing() {
         return !Files.exists(Paths.get("database.db"));
     }
 
-    private void buildTables(boolean isUpdate){
-        try(Statement statement = ConnectionFactory.createStatement()){
+    private void buildTables(boolean isUpdate) {
+        try (Statement statement = ConnectionFactory.createStatement()) {
             statement.addBatch(createUserTable());
 
             if (!isUpdate) {
                 statement.addBatch(createAdminUser());
             }
-                statement.addBatch(createStudentTable());
-                statement.addBatch(createInstructorTable());
-                statement.addBatch(createInstructorDrivingCategoryTable());
-
-
-//            statement.addBatch(createValuesReferenceTable());
-//            statement.addBatch(createScheduleTable());
-//            statement.addBatch(createQualificationProcessTable());
+            statement.addBatch(createStudentTable());
+            statement.addBatch(createInstructorTable());
+            statement.addBatch(createInstructorDrivingCategoryTable());
+            statement.addBatch(createValuesReferenceTable());
+            statement.addBatch(createScheduleTable());
+            statement.addBatch(createQualificationProcessTable());
+            statement.addBatch(createQualificationScheduleTable());
             statement.executeBatch();
 
             logger.info("Database update success!");
-        } catch (SQLException e){
+        } catch (SQLException e) {
             logger.error(e);
         }
     }
 
-    private String createUserTable(){
+    private String createUserTable() {
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS user (");
         builder.append("id INTEGER PRIMARY KEY,");
@@ -66,12 +65,11 @@ public class DatabaseBuilder {
         builder.append(");");
 
 
-
         logger.info(builder.toString());
         return builder.toString();
     }
 
-    private String createAdminUser(){
+    private String createAdminUser() {
         StringBuilder builder = new StringBuilder();
         builder.append("INSERT INTO USER(name, username, password, accessLevel, registrationStatus) VALUES (");
         builder.append("'Administrador', 'admin', 'admin', 'ADMIN', 'ACTIVE');");
@@ -81,7 +79,7 @@ public class DatabaseBuilder {
     }
 
 
-    private String createStudentTable(){
+    private String createStudentTable() {
 
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS Student (");
@@ -99,7 +97,8 @@ public class DatabaseBuilder {
 
         return builder.toString();
     }
-    private String createInstructorTable(){
+
+    private String createInstructorTable() {
 
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS Instructor (");
@@ -119,7 +118,7 @@ public class DatabaseBuilder {
         return builder.toString();
     }
 
-    private String createInstructorDrivingCategoryTable(){
+    private String createInstructorDrivingCategoryTable() {
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS InstructorDrivingCategoryTable (");
         builder.append("instructor_id INTEGER,");
@@ -131,8 +130,7 @@ public class DatabaseBuilder {
     }
 
 
-
-    private String createValuesReferenceTable(){
+    private String createValuesReferenceTable() {
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS ValuesReference (");
 
@@ -141,16 +139,14 @@ public class DatabaseBuilder {
         builder.append("testValueInCents INTEGER,");
         builder.append("drivingSchoolOpeningTime TEXT,");
         builder.append("drivingSchoolClosingTime TEXT,");
-
         builder.append("drivingCategory TEXT");
-        builder.append("FOREIGN KEY(drivingCategory) REFERENCES drivingCategory(id)");
 
         builder.append(");");
         logger.info(builder.toString());
         return builder.toString();
     }
 
-    private String createScheduleTable(){
+    private String createScheduleTable() {
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS Schedule (");
         builder.append("id INTEGER PRIMARY KEY,");
@@ -159,7 +155,7 @@ public class DatabaseBuilder {
         builder.append("remunerationStatus TEXT,");
         builder.append("scheduleType TEXT,");
 
-        builder.append("valuesReference INTEGER");
+        builder.append("valuesReference INTEGER,");
         builder.append("FOREIGN KEY(valuesReference) REFERENCES valuesReference(id)");
         builder.append(");");
         logger.info(builder.toString());
@@ -167,8 +163,7 @@ public class DatabaseBuilder {
     }
 
 
-
-    private String createQualificationProcessTable(){
+    private String createQualificationProcessTable() {
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE IF NOT EXISTS QualificationProcess (");
 
@@ -182,16 +177,25 @@ public class DatabaseBuilder {
         builder.append("theoricExam TEXT,");
         builder.append("psychoExam TEXT,");
 
-        builder.append("drivingCategory INTEGER,");
+        builder.append("drivingCategory TEXT,");
         builder.append("instructorId INTEGER,");
-        builder.append("studentId INTEGER");
-        builder.append("schedules INTEGER");
-        builder.append("FOREIGN KEY(drivingCategory) REFERENCES drivingCategory(id)");
-        builder.append("FOREIGN KEY(instructorId) REFERENCES instructor(id)");
+        builder.append("studentId INTEGER,");
+        builder.append("FOREIGN KEY(instructorId) REFERENCES instructor(id),");
         builder.append("FOREIGN KEY(studentId) REFERENCES student(id)");
-        builder.append("FOREIGN KEY(schedules) REFERENCES schedule(id)");
+
 
         builder.append(");");
+        logger.info(builder.toString());
+        return builder.toString();
+    }
+
+    private String createQualificationScheduleTable() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("CREATE TABLE IF NOT EXISTS QualificationSchedule (");
+        builder.append("qualification_id INTEGER,");
+        builder.append("schedule_id INTEGER");
+        builder.append(");");
+
         logger.info(builder.toString());
         return builder.toString();
     }
