@@ -215,7 +215,7 @@ public class DatabaseBuilder {
         builder.append("remunerationStatus TEXT,");
         builder.append("scheduleType TEXT,");
 
-        builder.append("valuesReference INTEGER,");
+        builder.append("valuesReference TEXT,");
         builder.append("FOREIGN KEY(valuesReference) REFERENCES valuesReference(id)");
         builder.append(");");
         logger.info(builder.toString());

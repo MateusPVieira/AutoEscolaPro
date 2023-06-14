@@ -70,7 +70,7 @@ public class ScheduleInsertUIController {
     }
 
     public void returnClicked() throws IOException {
-        WindowLoader.setRoot("StudentEditUI");
+        WindowLoader.setRoot("StudentManagementUI");
     }
 
     public void setQualificationProcessToUI(QualificationProcess qualificationProcess) {

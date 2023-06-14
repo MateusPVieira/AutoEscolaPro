@@ -30,6 +30,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.sql.Struct;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -109,14 +110,26 @@ public class StudentEditUIController {
         tableData.addAll(schedules);
     }
 
-    public void saveOrUpdate(ActionEvent actionEvent) {
+    public void saveOrUpdate(ActionEvent actionEvent) throws IOException {
+        Student student = getStudent();
+        if (student != null){
+            try {
+                updateStudentUseCase.update(student);
+                showAlert(Alert.AlertType.INFORMATION, "Success", "Aluno editado!");
+            } catch (Exception e){
+                showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+            }
+
+            returnClicked();
+        }
     }
 
     public void returnClicked() throws IOException {
-        WindowLoader.setRoot("ScheduleManageUI");
+        WindowLoader.setRoot("MainUI");
     }
 
-    public void cancelSchedule(ActionEvent actionEvent) {
+    public void cancelSchedule(ActionEvent actionEvent) throws IOException {
+        WindowLoader.setRoot("MainUI");
     }
 
     public void addSchedule(ActionEvent actionEvent) {
@@ -125,9 +138,10 @@ public class StudentEditUIController {
            if (qualificationProcess.getRegistrationStatus().equals(RegistrationStatus.INACTIVE)){
                throw new InactiveItemException("Habilitação Inativa!");
            }
+            WindowLoader.setRoot("ScheduleInsertUI");
             ScheduleInsertUIController controller = (ScheduleInsertUIController) WindowLoader.getController();
             controller.setQualificationProcessToUI(qualificationProcess);
-            WindowLoader.setRoot("ScheduleInsertUI");
+
 
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Error", "O aluno não possui habilitações ativas em andamento");
@@ -135,12 +149,16 @@ public class StudentEditUIController {
     }
 
     public void setStudent(Student selectedStudentParam){
+
         selectedStudent = selectedStudentParam;
         QualificationProcess qualificationProcess = listQualificationProcessUseCase.findByStudentId(selectedStudent.getId());
         schedules = new ArrayList<>();
         schedules.addAll(qualificationProcess.getDrivingTests());
         schedules.addAll(qualificationProcess.getDrivingLessons());
         setStudentFields();
+        System.out.println(schedules);
+        loadDataAndShow();
+
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
@@ -159,5 +177,17 @@ public class StudentEditUIController {
        txtAdress.setText(selectedStudent.getAddress());
        txtPhone.setText(selectedStudent.getPhone());
        txtEmail.setText(selectedStudent.getEmail());
+    }
+
+    public Student getStudent() {
+        return new Student(selectedStudent.getId(),
+                txtName.getText(),
+                txtCPF.getText(),
+                txtRG.getText(),
+                txtCNH.getText(),
+                txtAdress.getText(),
+                txtPhone.getText(),
+                txtEmail.getText()
+        );
     }
 }

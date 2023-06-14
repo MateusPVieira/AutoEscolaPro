@@ -195,8 +195,11 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
 
             QualificationProcess qualificationProcess = new QualificationProcess(dbId, dbQlValueCents, dbOpeningDate, dbMinNumberLessons, user
                     , dbStatus, dbEyeExam, dbTheoricExam, dbPsychoExam, DrivingCategory.valueOf(category), instructor, student);
-
+            System.out.println("Lista retornando de getListSchecule:");
+            System.out.println(getListSchedule(dbId));
+            System.out.println("----------------------------------");
             for (Schedule schedule: getListSchedule(dbId)) {
+
                 if(schedule.getScheduleType().equals(ScheduleType.LESSON)){
                     qualificationProcess.addDrivingLesson(schedule);
                 } else {
@@ -238,23 +241,31 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
                 " FROM Schedule" +
                 " JOIN QualificationSchedule ON Schedule.id = QualificationSchedule.schedule_id" +
                 " WHERE QualificationSchedule.qualification_id = " + id +";";
+
+        System.out.println("SQL:");
+        System.out.println(sql);
+        System.out.println("---------------------------------------------------------");
         try (Statement statement = ConnectionFactory.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
             while (rs.next()) {
-
+                System.out.println("tem resultados");
                 var dbId = rs.getLong("id");
                 var dbSchDateTime = rs.getString("scheduledDateTime");
                 var dbSchStatus = rs.getString("scheduleStatus");
                 var dbRemunerationStatus= rs.getString("remunerationStatus");
                 var dbSchType = rs.getString("scheduleType");
-                var dbValuesReference = rs.getLong("valuesReference");
-
-                var valueRef = referenceValuesDAO.findOne(dbValuesReference).get();
+                var dbValuesReference = rs.getString("valuesReference");
+                System.out.println(dbValuesReference);
+                var valueRef = referenceValuesDAO.findOneByKeycategory(dbValuesReference).get();
 
                 Schedule schedule = new Schedule(dbId, Util.stringToDateTime(dbSchDateTime), ScheduleStatus.valueOf(dbSchStatus),
                         RemunerationStatus.valueOf(dbRemunerationStatus), valueRef, ScheduleType.valueOf(dbSchType));
                 listSchedule.add(schedule);
             }
+            System.out.println("---------------------------------------------------------");
+            System.out.println("Lista dentro do metodo");
+            System.out.println(listSchedule);
+            System.out.println("---------------------------------------------------------");
             return listSchedule;
         } catch (Exception e) {
             e.printStackTrace();

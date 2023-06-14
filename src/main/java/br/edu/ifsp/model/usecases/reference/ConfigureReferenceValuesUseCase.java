@@ -43,7 +43,7 @@ public class ConfigureReferenceValuesUseCase {
      * @throws IllegalArgumentException If the reference values fail the validation.
      */
     public boolean configureValues(DrivingCategory category, int minimumNumberOfLessons, long lessonsValue, long testValue){
-        ValuesReference referenceValues = referenceValuesDAO.findOneByKeycategory(category)
+        ValuesReference referenceValues = referenceValuesDAO.findOneByKeycategory(category.toString())
                 .orElseThrow(()-> new EntityNotFoundException("Reference Value not found!"));
         referenceValues.setDefaultMinimunNumberOfLessons(minimumNumberOfLessons);
         referenceValues.setLessonValueInCents(lessonsValue);
