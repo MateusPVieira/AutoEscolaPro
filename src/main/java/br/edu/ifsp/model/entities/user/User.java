@@ -18,7 +18,10 @@ public class User {
 
     private RegistrationStatus registrationStatus;
 
-    public User() {
+    public User(String text, String txtUsernameText, String txtPasswordText, String txtEmailText, String txtPhoneText, String txtPasswordTipsText, String txtPasswordTipsSecondText, AcessLevel value) {
+    }
+
+    public User(){
     }
 
     public User(int id, String name, String username, String password, String email, String phone, AcessLevel acessLevel, RegistrationStatus registrationStatus) {
@@ -41,6 +44,17 @@ public class User {
         this.acessLevel = acessLevel;
         this.registrationStatus = registrationStatus;
     }
+
+    public User(String name, String username, String password, String email, String phone, List<String> passwordTips, AcessLevel acessLevel) {
+        this.name = name;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phone = phone;
+        this.passwordTips = passwordTips;
+        this.acessLevel = acessLevel;
+    }
+
 
     public int getId() {
         return id;
