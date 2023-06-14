@@ -51,7 +51,6 @@ public class InsertQualificationUI {
 
     private InsertQualificationRequestModel qualificationProcess;
 
-
     private InsertQualificationProcessUseCase insertQualificationProcessUseCase;
     private ListInstructorUseCase listInstructorUseCase;
     private ListStudentUseCase listStudentUseCase;
@@ -68,7 +67,7 @@ public class InsertQualificationUI {
         this.listStudentUseCase = new ListStudentUseCase(studentDAO);
 
     }
-
+    @FXML
     public void initialize() {
         try {
        List<Instructor> instructors = listInstructorUseCase.findAll().orElseThrow(() -> new EntityNotFoundException("Não foi possível recuperar os instrutores!"));
@@ -82,6 +81,31 @@ public class InsertQualificationUI {
         } catch (Exception e){
             logger.error(e.getMessage());
         }
+    }
+
+    @FXML
+    private void handleSubmitButtonAction() {
+        try {
+            insertQualificationProcessUseCase.insert(qualificationProcess);
+            showAlert(Alert.AlertType.INFORMATION, "Success", "Qualification process created successfully.");
+            logger.info("Qualification process created successfully!");
+
+        } catch (Exception e) {
+            logger.error(e);
+            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
+        }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void returnClicked() throws IOException {
+        WindowLoader.setRoot("QualificationProcessManagementUI");
     }
 
     public List<String> studentsToName(List<Student> studentList){
@@ -119,35 +143,6 @@ public class InsertQualificationUI {
         }
         return null;
     }
-
-
-    @FXML
-    private void handleSubmitButtonAction() {
-
-
-        try {
-            insertQualificationProcessUseCase.insert(qualificationProcess);
-            showAlert(Alert.AlertType.INFORMATION, "Success", "Qualification process created successfully.");
-            logger.info("Qualification process created successfully!");
-
-        } catch (Exception e) {
-            logger.error(e);
-            showAlert(Alert.AlertType.ERROR, "Error", e.getMessage());
-        }
-    }
-
-    private void showAlert(Alert.AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    public void returnClicked() throws IOException {
-        WindowLoader.setRoot("QualificationProcessManagementUI");
-    }
-
 
     private void getEntityToView(){
         if (qualificationProcess == null) {

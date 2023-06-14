@@ -6,6 +6,7 @@ module br.edu.ifsp {
     requires org.apache.logging.log4j;
 
     opens br.edu.ifsp.model.enums to javafx.base;
+    opens br.edu.ifsp.model.entities.user to javafx.base;
     opens br.edu.ifsp.model.entities.instructor to javafx.base;
     opens br.edu.ifsp.model.entities.student to javafx.base;
     opens br.edu.ifsp.application.view to javafx.fxml;
