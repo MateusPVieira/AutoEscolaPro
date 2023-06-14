@@ -37,7 +37,6 @@ import java.util.List;
 public class StudentEditUIController {
     QualificationProcessDAO qualificationProcessDAO = new QualificationProcessDAOSQLite();
     ListQualificationProcessUseCase listQualificationProcessUseCase = new ListQualificationProcessUseCase(qualificationProcessDAO);
-    private Student selectedStudent;
 
     @FXML
     TextField txtName;
@@ -68,6 +67,9 @@ public class StudentEditUIController {
     TableColumn<Schedule, ScheduleType> cReference;
 
     private ObservableList<Schedule> tableData;
+
+    private List<Schedule> schedules = new ArrayList<>();
+    private Student selectedStudent;
 
     StudentDAO studentDAO;
     CreateStudentUseCase createStudentUseCase;
@@ -103,10 +105,6 @@ public class StudentEditUIController {
     }
 
     private void loadDataAndShow() {
-        QualificationProcess qualificationProcess = listQualificationProcessUseCase.findByStudentId(selectedStudent.getId());
-        List<Schedule> schedules =new ArrayList<>();
-        schedules.addAll(qualificationProcess.getDrivingTests());
-        schedules.addAll(qualificationProcess.getDrivingLessons());
         tableData.clear();
         tableData.addAll(schedules);
     }
@@ -138,6 +136,11 @@ public class StudentEditUIController {
 
     public void setStudent(Student selectedStudentParam){
         selectedStudent = selectedStudentParam;
+        QualificationProcess qualificationProcess = listQualificationProcessUseCase.findByStudentId(selectedStudent.getId());
+        schedules = new ArrayList<>();
+        schedules.addAll(qualificationProcess.getDrivingTests());
+        schedules.addAll(qualificationProcess.getDrivingLessons());
+        setStudentFields();
     }
 
     private void showAlert(Alert.AlertType alertType, String title, String message) {
@@ -146,5 +149,15 @@ public class StudentEditUIController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void setStudentFields(){
+        txtName.setText(selectedStudent.getName());
+       txtCPF.setText(selectedStudent.getCpf());
+       txtRG.setText(selectedStudent.getRg());
+       txtCNH.setText(selectedStudent.getCnh());
+       txtAdress.setText(selectedStudent.getAddress());
+       txtPhone.setText(selectedStudent.getPhone());
+       txtEmail.setText(selectedStudent.getEmail());
     }
 }

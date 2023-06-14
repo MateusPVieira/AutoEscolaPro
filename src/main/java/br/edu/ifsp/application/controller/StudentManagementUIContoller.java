@@ -16,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.List;
 
 public class StudentManagementUIContoller {
@@ -40,8 +41,8 @@ public class StudentManagementUIContoller {
     @FXML
     TableView<Student> tbStudentsView;
 
-
     private ObservableList<Student> tableData;
+
 
     public StudentManagementUIContoller() {
         studentDAO = new StudentDAOSQLite();
@@ -74,6 +75,7 @@ public class StudentManagementUIContoller {
         List<Student> studentList = listStudentUseCase.findAll().orElseThrow(() -> new EntityNotFoundException("Nenhum estudante encontrado!"));
         tableData.clear();
         tableData.addAll(studentList);
+        System.out.println(WindowLoader.getController().getClass());
     }
 
     public void createStudent(ActionEvent actionEvent) throws IOException {
@@ -93,6 +95,7 @@ public class StudentManagementUIContoller {
             WindowLoader.setRoot("StudentEditUI");
             StudentEditUIController controller = (StudentEditUIController) WindowLoader.getController();
             controller.setStudent(student);
+
         }
     }
 

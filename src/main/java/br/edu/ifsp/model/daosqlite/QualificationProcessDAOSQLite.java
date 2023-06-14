@@ -84,6 +84,7 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
     @Override
     public Optional<QualificationProcess> findByStudentId(Long id){
         String sql = "SELECT * FROM QualificationProcess WHERE studentId = " + id + ";";
+        System.out.println(sql);
         return getQualification(sql);
     }
 
@@ -160,6 +161,7 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
             if (affectedRows == 0) {
                 throw new SQLException("Update qualification failed, no rows affected.");
             }
+            excluirIDsNaoPermitidos(qualification.getDrivingLessons(), qualification.getDrivingTests());
             insertSchedules(qualification.getDrivingLessons(), qualification.getId());
             insertSchedules(qualification.getDrivingTests(), qualification.getId());
 
@@ -172,7 +174,6 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
     private Optional<QualificationProcess> getQualification(String sql) {
         try (Statement statement = ConnectionFactory.createStatement()) {
             ResultSet rs = statement.executeQuery(sql);
-
             long dbId = rs.getLong("id");
             long dbQlValueCents = rs.getLong("qualificationValueCents");
             LocalDate dbOpeningDate = Util.stringToDate(rs.getString("openingDate"));
@@ -185,9 +186,7 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
             String dbDrivingCategory = rs.getString("drivingCategory");
             Long dbInstructorId = rs.getLong("instructorId");
             Long dbStudentId = rs.getLong("studentId");
-
-            String dbCategory = rs.getString("driving_category");
-            String category = String.valueOf(dbCategory.charAt(0));
+            String category = String.valueOf(dbDrivingCategory.charAt(0));
 
 
             Student student = studentDAO.findOne(dbStudentId).get();
@@ -204,10 +203,9 @@ public class QualificationProcessDAOSQLite implements QualificationProcessDAO {
                     qualificationProcess.addDrivingTest(schedule);
                 }
             }
-            excluirIDsNaoPermitidos(qualificationProcess.getDrivingLessons(), qualificationProcess.getDrivingTests());
-
             return Optional.of(qualificationProcess);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             e.printStackTrace();
         }
         return Optional.empty();
